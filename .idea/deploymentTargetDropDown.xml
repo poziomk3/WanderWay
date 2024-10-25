@@ -5,6 +5,9 @@
       <entry key="GreetingPreview">
         <State />
       </entry>
+      <entry key="PreviewActivateAccountScreen">
+        <State />
+      </entry>
       <entry key="PreviewLoginScreen">
         <State />
       </entry>

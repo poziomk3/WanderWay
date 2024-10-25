@@ -1,4 +1,4 @@
-package com.pwr.wanderway.presentation.commons
+package com.pwr.wanderway.presentation.entryScreens.commons
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*

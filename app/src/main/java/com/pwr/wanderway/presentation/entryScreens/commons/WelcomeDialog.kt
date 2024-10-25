@@ -1,7 +1,8 @@
-package com.pwr.wanderway.presentation.commons
+package com.pwr.wanderway.presentation.entryScreens.commons
 
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import com.pwr.wanderway.presentation.commons.MainIcon
 
 
 @Composable

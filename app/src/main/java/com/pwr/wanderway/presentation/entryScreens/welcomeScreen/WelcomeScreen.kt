@@ -1,4 +1,4 @@
-package com.pwr.wanderway.presentation.welcomeScreen
+package com.pwr.wanderway.presentation.entryScreens.welcomeScreen
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
@@ -8,8 +8,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.pwr.wanderway.R
-import com.pwr.wanderway.presentation.commons.WelcomeBackgroundWrapper
-import com.pwr.wanderway.presentation.commons.WelcomeDialog
+import com.pwr.wanderway.presentation.entryScreens.commons.WelcomeBackgroundWrapper
+import com.pwr.wanderway.presentation.entryScreens.commons.WelcomeDialog
 import com.pwr.wanderway.ui.theme.AppTheme
 
 @Composable

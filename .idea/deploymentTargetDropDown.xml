@@ -5,6 +5,15 @@
       <entry key="GreetingPreview">
         <State />
       </entry>
+      <entry key="PreviewLoginScreen">
+        <State />
+      </entry>
+      <entry key="PreviewRegisterScreen">
+        <State />
+      </entry>
+      <entry key="WelcomeScreenPreview">
+        <State />
+      </entry>
       <entry key="app">
         <State />
       </entry>

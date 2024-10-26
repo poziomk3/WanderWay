@@ -14,6 +14,7 @@
 
     <string name="got_it">Got it!</string>
     <string name="activate_account_label">Activate your account!</string>
-    <string name="activate_account_sublabel">You should shortly receive a confirmation email. Activate your account!</string>
+    <string name="activate_account_sublabel">You should shortly receive a confirmation email.</string>
+    <string name="error_empty_fields">You didn\'t insert required fields.</string>
 
 </resources>

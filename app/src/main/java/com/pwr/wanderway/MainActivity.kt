@@ -3,52 +3,73 @@ package com.pwr.wanderway
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.size
-import androidx.compose.material3.Button
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.activity.enableEdgeToEdge
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.pwr.wanderway.navigation.Destination
+import com.pwr.wanderway.navigation.NavigationAction
+import com.pwr.wanderway.navigation.Navigator
+import com.pwr.wanderway.navigation.ObserveAsEvents
+import com.pwr.wanderway.presentation.entryScreens.activateAccount.ActivateAccountScreen
+import com.pwr.wanderway.presentation.entryScreens.activateAccount.ActivateAccountViewModel
+import com.pwr.wanderway.presentation.entryScreens.login.LoginScreen
+import com.pwr.wanderway.presentation.entryScreens.login.LoginViewModel
+import com.pwr.wanderway.presentation.entryScreens.register.RegisterScreen
+import com.pwr.wanderway.presentation.entryScreens.register.RegisterViewModel
+import com.pwr.wanderway.presentation.entryScreens.welcome.WelcomeScreen
+import com.pwr.wanderway.presentation.entryScreens.welcome.WelcomeViewModel
 import com.pwr.wanderway.ui.theme.AppTheme
+import org.koin.android.ext.android.get
+import org.koin.androidx.compose.koinViewModel
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         setContent {
             AppTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.primary // Using background from theme
-                ) {
-                    Greeting("Android")
+                val navController = rememberNavController()
+                val navigator = get<Navigator>()
+                ObserveAsEvents(flow = navigator.navigationActions) { action ->
+                    when (action) {
+                        is NavigationAction.Navigate -> navController.navigate(
+                            action.destination
+                        ) {
+                            action.navOptions(this)
+                        }
+
+                        NavigationAction.NavigateUp -> navController.navigateUp()
+                    }
                 }
+                NavHost(
+                    navController = navController,
+                    startDestination = navigator.startDestination,
+                ) {
+                    composable<Destination.WelcomeScreen> {
+                        val viewModel = koinViewModel<WelcomeViewModel>()
+                        WelcomeScreen(viewModel)
+                    }
+                    composable<Destination.LoginScreen> {
+                        val viewModel = koinViewModel<LoginViewModel>()
+                        LoginScreen(
+                            viewModel = viewModel,
+                        )
+                    }
+                    composable<Destination.RegisterScreen> {
+                        val viewModel = koinViewModel<RegisterViewModel>()
+                        RegisterScreen(viewModel)
+                    }
+                    composable<Destination.ActivateAccountScreen> {
+                        val viewModel = koinViewModel<ActivateAccountViewModel>()
+                        ActivateAccountScreen(viewModel)
+                    }
+                }
+
             }
         }
     }
 }
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Button(
 
-        onClick = { /* TODO: Add your click action */ },
-        modifier = modifier
-    ) {
-        Text(
-            style = MaterialTheme.typography.displayLarge,
-            text = "Hello $name!"
-        ) // Text inside the Button
-    }
-}
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    AppTheme {
-        Greeting("Android")
-    }
-}

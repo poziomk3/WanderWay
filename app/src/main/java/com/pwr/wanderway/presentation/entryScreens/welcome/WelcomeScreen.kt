@@ -1,11 +1,9 @@
 package com.pwr.wanderway.presentation.entryScreens.welcome
 
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.pwr.wanderway.R
 import com.pwr.wanderway.presentation.entryScreens.commons.WelcomeBackgroundWrapper
@@ -21,7 +19,6 @@ fun WelcomeScreen(
             title = stringResource(id = R.string.welcome_label),
             content = {
                 Box(
-                    modifier = Modifier.fillMaxWidth(),
                     contentAlignment = Alignment.Center
                 ) {
                     Text(stringResource(id = R.string.welcome_sublabel))

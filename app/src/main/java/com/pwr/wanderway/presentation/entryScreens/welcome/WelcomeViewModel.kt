@@ -1,31 +1,21 @@
 package com.pwr.wanderway.presentation.entryScreens.welcome
 
 import androidx.lifecycle.ViewModel
-import androidx.navigation.NavController
-import com.pwr.wanderway.Screen
-
-
-interface Navigator {
-    fun navigateToLogin()
-    fun navigateToRegister()
-}
-
-class ComposableNavigator(private val navController: NavController) : Navigator {
-    override fun navigateToLogin() {
-        navController.navigate(Screen.LOGIN.route)
-    }
-
-    override fun navigateToRegister() {
-        navController.navigate(Screen.REGISTER.route)
-    }
-}
+import androidx.lifecycle.viewModelScope
+import com.pwr.wanderway.navigation.Destination
+import com.pwr.wanderway.navigation.Navigator
+import kotlinx.coroutines.launch
 
 class WelcomeViewModel(private val navigator: Navigator) : ViewModel() {
     fun onLoginClicked() {
-        navigator.navigateToLogin()
+        viewModelScope.launch {
+            navigator.navigate(Destination.LoginScreen)
+        }
     }
 
     fun onRegisterClicked() {
-        navigator.navigateToRegister()
+        viewModelScope.launch {
+            navigator.navigate(Destination.RegisterScreen)
+        }
     }
 }

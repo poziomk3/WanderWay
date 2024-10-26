@@ -6,13 +6,18 @@ plugins {
 android {
     namespace = "com.pwr.wanderway"
     compileSdk = 34
-
+    buildFeatures {
+        buildConfig = true
+    }
     defaultConfig {
         applicationId = "com.pwr.wanderway"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
+
+        buildConfigField("String", "BACKEND_URL", "\"${rootProject.ext["BACKEND_URL"]}\"")
+
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {

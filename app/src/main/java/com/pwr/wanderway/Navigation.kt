@@ -20,7 +20,7 @@ enum class Screen(val route: String) {
 @Composable
 fun Navigation() {
     val navController = rememberNavController()
-    NavHost(navController = navController, startDestination = Screen.LOGIN.route) {
+    NavHost(navController = navController, startDestination = Screen.WELCOME.route) {
         composable(Screen.WELCOME.route) {
             WelcomeScreen(navController = navController)
         }

@@ -14,8 +14,12 @@ import com.pwr.wanderway.presentation.entryScreens.commons.WelcomeBackgroundWrap
 import com.pwr.wanderway.presentation.entryScreens.commons.WelcomeDialog
 import com.pwr.wanderway.ui.theme.AppTheme
 
+
 @Composable
-fun WelcomeScreen(navController: NavController, viewModel: WelcomeViewModel = WelcomeViewModel()) {
+fun WelcomeScreen(
+    navController: NavController,
+    viewModel: WelcomeViewModel = WelcomeViewModel(ComposableNavigator(navController))
+) {
     WelcomeBackgroundWrapper {
         WelcomeDialog(
             title = stringResource(id = R.string.welcome_label),

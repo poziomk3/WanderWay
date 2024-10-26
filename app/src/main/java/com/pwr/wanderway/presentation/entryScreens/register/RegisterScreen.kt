@@ -1,4 +1,4 @@
-package com.pwr.wanderway.presentation.entryScreens.registerScreen
+package com.pwr.wanderway.presentation.entryScreens.register
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -8,6 +8,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.pwr.wanderway.R
 import com.pwr.wanderway.presentation.commons.OnPrimaryTextField
 import com.pwr.wanderway.presentation.entryScreens.commons.WelcomeDialog
@@ -15,7 +17,7 @@ import com.pwr.wanderway.presentation.entryScreens.commons.WelcomeBackgroundWrap
 import com.pwr.wanderway.ui.theme.AppTheme
 
 @Composable
-fun RegisterScreen() {
+fun RegisterScreen(navController: NavController, viewModel: RegisterViewModel = RegisterViewModel()) {
     WelcomeBackgroundWrapper {
         WelcomeDialog(title = stringResource(id = R.string.register), content = {
             Column {
@@ -54,6 +56,6 @@ fun RegisterScreen() {
 @Composable
 fun PreviewRegisterScreen() {
     AppTheme {
-        RegisterScreen()
+        RegisterScreen(navController = rememberNavController())
     }
 }

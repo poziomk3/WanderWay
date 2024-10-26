@@ -1,4 +1,4 @@
-package com.pwr.wanderway.presentation.entryScreens.loginScreen
+package com.pwr.wanderway.presentation.entryScreens.login
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -8,6 +8,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.pwr.wanderway.R
 import com.pwr.wanderway.presentation.commons.OnPrimaryTextField
 import com.pwr.wanderway.presentation.entryScreens.commons.WelcomeDialog
@@ -15,7 +17,7 @@ import com.pwr.wanderway.presentation.entryScreens.commons.WelcomeBackgroundWrap
 import com.pwr.wanderway.ui.theme.AppTheme
 
 @Composable
-fun LoginScreen() {
+fun LoginScreen(navController: NavController, viewModel: LoginViewModel = LoginViewModel()) {
     WelcomeBackgroundWrapper {
         WelcomeDialog(title = stringResource(id = R.string.login_label), content = {
             Column {
@@ -43,6 +45,6 @@ fun LoginScreen() {
 @Composable
 fun PreviewLoginScreen() {
     AppTheme {
-        LoginScreen()
+        LoginScreen(navController = rememberNavController())
     }
 }

@@ -1,5 +1,6 @@
 package com.pwr.wanderway.presentation.entryScreens.register
 
+
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.size
@@ -11,7 +12,6 @@ import com.pwr.wanderway.R
 import com.pwr.wanderway.presentation.commons.OnPrimaryTextField
 import com.pwr.wanderway.presentation.entryScreens.commons.WelcomeBackgroundWrapper
 import com.pwr.wanderway.presentation.entryScreens.commons.WelcomeDialog
-
 @Composable
 fun RegisterScreen(viewModel: RegisterViewModel) {
     WelcomeBackgroundWrapper {

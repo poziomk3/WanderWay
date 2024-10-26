@@ -46,6 +46,7 @@ class MainActivity : ComponentActivity() {
                     navController = navController,
                     startDestination = navigator.startDestination
                 ) {
+
                     composable<Destination.WelcomeScreen> {
                         val viewModel = koinViewModel<WelcomeViewModel>()
                         WelcomeScreen(viewModel)

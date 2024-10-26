@@ -6,27 +6,21 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.MutableState
 import com.pwr.wanderway.presentation.commons.MainIcon
 
 
 @Composable
 fun WelcomeDialog(
+    isDialogVisible: MutableState<Boolean>,
     title: String,
     content: @Composable () -> Unit,
-    confirmButtonText: String? = null,
-    onConfirm: (() -> Unit)? = null,
-    dismissButtonText: String? = null,
-    onDismiss: (() -> Unit)? = null,
-    onDismissed: (() -> Unit)? = null // Optional callback to notify parent on dismissal
+    rightButton: String? = null,
+    rightButtonOnClick: (() -> Unit)? = null,
+    leftButton: String? = null,
+    leftButtonOnClick: (() -> Unit)? = null,
 ) {
-    // Internal visibility state
-    var dialogVisible by remember { mutableStateOf(true) }
-
-    if (dialogVisible) {
+    if (isDialogVisible.value) {
         AlertDialog(
             onDismissRequest = { /* Do nothing to ignore background clicks */ },
             containerColor = MaterialTheme.colorScheme.primary,
@@ -43,34 +37,30 @@ fun WelcomeDialog(
                 content()
             },
             confirmButton = {
-                confirmButtonText?.let {
+                rightButton?.let {
                     TextButton(
                         colors = ButtonDefaults.textButtonColors(
                             contentColor = MaterialTheme.colorScheme.onPrimary
                         ),
                         onClick = {
-                            dialogVisible = false // Hide dialog immediately
-                            onConfirm?.invoke() // Invoke confirm action
-                            onDismissed?.invoke() // Notify parent if needed
+                            rightButtonOnClick?.invoke() // Invoke confirm action
                         }
                     ) {
-                        Text(confirmButtonText)
+                        Text(rightButton)
                     }
                 }
             },
             dismissButton = {
-                dismissButtonText?.let {
+                leftButton?.let {
                     TextButton(
                         colors = ButtonDefaults.textButtonColors(
                             contentColor = MaterialTheme.colorScheme.onPrimary
                         ),
                         onClick = {
-                            dialogVisible = false // Hide dialog immediately
-                            onDismiss?.invoke() // Invoke dismiss action
-                            onDismissed?.invoke() // Notify parent if needed
+                            leftButtonOnClick?.invoke()
                         }
                     ) {
-                        Text(dismissButtonText)
+                        Text(leftButton)
                     }
                 }
             }

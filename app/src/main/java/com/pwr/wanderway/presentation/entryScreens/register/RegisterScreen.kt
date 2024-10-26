@@ -46,10 +46,11 @@ fun RegisterScreen(viewModel: RegisterViewModel) {
 
                 }
             },
-            onDismiss = { viewModel.onGoBackClicked() },
-            onConfirm = { viewModel.onRegisterClicked() },
-            confirmButtonText = stringResource(id = R.string.register),
-            dismissButtonText = stringResource(id = R.string.go_back)
+            leftButtonOnClick = { viewModel.onGoBackClicked() },
+            rightButtonOnClick = { viewModel.onRegisterClicked() },
+            rightButton = stringResource(id = R.string.register),
+            leftButton = stringResource(id = R.string.go_back),
+            isDialogVisible = viewModel.isDialogVisible,
         )
 
     }

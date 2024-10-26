@@ -1,5 +1,6 @@
 package com.pwr.wanderway
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -24,6 +25,7 @@ import org.koin.android.ext.android.get
 import org.koin.androidx.compose.koinViewModel
 
 class MainActivity : ComponentActivity() {
+    @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -44,16 +46,17 @@ class MainActivity : ComponentActivity() {
                 }
                 NavHost(
                     navController = navController,
-                    startDestination = navigator.startDestination
+                    startDestination = navigator.startDestination,
                 ) {
-
                     composable<Destination.WelcomeScreen> {
                         val viewModel = koinViewModel<WelcomeViewModel>()
                         WelcomeScreen(viewModel)
                     }
                     composable<Destination.LoginScreen> {
                         val viewModel = koinViewModel<LoginViewModel>()
-                        LoginScreen(viewModel)
+                        LoginScreen(
+                            viewModel = viewModel,
+                        )
                     }
                     composable<Destination.RegisterScreen> {
                         val viewModel = koinViewModel<RegisterViewModel>()
@@ -63,8 +66,8 @@ class MainActivity : ComponentActivity() {
                         val viewModel = koinViewModel<ActivateAccountViewModel>()
                         ActivateAccountScreen(viewModel)
                     }
-
                 }
+
             }
         }
     }

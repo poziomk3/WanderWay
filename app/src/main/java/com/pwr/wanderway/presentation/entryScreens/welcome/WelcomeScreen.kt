@@ -24,10 +24,11 @@ fun WelcomeScreen(
                     Text(stringResource(id = R.string.welcome_sublabel))
                 }
             },
-            confirmButtonText = stringResource(id = R.string.login),
-            dismissButtonText = stringResource(id = R.string.register),
-            onConfirm = { viewModel.onLoginClicked() },
-            onDismiss = { viewModel.onRegisterClicked() }
+            rightButton = stringResource(id = R.string.login),
+            leftButton = stringResource(id = R.string.register),
+            rightButtonOnClick = { viewModel.onLoginClicked() },
+            leftButtonOnClick = { viewModel.onRegisterClicked() },
+            isDialogVisible = viewModel.isDialogVisible,
         )
     }
 }

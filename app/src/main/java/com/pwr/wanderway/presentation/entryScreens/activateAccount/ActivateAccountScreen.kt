@@ -23,8 +23,8 @@ fun ActivateAccountScreen(
                     Text(stringResource(id = R.string.activate_account_sublabel))
                 }
             },
-            confirmButtonText = stringResource(id = R.string.got_it),
-            onConfirm = { viewModel.onGotItClicked() })
+            rightButton = stringResource(id = R.string.got_it),
+            rightButtonOnClick = { viewModel.onGotItClicked() }, isDialogVisible = viewModel.isDialogVisible,)
     }
 }
 

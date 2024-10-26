@@ -1,6 +1,9 @@
 package com.pwr.wanderway.presentation.commons
 
-import androidx.compose.material3.*
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.VisualTransformation
@@ -12,6 +15,7 @@ fun OnPrimaryTextField(
     label: String,
     singleLine: Boolean = true,
     modifier: Modifier = Modifier,
+
     visualTransformation: VisualTransformation = VisualTransformation.None
 ) {
     OutlinedTextField(
@@ -21,6 +25,8 @@ fun OnPrimaryTextField(
         singleLine = singleLine,
         modifier = modifier,
         colors = OutlinedTextFieldDefaults.colors(
+            focusedTextColor = MaterialTheme.colorScheme.onPrimary,
+            unfocusedTextColor = MaterialTheme.colorScheme.outlineVariant,
             unfocusedBorderColor = MaterialTheme.colorScheme.outline,
             unfocusedLabelColor = MaterialTheme.colorScheme.outlineVariant,
             focusedLabelColor = MaterialTheme.colorScheme.onPrimary,

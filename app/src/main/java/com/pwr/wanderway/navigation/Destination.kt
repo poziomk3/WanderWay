@@ -25,4 +25,6 @@ sealed interface Destination {
 
     @Serializable
     data object HomeScreen : Destination
+    @Serializable
+    data object SettingsHomeScreen : Destination
 }

@@ -4,6 +4,8 @@ import kotlinx.serialization.Serializable
 
 sealed interface Destination {
     @Serializable
+    data object UnauthorizedGroup : Destination
+    @Serializable
     data object WelcomeScreen : Destination
 
     @Serializable
@@ -14,4 +16,17 @@ sealed interface Destination {
 
     @Serializable
     data object ActivateAccountScreen : Destination
+
+
+//    authorized
+
+    @Serializable
+    data object AuthorizedGroup : Destination
+
+    @Serializable
+    data object HomeScreen : Destination
+    @Serializable
+    data object AccountSettingsHomeScreen : Destination
+    @Serializable
+    data object ForumHomeScreen : Destination
 }

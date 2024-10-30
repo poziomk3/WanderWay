@@ -20,7 +20,7 @@ class LoginViewModel(private val navigator: Navigator) : ViewModel() {
 
     fun onLoginClicked(username: String, password: String) {
         viewModelScope.launch {
-            navigator.navigate(Destination.WelcomeScreen)
+            navigator.navigate(Destination.AuthorizedGroup)
             isDialogVisible.value = false
         }
     }

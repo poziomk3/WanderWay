@@ -18,7 +18,7 @@ fun HomeScreen() {
 
     )
     {
-        Column ( modifier=Modifier.fillMaxSize(), verticalArrangement = Arrangement.Center,
+        Column ( verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally) {
             Text("Home Screen")
         }

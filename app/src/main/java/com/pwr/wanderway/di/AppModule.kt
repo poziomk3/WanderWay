@@ -13,7 +13,7 @@ import org.koin.dsl.module
 
 val appModule = module {
     single<Navigator> {
-        DefaultNavigator(startDestination = Destination.WelcomeScreen)
+        DefaultNavigator(startDestination = Destination.UnauthorizedGroup)
     }
 
     viewModelOf(::WelcomeViewModel)

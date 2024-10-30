@@ -12,6 +12,7 @@ import com.pwr.wanderway.presentation.entryScreens.register.RegisterScreen
 import com.pwr.wanderway.presentation.entryScreens.register.RegisterViewModel
 import com.pwr.wanderway.presentation.entryScreens.welcome.WelcomeScreen
 import com.pwr.wanderway.presentation.entryScreens.welcome.WelcomeViewModel
+import com.pwr.wanderway.presentation.forum.forumHome.ForumHome
 import com.pwr.wanderway.presentation.navbar.AuthenticatedWrapper
 import com.pwr.wanderway.presentation.navbar.AuthenticatedWrapperViewModel
 import com.pwr.wanderway.presentation.routeCore.home.HomeScreen
@@ -21,16 +22,22 @@ fun NavGraphBuilder.authorizedNavGraph() {
 
     navigation<Destination.AuthorizedGroup>(startDestination = Destination.HomeScreen) {
         composable<Destination.HomeScreen> {
-            val viewModel = koinViewModel<AuthenticatedWrapperViewModel>();
+            val viewModel = koinViewModel<AuthenticatedWrapperViewModel>()
             AuthenticatedWrapper(viewModel=viewModel){
                 HomeScreen()
             }
 
         }
-        composable<Destination.SettingsHomeScreen> {
-            val viewModel = koinViewModel<AuthenticatedWrapperViewModel>();
+        composable<Destination.AccountSettingsHomeScreen> {
+            val viewModel = koinViewModel<AuthenticatedWrapperViewModel>()
             AuthenticatedWrapper(viewModel=viewModel){
                 SettingsHomeScreen()
+            }
+        }
+        composable<Destination.ForumHomeScreen> {
+            val viewModel = koinViewModel<AuthenticatedWrapperViewModel>()
+            AuthenticatedWrapper(viewModel=viewModel){
+                ForumHome()
             }
         }
     }

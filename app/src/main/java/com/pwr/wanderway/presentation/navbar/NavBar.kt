@@ -11,41 +11,34 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.pwr.wanderway.ui.theme.AppTheme
+import com.pwr.wanderway.navigation.Destination
 
 @Composable
 fun NavBar(
     modifier: Modifier = Modifier,
+    currentDestination: Destination,
     onHomeClicked: () -> Unit = {},
-    onSearchClicked: () -> Unit = {},
+    onAccountClicked: () -> Unit = {},
     onForumClicked: () -> Unit = {}
 ) {
     NavigationBar(modifier = modifier.fillMaxWidth()) {
         NavigationBarItem(
-            selected = false,
-            onClick = { onHomeClicked() },
+            selected = currentDestination == Destination.ForumHomeScreen,
+            onClick = { onForumClicked() },
             icon = { Icon(imageVector = Icons.Filled.ThumbUp, contentDescription = "Forum") },
+            label = { Text("Forum") }
+        )
+        NavigationBarItem(
+            selected = currentDestination == Destination.HomeScreen,
+            onClick = { onHomeClicked() },
+            icon = { Icon(imageVector = Icons.Filled.Home, contentDescription = "Home") },
             label = { Text("Home") }
         )
         NavigationBarItem(
-            selected = false,
-            onClick = { onSearchClicked() },
-            icon = { Icon(imageVector = Icons.Filled.Home, contentDescription = "Home") },
-            label = { Text("Search") }
-        )
-        NavigationBarItem(
-            selected = false,
-            onClick = { onForumClicked() },
+            selected = currentDestination == Destination.AccountSettingsHomeScreen,
+            onClick = { onAccountClicked() },
             icon = { Icon(imageVector = Icons.Filled.AccountCircle, contentDescription = "Settings") },
-            label = { Text("Forum") }
+            label = { Text("Account") }
         )
-    }
-}
-@Preview
-@Composable
-fun NavBarPreview() {
-    AppTheme {
-        NavBar()
     }
 }

@@ -22,6 +22,7 @@ fun WelcomeDialog(
 ) {
     if (isDialogVisible.value) {
         AlertDialog(
+
             onDismissRequest = { /* Do nothing to ignore background clicks */ },
             containerColor = MaterialTheme.colorScheme.primary,
             textContentColor = MaterialTheme.colorScheme.onPrimary,

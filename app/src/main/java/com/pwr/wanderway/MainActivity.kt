@@ -13,9 +13,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            val navController = rememberNavController()
             AppTheme {
-                RootNavigationGraph(navController )
+                RootNavigationGraph(navController= rememberNavController() )
             }
         }
     }

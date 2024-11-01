@@ -16,5 +16,6 @@
     <string name="activate_account_label">Activate your account!</string>
     <string name="activate_account_sublabel">You should shortly receive a confirmation email.</string>
     <string name="error_empty_fields">You didn\'t insert required fields.</string>
+    <string name="login_error">Login or password is invalid.</string>
 
 </resources>

@@ -17,5 +17,8 @@
     <string name="activate_account_sublabel">You should shortly receive a confirmation email.</string>
     <string name="error_empty_fields">You didn\'t insert required fields.</string>
     <string name="login_error">Login or password is invalid.</string>
+    <string name="confirm_password">Repeat password</string>
+    <string name="invalid_email">Entered Email is invalid.</string>
+    <string name="password_mismatch_or_short">Passowords are either too short or not the same.</string>
 
 </resources>

@@ -1,7 +1,8 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id("org.jetbrains.kotlin.plugin.serialization") version "1.9.0"
+    id("dagger.hilt.android.plugin")
+    kotlin("kapt")
 }
 
 android {
@@ -56,6 +57,8 @@ android {
 }
 val nav_version = "2.8.3"
 dependencies {
+    implementation("com.google.dagger:hilt-android:2.48")
+    kapt("com.google.dagger:hilt-compiler:2.48")
     implementation("androidx.datastore:datastore-preferences:1.0.0")
     implementation("com.google.android.material:material:1.12.0")
     implementation("androidx.compose.material3:material3:1.3.0")

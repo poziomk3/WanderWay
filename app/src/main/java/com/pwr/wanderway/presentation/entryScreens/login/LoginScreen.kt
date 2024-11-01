@@ -7,6 +7,7 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -16,6 +17,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.pwr.wanderway.R
 import com.pwr.wanderway.presentation.commons.OnPrimaryTextField
 import com.pwr.wanderway.presentation.entryScreens.commons.EntryScreenLayout
@@ -23,7 +25,7 @@ import com.pwr.wanderway.ui.theme.AppTheme
 
 @Composable
 fun LoginScreen(
-    viewModel: LoginViewModel= LoginViewModel(),
+    viewModel: LoginViewModel = hiltViewModel(),
     onLoginSuccess: () -> Unit,
     onBackClick: () -> Unit
 ) {
@@ -31,6 +33,15 @@ fun LoginScreen(
     var password by remember { mutableStateOf("") }
     val isLoading by viewModel.isLoading
     val loginError by viewModel.loginError
+
+
+    val loginSuccess by viewModel.loginSuccess
+
+    LaunchedEffect(loginSuccess) {
+        if (loginSuccess) {
+            onLoginSuccess()
+        }
+    }
 
     EntryScreenLayout(
         title = stringResource(id = R.string.login_label),
@@ -51,7 +62,7 @@ fun LoginScreen(
                 Spacer(modifier = Modifier.size(16.dp))
                 if (loginError != null)
                     Text(
-                        stringResource(id = R.string.login_error),
+                        text = loginError!!,
                         color = MaterialTheme.colorScheme.errorContainer
                     )
                 if (isLoading)
@@ -64,14 +75,7 @@ fun LoginScreen(
         },
         rightButton = stringResource(id = R.string.login),
         rightButtonOnClick = {
-            if (username.isNotEmpty() && password.isNotEmpty()) {
-                viewModel.onLoginClicked(username, password)
-                if (loginError == null) {
-                    onLoginSuccess()
-                }
-            } else {
-                viewModel.loginError.value = "Please fill in all fields."
-            }
+            viewModel.onLoginClicked(username, password)
         },
     )
 }
@@ -81,6 +85,6 @@ fun LoginScreen(
 @Composable
 fun LoginScreenPreview() {
     AppTheme {
-        LoginScreen(LoginViewModel(), {}, {})
+        LoginScreen(hiltViewModel(), {}, {})
     }
 }

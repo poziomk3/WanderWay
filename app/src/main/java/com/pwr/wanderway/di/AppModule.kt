@@ -3,9 +3,12 @@ package com.pwr.wanderway.di
 import android.content.Context
 import com.pwr.wanderway.data.local.TokenManager
 import com.pwr.wanderway.data.repository.AuthRepository
+import com.pwr.wanderway.network.ApiClient
+import com.pwr.wanderway.network.ApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
@@ -15,13 +18,23 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideTokenManager(context: Context): TokenManager {
+    fun provideTokenManager(@ApplicationContext context: Context): TokenManager {
         return TokenManager(context)
     }
 
     @Provides
     @Singleton
-    fun provideAuthRepository(tokenManager: TokenManager): AuthRepository {
-        return AuthRepository(tokenManager)
+    fun provideApiService(): ApiService {
+        // Assuming ApiClient has a method to get the ApiService
+        return ApiClient.apiService
+    }
+
+    @Provides
+    @Singleton
+    fun provideAuthRepository(
+        apiService: ApiService,
+        tokenManager: TokenManager
+    ): AuthRepository {
+        return AuthRepository(tokenManager, apiService)
     }
 }

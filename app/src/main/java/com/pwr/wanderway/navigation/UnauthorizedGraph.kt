@@ -44,7 +44,7 @@ fun UnauthorizedNavGraph(
         }
         composable(route = Destination.RegisterScreen) {
             RegisterScreen(
-                onRegisterSucess = {
+                onRegisterSuccess = {
                     navController.navigate(Destination.ActivateAccountScreen)
                 },
                 onGoBackClick = {

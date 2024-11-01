@@ -2,9 +2,6 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
-      <entry key="AuthenticatedWrapperPreview">
-        <State />
-      </entry>
       <entry key="PreviewLoginScreen">
         <State />
       </entry>
@@ -16,18 +13,18 @@
       </entry>
       <entry key="app">
         <State>
-          <runningDeviceTargetSelectedWithDropDown>
+          <targetSelectedWithDropDown>
             <Target>
-              <type value="RUNNING_DEVICE_TARGET" />
+              <type value="QUICK_BOOT_TARGET" />
               <deviceKey>
                 <Key>
-                  <type value="SERIAL_NUMBER" />
-                  <value value="RFCX2174P9E" />
+                  <type value="VIRTUAL_DEVICE_PATH" />
+                  <value value="C:\Users\karol\.android\avd\Medium_Phone_API_34.avd" />
                 </Key>
               </deviceKey>
             </Target>
-          </runningDeviceTargetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-11-01T11:39:08.376127200Z" />
+          </targetSelectedWithDropDown>
+          <timeTargetWasSelectedWithDropDown value="2024-11-01T20:04:47.513355Z" />
         </State>
       </entry>
     </value>

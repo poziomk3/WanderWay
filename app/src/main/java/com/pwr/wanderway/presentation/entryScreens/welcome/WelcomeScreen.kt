@@ -12,7 +12,9 @@ import com.pwr.wanderway.presentation.entryScreens.commons.WelcomeDialog
 
 @Composable
 fun WelcomeScreen(
-    viewModel: WelcomeViewModel
+    viewModel: WelcomeViewModel= WelcomeViewModel(),
+    onLoginClick: () -> Unit,
+    onRegisterClick: () -> Unit
 ) {
     WelcomeBackgroundWrapper {
         WelcomeDialog(
@@ -26,8 +28,8 @@ fun WelcomeScreen(
             },
             rightButton = stringResource(id = R.string.login),
             leftButton = stringResource(id = R.string.register),
-            rightButtonOnClick = { viewModel.onLoginClicked() },
-            leftButtonOnClick = { viewModel.onRegisterClicked() },
+            rightButtonOnClick = { onLoginClick() },
+            leftButtonOnClick = { onRegisterClick() },
             isDialogVisible = viewModel.isDialogVisible,
         )
     }

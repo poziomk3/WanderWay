@@ -13,7 +13,7 @@ import com.pwr.wanderway.presentation.commons.OnPrimaryTextField
 import com.pwr.wanderway.presentation.entryScreens.commons.WelcomeBackgroundWrapper
 import com.pwr.wanderway.presentation.entryScreens.commons.WelcomeDialog
 @Composable
-fun RegisterScreen(viewModel: RegisterViewModel) {
+fun RegisterScreen(viewModel: RegisterViewModel= RegisterViewModel()) {
     WelcomeBackgroundWrapper {
         WelcomeDialog(
             title = stringResource(id = R.string.register),

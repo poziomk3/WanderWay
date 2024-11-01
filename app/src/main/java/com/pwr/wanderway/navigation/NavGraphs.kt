@@ -1,66 +1,46 @@
 package com.pwr.wanderway.navigation
 
-import androidx.navigation.NavGraphBuilder
+import androidx.compose.runtime.Composable
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.navigation
-import com.pwr.wanderway.presentation.accountSettings.settingsHome.SettingsHomeScreen
-import com.pwr.wanderway.presentation.entryScreens.activateAccount.ActivateAccountScreen
-import com.pwr.wanderway.presentation.entryScreens.activateAccount.ActivateAccountViewModel
-import com.pwr.wanderway.presentation.entryScreens.login.LoginScreen
-import com.pwr.wanderway.presentation.entryScreens.login.LoginViewModel
-import com.pwr.wanderway.presentation.entryScreens.register.RegisterScreen
-import com.pwr.wanderway.presentation.entryScreens.register.RegisterViewModel
-import com.pwr.wanderway.presentation.entryScreens.welcome.WelcomeScreen
-import com.pwr.wanderway.presentation.entryScreens.welcome.WelcomeViewModel
-import com.pwr.wanderway.presentation.forum.forumHome.ForumHome
-import com.pwr.wanderway.presentation.navbar.AuthenticatedWrapper
-import com.pwr.wanderway.presentation.navbar.AuthenticatedWrapperViewModel
-import com.pwr.wanderway.presentation.routeCore.home.HomeScreen
-import org.koin.androidx.compose.koinViewModel
 
-fun NavGraphBuilder.authorizedNavGraph() {
 
-    navigation<Destination.AuthorizedGroup>(startDestination = Destination.HomeScreen) {
-        composable<Destination.HomeScreen> {
-            val viewModel = koinViewModel<AuthenticatedWrapperViewModel>()
-            AuthenticatedWrapper(viewModel=viewModel){
-                HomeScreen()
-            }
-
+@Composable
+fun RootNavigationGraph(navController: NavHostController) {
+    NavHost(
+        navController = navController,
+        route = Destination.Root,
+        startDestination = Destination.UnauthorizedGroup
+    ) {
+        composable(route = Destination.UnauthorizedGroup) {
+            UnauthorizedWrapper(
+                moveToAuthorized = {
+                    navController.navigate(Destination.AuthorizedGroup)
+                }
+            )
         }
-        composable<Destination.AccountSettingsHomeScreen> {
-            val viewModel = koinViewModel<AuthenticatedWrapperViewModel>()
-            AuthenticatedWrapper(viewModel=viewModel){
-                SettingsHomeScreen()
-            }
-        }
-        composable<Destination.ForumHomeScreen> {
-            val viewModel = koinViewModel<AuthenticatedWrapperViewModel>()
-            AuthenticatedWrapper(viewModel=viewModel){
-                ForumHome()
-            }
+        composable(route = Destination.AuthorizedGroup) {
+            AuthorizedWrapper(
+                moveToUnauthorized = {
+                    navController.navigate(Destination.UnauthorizedGroup)
+                }
+            )
         }
     }
 }
 
 
-fun NavGraphBuilder.unauthorizedNavGraph() {
-    navigation<Destination.UnauthorizedGroup>(startDestination = Destination.WelcomeScreen) {
-        composable<Destination.WelcomeScreen> {
-            val viewModel = koinViewModel<WelcomeViewModel>()
-            WelcomeScreen(viewModel)
-        }
-        composable<Destination.LoginScreen> {
-            val viewModel = koinViewModel<LoginViewModel>()
-            LoginScreen(viewModel)
-        }
-        composable<Destination.RegisterScreen> {
-            val viewModel = koinViewModel<RegisterViewModel>()
-            RegisterScreen(viewModel)
-        }
-        composable<Destination.ActivateAccountScreen> {
-            val viewModel = koinViewModel<ActivateAccountViewModel>()
-            ActivateAccountScreen(viewModel)
-        }
-    }
+object Destination {
+    const val Root = "Root"
+    const val UnauthorizedGroup = "UnauthorizedGroup"
+    const val WelcomeScreen = "WelcomeScreen"
+    const val LoginScreen = "LoginScreen"
+    const val RegisterScreen = "RegisterScreen"
+    const val ActivateAccountScreen = "ActivateAccountScreen"
+
+    const val AuthorizedGroup = "AuthorizedGroup"
+    const val HomeScreen = "HomeScreen"
+    const val Forum = "Forum"
+    const val AccountSettings = "AccountSettings"
 }

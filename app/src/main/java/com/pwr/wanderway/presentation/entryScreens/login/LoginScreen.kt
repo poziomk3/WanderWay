@@ -20,7 +20,8 @@ import com.pwr.wanderway.presentation.entryScreens.commons.WelcomeBackgroundWrap
 import com.pwr.wanderway.presentation.entryScreens.commons.WelcomeDialog
 
 @Composable
-fun LoginScreen(viewModel: LoginViewModel) {
+fun LoginScreen(viewModel: LoginViewModel= LoginViewModel()
+, onLoginSuccess: () -> Unit, onBackClick: () -> Unit) {
     var username by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var isErrorVisible by remember { mutableStateOf(false) }
@@ -54,7 +55,7 @@ fun LoginScreen(viewModel: LoginViewModel) {
                 if (username.isEmpty() || password.isEmpty()) {
                     isErrorVisible = true
                 }
-                else viewModel.onLoginClicked(username, password)
+                else onLoginSuccess()
             },
             leftButton = stringResource(id = R.string.go_back),
             leftButtonOnClick = { viewModel.onGoBackClicked() },

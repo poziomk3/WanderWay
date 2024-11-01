@@ -11,7 +11,7 @@ import com.pwr.wanderway.presentation.entryScreens.commons.WelcomeDialog
 
 @Composable
 fun ActivateAccountScreen(
-    viewModel: ActivateAccountViewModel
+    viewModel: ActivateAccountViewModel= ActivateAccountViewModel()
 ) {
     WelcomeBackgroundWrapper {
         WelcomeDialog(

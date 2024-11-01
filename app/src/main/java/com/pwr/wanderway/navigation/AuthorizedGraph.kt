@@ -9,7 +9,6 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.pwr.wanderway.presentation.accountSettings.settingsHome.SettingsHomeScreen
 import com.pwr.wanderway.presentation.forum.forumHome.ForumHome
-import com.pwr.wanderway.presentation.navbar.NavBar
 import com.pwr.wanderway.presentation.routeCore.home.HomeScreen
 
 @Composable

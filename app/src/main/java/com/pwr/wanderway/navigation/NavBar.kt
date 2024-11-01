@@ -1,4 +1,5 @@
-package com.pwr.wanderway.presentation.navbar
+package com.pwr.wanderway.navigation
+
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.icons.Icons
@@ -14,7 +15,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.pwr.wanderway.navigation.Destination
 
 @Composable
 fun NavBar(

@@ -2,8 +2,11 @@ package com.pwr.wanderway.data.repository
 
 import android.util.Log
 import com.pwr.wanderway.data.local.TokenManager
-import com.pwr.wanderway.data.model.RegisterResponse
+import com.pwr.wanderway.data.model.LoginRequest
+import com.pwr.wanderway.data.model.RegisterRequest
 import com.pwr.wanderway.network.ApiService
+import com.pwr.wanderway.utils.ApiResponseHandler
+import com.pwr.wanderway.utils.TokenHelper
 import com.yourpackage.data.model.TokenResponse
 import kotlinx.coroutines.flow.firstOrNull
 import retrofit2.Response
@@ -12,34 +15,26 @@ class AuthRepository(
     private val tokenManager: TokenManager,
     private val apiService: ApiService
 ) {
+    private val tokenHelper = TokenHelper(tokenManager)
 
-    // Function to register a user and store token on success
-    data class registerRequest(
-        val email: String,
-        val username: String,
-        val password1: String,
-        val password2: String
-    )
 
     suspend fun registerUser(
         email: String,
         username: String,
         password1: String,
         password2: String
-    ): Result<RegisterResponse?> {
+    ): Result<RegisterRequest?> {
         return try {
-            val registrationData = registerRequest(email, username, password1, password2)
+            val registrationData = RegisterRequest(email, username, password1, password2)
             Log.i("AuthRepository", "Registering user: $registrationData")
             val response = apiService.register(registrationData)
-            handleApiResponse(response)
+            ApiResponseHandler.handleResponse(response)
         } catch (e: Exception) {
             Log.e("AuthRepository", "Exception during registration: ${e.message}", e)
             Result.failure(e)
         }
     }
 
-    // Function to log in a user and store token on success
-    data class LoginRequest(val username: String, val password: String)
 
     suspend fun loginUser(
         username: String,
@@ -50,8 +45,7 @@ class AuthRepository(
             val response = apiService.login(loginData)
             if (response.isSuccessful && response.body() != null) {
                 response.body()?.let { tokenResponse ->
-                    tokenManager.saveAccessToken(tokenResponse.access, calculateExpiryTime())
-                    tokenResponse.refresh?.let { tokenManager.saveRefreshToken(it) }
+                    tokenHelper.saveTokens(tokenResponse, calculateExpiryTime())
                 }
                 Result.success(response.body()!!)
             } else {
@@ -106,20 +100,7 @@ class AuthRepository(
         return System.currentTimeMillis() + oneHourMillis
     }
 
-    private fun <T> handleApiResponse(response: Response<T>): Result<T?> {
-        return if (response.isSuccessful) {
-            if (response.code() == 204) {
-                // Handle no content scenario as a success with a null body
-                Result.success(null)
-            } else if (response.body() != null) {
-                Result.success(response.body())
-            } else {
-                Result.failure(Exception("Unexpected empty response body"))
-            }
-        } else {
-            Result.failure(Exception(ApiErrorHandler.handleResponseError(response)))
-        }
-    }
+
 }
 
 

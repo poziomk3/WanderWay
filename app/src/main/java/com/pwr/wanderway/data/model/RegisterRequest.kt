@@ -1,8 +1,8 @@
 package com.pwr.wanderway.data.model
 
-data class RegisterResponse(
-    val username: String,
+data class RegisterRequest(
     val email: String,
+    val username: String,
     val password1: String,
     val password2: String
 )

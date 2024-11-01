@@ -39,7 +39,7 @@ fun UnauthorizedNavGraph(
                 },
                 onBackClick = {
                     navController.popBackStack()
-                },
+                }
             )
         }
         composable(route = Destination.RegisterScreen) {

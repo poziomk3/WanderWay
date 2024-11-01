@@ -23,7 +23,7 @@ import com.pwr.wanderway.ui.theme.AppTheme
 
 @Composable
 fun LoginScreen(
-    viewModel: LoginViewModel = LoginViewModel(),
+    viewModel: LoginViewModel= LoginViewModel(),
     onLoginSuccess: () -> Unit,
     onBackClick: () -> Unit
 ) {

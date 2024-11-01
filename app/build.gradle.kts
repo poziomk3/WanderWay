@@ -56,13 +56,19 @@ android {
 }
 val nav_version = "2.8.3"
 dependencies {
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
     implementation("com.google.android.material:material:1.12.0")
     implementation("androidx.compose.material3:material3:1.3.0")
     implementation("androidx.core:core-ktx:1.13.1")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.6")
     implementation("androidx.activity:activity-compose:1.9.3")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
-
+    implementation ("androidx.hilt:hilt-navigation-compose:1.2.0")
+    implementation("com.squareup.okhttp3:okhttp:4.10.0")
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.10.0")
     //nav specific
     implementation ("io.insert-koin:koin-core:3.4.0")
     implementation ("io.insert-koin:koin-android:3.4.0")

@@ -1,4 +1,4 @@
-package com.pwr.wanderway.presentation.routeCore.commons
+package com.pwr.wanderway.presentation.commons
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -16,7 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 
 @Composable
-fun RoutePointSelector(
+fun RowSelector(
     text: String,
     icon: ImageVector = Icons.AutoMirrored.Filled.ArrowForward,
     onClick: (() -> Unit)? = null
@@ -42,9 +42,9 @@ fun RoutePointSelector(
 
 @Preview
 @Composable
-fun RoutePointSelectorPreview() {
+fun RowSelectorPreview() {
     AppTheme {
-        RoutePointSelector(
+        RowSelector(
             text = "Add starting point"
         )
     }

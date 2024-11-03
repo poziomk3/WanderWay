@@ -53,7 +53,7 @@ fun WideButton(
             .height(50.dp)
             .fillMaxWidth()
     ) {
-        Text(text=text, fontSize = MaterialTheme.typography.headlineSmall.fontSize )
+        Text(text, style = MaterialTheme.typography.bodyMedium)
     }
 }
 

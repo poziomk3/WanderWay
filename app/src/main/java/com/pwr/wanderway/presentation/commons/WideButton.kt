@@ -1,39 +1,50 @@
 package com.pwr.wanderway.presentation.commons
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.runtime.Composable
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.pwr.wanderway.ui.theme.AppTheme
-import androidx.compose.ui.Modifier
+
+enum class ButtonColor {
+    PRIMARY,
+    SECONDARY,
+    BACKGROUND,
+    SURFACE,
+    ERROR
+}
 
 @Composable
-fun buttonColor(colorName: String): Pair<Color, Color> {
-    val colorMap = mapOf(
-        "primary" to Pair(MaterialTheme.colorScheme.primary, MaterialTheme.colorScheme.onPrimary),
-        "secondary" to Pair(MaterialTheme.colorScheme.secondary, MaterialTheme.colorScheme.onSecondary),
-        "background" to Pair(MaterialTheme.colorScheme.background, MaterialTheme.colorScheme.onBackground),
-        "surface" to Pair(MaterialTheme.colorScheme.surface, MaterialTheme.colorScheme.onSurface),
-        "error" to Pair(MaterialTheme.colorScheme.error, MaterialTheme.colorScheme.onError),
-    )
-    val defaultColor = Pair(MaterialTheme.colorScheme.primary, MaterialTheme.colorScheme.onPrimary)
-    return colorMap[colorName] ?: defaultColor
+fun buttonColor(colorType: ButtonColor): Pair<Color, Color> {
+    return when (colorType) {
+        ButtonColor.PRIMARY -> Pair(MaterialTheme.colorScheme.primary, MaterialTheme.colorScheme.onPrimary)
+        ButtonColor.SECONDARY -> Pair(MaterialTheme.colorScheme.secondary, MaterialTheme.colorScheme.onSecondary)
+        ButtonColor.BACKGROUND -> Pair(MaterialTheme.colorScheme.background, MaterialTheme.colorScheme.onBackground)
+        ButtonColor.SURFACE -> Pair(MaterialTheme.colorScheme.surface, MaterialTheme.colorScheme.onSurface)
+        ButtonColor.ERROR -> Pair(MaterialTheme.colorScheme.error, MaterialTheme.colorScheme.onError)
+    }
 }
 
 @Composable
 fun WideButton(
-    colors: Pair<Color, Color>,
+    colorType: ButtonColor,
     text: String,
     enabled: Boolean = true,
     onClick: (() -> Unit)? = null
 ) {
-    androidx.compose.material3.Button(
+    val colors = buttonColor(colorType)
+    Button(
         enabled = enabled,
         onClick = { onClick?.invoke() },
-        colors = androidx.compose.material3.ButtonDefaults.buttonColors(
+        colors = ButtonDefaults.buttonColors(
             containerColor = colors.first,
             contentColor = colors.second,
         ),
@@ -42,7 +53,7 @@ fun WideButton(
             .height(50.dp)
             .fillMaxWidth()
     ) {
-        androidx.compose.material3.Text(text)
+        Text(text=text, fontSize = MaterialTheme.typography.headlineSmall.fontSize )
     }
 }
 
@@ -50,7 +61,6 @@ fun WideButton(
 @Composable
 fun WideButtonPreview() {
     AppTheme {
-        val colors = buttonColor("error")
-        WideButton(colors, "Test Button")
+        WideButton(ButtonColor.PRIMARY, "Test Button")
     }
 }

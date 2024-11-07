@@ -41,6 +41,7 @@ object Destination {
 
     const val AuthorizedGroup = "AuthorizedGroup"
     const val HomeScreen = "HomeScreen"
+    const val BuildYourRouteScreen = "BuildYourRouteScreen"
     const val Forum = "Forum"
     const val AccountSettings = "AccountSettings"
 }

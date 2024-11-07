@@ -10,6 +10,7 @@ import androidx.navigation.compose.rememberNavController
 import com.pwr.wanderway.presentation.accountSettings.settingsHome.SettingsHomeScreen
 import com.pwr.wanderway.presentation.forum.forumHome.ForumHome
 import com.pwr.wanderway.presentation.routeCore.home.HomeScreen
+import com.pwr.wanderway.presentation.routeCore.buildYourRoute.BuildYourRouteScreen
 
 @Composable
 fun AuthorizedNavGraph(navController: NavHostController, moveToUnauthorized: () -> Unit) {
@@ -19,7 +20,14 @@ fun AuthorizedNavGraph(navController: NavHostController, moveToUnauthorized: () 
         startDestination = Destination.HomeScreen
     ) {
         composable(route = Destination.HomeScreen) {
-            HomeScreen()
+            HomeScreen(
+                onClick = {
+                    navController.navigate(Destination.BuildYourRouteScreen)
+                }
+            )
+        }
+        composable(route = Destination.BuildYourRouteScreen) {
+            BuildYourRouteScreen()
         }
         composable(route = Destination.Forum) {
             ForumHome()

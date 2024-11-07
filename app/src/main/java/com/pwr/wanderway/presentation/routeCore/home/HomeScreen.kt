@@ -1,13 +1,13 @@
 package com.pwr.wanderway.presentation.routeCore.home
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -36,7 +36,7 @@ fun HomeScreen(
                 .fillMaxSize()
                 .padding(16.dp)
         ) {
-            Column (
+            Column(
                 modifier = Modifier
                     .padding(16.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
@@ -66,19 +66,19 @@ fun HomeScreen(
                 }
             }
 
-            Surface (
+            Box(
                 modifier = Modifier
-                    .size(200.dp)
-                    .padding(16.dp),
-                color = MaterialTheme.colorScheme.onBackground
-            ) {
-
-            }
+                    .fillMaxWidth()
+                    .padding(0.dp, 16.dp)
+                    .weight(1f)
+                    .background(MaterialTheme.colorScheme.errorContainer)
+            )
 
             WideButton(ButtonColor.PRIMARY, "Test Button", onClick = onClick)
         }
     }
 }
+
 @Preview
 @Composable
 fun HomeScreenPreview() {

@@ -31,10 +31,9 @@ fun LoginScreen(
 ) {
     var username by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+
     val isLoading by viewModel.isLoading
     val loginError by viewModel.loginError
-
-
     val loginSuccess by viewModel.loginSuccess
 
     LaunchedEffect(loginSuccess) {

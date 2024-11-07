@@ -1,16 +1,19 @@
 package com.pwr.wanderway.navigation
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.pwr.wanderway.presentation.accountSettings.settingsHome.SettingsHomeScreen
 import com.pwr.wanderway.presentation.forum.forumHome.ForumHome
-import com.pwr.wanderway.presentation.routeCore.home.HomeScreen
 import com.pwr.wanderway.presentation.routeCore.buildYourRoute.BuildYourRouteScreen
+import com.pwr.wanderway.presentation.routeCore.home.HomeScreen
 
 @Composable
 fun AuthorizedNavGraph(navController: NavHostController, moveToUnauthorized: () -> Unit) {
@@ -47,7 +50,12 @@ fun AuthorizedWrapper(
 ) {
     Scaffold(
         bottomBar = { NavBar(navController) }
-    ) {
-        AuthorizedNavGraph(navController = navController, moveToUnauthorized = moveToUnauthorized)
+    ) { paddingValues ->
+        Box(modifier = Modifier.padding(paddingValues)) {
+            AuthorizedNavGraph(
+                navController = navController,
+                moveToUnauthorized = moveToUnauthorized
+            )
+        }
     }
 }

@@ -37,4 +37,5 @@ object AppModule {
     ): AuthRepository {
         return AuthRepository(tokenManager, apiService)
     }
+
 }

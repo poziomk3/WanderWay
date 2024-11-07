@@ -22,7 +22,6 @@ import com.pwr.wanderway.ui.theme.AppTheme
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun BuildYourRouteScreen() {
-    Text("essa")
     CenterAlignedTopAppBar(
         title = { Text(stringResource(id = R.string.build_your_route)) },
         actions = {},

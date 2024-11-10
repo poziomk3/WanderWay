@@ -21,5 +21,8 @@
     <string name="invalid_email">Entered Email is invalid.</string>
     <string name="password_mismatch_or_short">Passowords are either too short or not the same.</string>
     <string name="build_your_route">Build your route!</string>
+    <string name="add_location_title">Add location!</string>
+    <string name="add_location_button">Add it!</string>
+    <string name="add_location_description">Type in the name of the attraction \nor find a place on the map</string>
 
 </resources>

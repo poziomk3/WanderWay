@@ -52,7 +52,7 @@ android {
 
     packaging {
         resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            excludes +=   "META-INF/versions/9/OSGI-INF/MANIFEST.MF"
         }
     }
 }
@@ -61,6 +61,7 @@ dependencies {
     // Hilt
     implementation("androidx.datastore:datastore-preferences:1.1.1")
     implementation("com.google.dagger:hilt-android:2.51.1")
+    implementation("com.android.identity:identity-doctypes-jvm:202408.1")
     kapt("com.google.dagger:hilt-android-compiler:2.51.1")
     implementation("androidx.datastore:datastore-preferences-core:1.1.1")
     implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
@@ -88,8 +89,8 @@ dependencies {
     implementation("com.squareup.okhttp3:logging-interceptor:4.10.0")
 
     // Kotlin Coroutines
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.1")
 
     // Testing
     testImplementation("junit:junit:4.13.2")

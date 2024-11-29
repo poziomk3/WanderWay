@@ -25,20 +25,20 @@ fun NavBar(
 
     NavigationBar(modifier = Modifier.fillMaxWidth()) {
         NavigationBarItem(
-            selected = currentDestination == Destination.Forum,
-            onClick = { navController.navigate(Destination.Forum) },
+            selected = currentDestination == Destination.FORUM_SCREEN,
+            onClick = { navController.navigate(Destination.FORUM_SCREEN) },
             icon = { Icon(imageVector = Icons.Filled.ThumbUp, contentDescription = "Forum") },
             label = { Text("Forum") }
         )
         NavigationBarItem(
-            selected = currentDestination == Destination.HomeScreen,
-            onClick = { navController.navigate(Destination.HomeScreen) },
+            selected = currentDestination == Destination.HOME_SCREEN,
+            onClick = { navController.navigate(Destination.HOME_SCREEN) },
             icon = { Icon(imageVector = Icons.Filled.Home, contentDescription = "Home") },
             label = { Text("Home") }
         )
         NavigationBarItem(
-            selected = currentDestination == Destination.AccountSettings,
-            onClick = { navController.navigate(Destination.AccountSettings) },
+            selected = currentDestination == Destination.ACCOUNT_SETTINGS_SCREEN,
+            onClick = { navController.navigate(Destination.ACCOUNT_SETTINGS_SCREEN) },
             icon = {
                 Icon(
                     imageVector = Icons.Filled.AccountCircle,

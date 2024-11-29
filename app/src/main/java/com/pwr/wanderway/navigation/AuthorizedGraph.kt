@@ -20,23 +20,23 @@ import com.pwr.wanderway.presentation.routeCore.home.HomeScreen
 fun AuthorizedNavGraph(navController: NavHostController, moveToUnauthorized: () -> Unit) {
     NavHost(
         navController = navController,
-        route = Destination.AuthorizedGroup,
-        startDestination = Destination.HomeScreen
+        route = Destination.AUTHORIZED_GROUP,
+        startDestination = Destination.HOME_SCREEN
     ) {
-        composable(route = Destination.HomeScreen) {
+        composable(route = Destination.HOME_SCREEN) {
             HomeScreen(
                 onClick = {
-                    navController.navigate(Destination.BuildYourRouteScreen)
+                    navController.navigate(Destination.BUILD_YOUR_OWN_ROUTE_SCREEN)
                 }
             )
         }
-        composable(route = Destination.BuildYourRouteScreen) {
+        composable(route = Destination.BUILD_YOUR_OWN_ROUTE_SCREEN) {
             BuildYourRouteScreen()
         }
-        composable(route = Destination.Forum) {
+        composable(route = Destination.FORUM_SCREEN) {
             ForumHome()
         }
-        composable(route = Destination.AccountSettings) {
+        composable(route = Destination.ACCOUNT_SETTINGS_SCREEN) {
             SettingsHomeScreen()
         }
     }

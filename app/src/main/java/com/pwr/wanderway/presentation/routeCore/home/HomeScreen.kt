@@ -69,14 +69,6 @@ fun HomeScreen(
                 }
             }
             MapScreen()
-//            Box(
-//                modifier = Modifier
-//                    .fillMaxWidth()
-//                    .padding(0.dp, 16.dp)
-//                    .weight(1f)
-//                    .background(MaterialTheme.colorScheme.errorContainer)
-//            )
-
             WideButton(ButtonColor.PRIMARY, "Test Button", onClick = onClick)
         }
     }
@@ -97,6 +89,7 @@ fun MapScreen() {
     val cameraPositionState = rememberCameraPositionState {
         position = CameraPosition.fromLatLngZoom(atasehir, 15f)
     }
+
     GoogleMap(
         modifier = Modifier.fillMaxSize(),
         cameraPositionState = cameraPositionState

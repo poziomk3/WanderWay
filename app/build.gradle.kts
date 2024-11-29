@@ -61,7 +61,7 @@ dependencies {
     // Hilt
     implementation("androidx.datastore:datastore-preferences:1.1.1")
     implementation("com.google.dagger:hilt-android:2.51.1")
-    implementation("com.android.identity:identity-doctypes-jvm:202408.1")
+    implementation("com.android.identity:identity-doctypes-jvm:202411.1")
     kapt("com.google.dagger:hilt-android-compiler:2.51.1")
     implementation("androidx.datastore:datastore-preferences-core:1.1.1")
     implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
@@ -74,13 +74,14 @@ dependencies {
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3:1.3.1")
 
+    implementation("com.google.maps.android:maps-compose:6.2.1")
     // Navigation
-    implementation("androidx.navigation:navigation-compose:2.8.3")
-    implementation("androidx.navigation:navigation-runtime-ktx:2.8.3")
-    implementation("androidx.navigation:navigation-fragment-ktx:2.8.3")
-    implementation("androidx.navigation:navigation-ui-ktx:2.8.3")
-    implementation("androidx.navigation:navigation-dynamic-features-fragment:2.8.3")
-    androidTestImplementation("androidx.navigation:navigation-testing:2.8.3")
+    implementation("androidx.navigation:navigation-compose:2.8.4")
+    implementation("androidx.navigation:navigation-runtime-ktx:2.8.4")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.8.4")
+    implementation("androidx.navigation:navigation-ui-ktx:2.8.4")
+    implementation("androidx.navigation:navigation-dynamic-features-fragment:2.8.4")
+    androidTestImplementation("androidx.navigation:navigation-testing:2.8.4")
 
     // Retrofit & OkHttp
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
@@ -96,7 +97,7 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
-    androidTestImplementation(platform("androidx.compose:compose-bom:2024.10.01"))
+    androidTestImplementation(platform("androidx.compose:compose-bom:2024.11.00"))
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
 
     // Debugging tools

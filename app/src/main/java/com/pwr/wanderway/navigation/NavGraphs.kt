@@ -10,20 +10,20 @@ import androidx.navigation.compose.composable
 fun RootNavigationGraph(navController: NavHostController) {
     NavHost(
         navController = navController,
-        route = Destination.Root,
-        startDestination = Destination.UnauthorizedGroup
+        route = Destination.ROOT,
+        startDestination = Destination.UNAUTHORIZED_GROUP
     ) {
-        composable(route = Destination.UnauthorizedGroup) {
+        composable(route = Destination.UNAUTHORIZED_GROUP) {
             UnauthorizedWrapper(
                 moveToAuthorized = {
-                    navController.navigate(Destination.AuthorizedGroup)
+                    navController.navigate(Destination.AUTHORIZED_GROUP)
                 }
             )
         }
-        composable(route = Destination.AuthorizedGroup) {
+        composable(route = Destination.AUTHORIZED_GROUP) {
             AuthorizedWrapper(
                 moveToUnauthorized = {
-                    navController.navigate(Destination.UnauthorizedGroup)
+                    navController.navigate(Destination.UNAUTHORIZED_GROUP)
                 }
             )
         }
@@ -32,16 +32,16 @@ fun RootNavigationGraph(navController: NavHostController) {
 
 
 object Destination {
-    const val Root = "Root"
-    const val UnauthorizedGroup = "UnauthorizedGroup"
-    const val WelcomeScreen = "WelcomeScreen"
-    const val LoginScreen = "LoginScreen"
-    const val RegisterScreen = "RegisterScreen"
-    const val ActivateAccountScreen = "ActivateAccountScreen"
+    const val ROOT = "Root"
+    const val UNAUTHORIZED_GROUP = "UnauthorizedGroup"
+    const val WELCOME_SCREEN = "WelcomeScreen"
+    const val LOGIN_SCREEN = "LoginScreen"
+    const val REGISTER_SCREEN = "RegisterScreen"
+    const val ACTIVATE_ACCOUNT_SCREEN = "ActivateAccountScreen"
 
-    const val AuthorizedGroup = "AuthorizedGroup"
-    const val HomeScreen = "HomeScreen"
-    const val BuildYourRouteScreen = "BuildYourRouteScreen"
-    const val Forum = "Forum"
-    const val AccountSettings = "AccountSettings"
+    const val AUTHORIZED_GROUP = "AuthorizedGroup"
+    const val HOME_SCREEN = "HomeScreen"
+    const val BUILD_YOUR_OWN_ROUTE_SCREEN = "BuildYourRouteScreen"
+    const val FORUM_SCREEN = "Forum"
+    const val ACCOUNT_SETTINGS_SCREEN = "AccountSettings"
 }

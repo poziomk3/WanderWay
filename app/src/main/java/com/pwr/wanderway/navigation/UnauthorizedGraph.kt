@@ -17,20 +17,20 @@ fun UnauthorizedNavGraph(
 ) {
     NavHost(
         navController = navController,
-        route = Destination.UnauthorizedGroup,
-        startDestination = Destination.WelcomeScreen
+        route = Destination.UNAUTHORIZED_GROUP,
+        startDestination = Destination.WELCOME_SCREEN
     ) {
-        composable(route = Destination.WelcomeScreen) {
+        composable(route = Destination.WELCOME_SCREEN) {
             WelcomeScreen(
                 onLoginClick = {
-                    navController.navigate(Destination.LoginScreen)
+                    navController.navigate(Destination.LOGIN_SCREEN)
                 },
                 onRegisterClick = {
-                    navController.navigate(Destination.RegisterScreen)
+                    navController.navigate(Destination.REGISTER_SCREEN)
                 }
             )
         }
-        composable(route = Destination.LoginScreen) {
+        composable(route = Destination.LOGIN_SCREEN) {
             LoginScreen(
                 onLoginSuccess = {
                     navController.popBackStack()
@@ -42,20 +42,20 @@ fun UnauthorizedNavGraph(
                 }
             )
         }
-        composable(route = Destination.RegisterScreen) {
+        composable(route = Destination.REGISTER_SCREEN) {
             RegisterScreen(
                 onRegisterSuccess = {
-                    navController.navigate(Destination.ActivateAccountScreen)
+                    navController.navigate(Destination.ACTIVATE_ACCOUNT_SCREEN)
                 },
                 onGoBackClick = {
                     navController.popBackStack()
                 }
             )
         }
-        composable(route = Destination.ActivateAccountScreen) {
+        composable(route = Destination.ACTIVATE_ACCOUNT_SCREEN) {
             ActivateAccountScreen(
                 onSuccess = {
-                    navController.navigate(Destination.LoginScreen)
+                    navController.navigate(Destination.LOGIN_SCREEN)
                 }
             )
         }

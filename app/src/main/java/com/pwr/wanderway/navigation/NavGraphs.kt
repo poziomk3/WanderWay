@@ -6,12 +6,15 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 
 
+
+
+
 @Composable
 fun RootNavigationGraph(navController: NavHostController) {
     NavHost(
         navController = navController,
         route = Destination.ROOT,
-        startDestination = Destination.UNAUTHORIZED_GROUP
+        startDestination = Destination.AUTHORIZED_GROUP
     ) {
         composable(route = Destination.UNAUTHORIZED_GROUP) {
             UnauthorizedWrapper(
@@ -29,6 +32,7 @@ fun RootNavigationGraph(navController: NavHostController) {
         }
     }
 }
+
 
 
 object Destination {

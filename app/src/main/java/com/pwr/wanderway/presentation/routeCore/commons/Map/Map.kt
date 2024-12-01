@@ -2,6 +2,7 @@ package com.pwr.wanderway.presentation.routeCore.commons.Map
 
 import android.Manifest
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -26,8 +27,8 @@ fun Map(
     defaultLocation: LatLng = LatLng(52.191097, 19.355406),
     myLocation: Boolean = true,
     myLocationButton: Boolean = false,
-    zoomControls: Boolean = false
-
+    zoomControls: Boolean = false,
+    modifier: Modifier = Modifier
 ) {
     // Manage permission state
     val locationPermissionState = rememberPermissionState(Manifest.permission.ACCESS_FINE_LOCATION)
@@ -62,11 +63,11 @@ fun Map(
 
     GoogleMap(
         cameraPositionState = cameraPositionState,
-        modifier = Modifier.fillMaxSize(),
+        modifier = modifier,
         uiSettings = MapUiSettings(
             myLocationButtonEnabled = myLocationButton,
             zoomControlsEnabled = zoomControls
         ),
-        properties = MapProperties(isMyLocationEnabled = myLocation)
+        properties = MapProperties(isMyLocationEnabled = myLocation),
     )
 }

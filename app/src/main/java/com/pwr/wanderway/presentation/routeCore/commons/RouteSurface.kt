@@ -22,6 +22,7 @@ import com.pwr.wanderway.ui.theme.AppTheme
 @Composable
 fun RouteSurface(
     title: String,
+    showTopBar: Boolean = true,
     onGoBack: () -> Unit,
     content: @Composable () -> Unit
 ) {
@@ -29,15 +30,20 @@ fun RouteSurface(
 
     Box(modifier = Modifier.fillMaxSize()) {
         // Top Bar
-        Box(
-            modifier = Modifier
-                .background(MaterialTheme.colorScheme.primary)
-                .onGloballyPositioned { coordinates ->
-                    // Capture the height of the TopBar
-                    topBarHeight = coordinates.size.height
-                }
-        ) {
-            TopBar(title = title, onNavigationIconClick = onGoBack)
+        if (showTopBar) {
+            Box(
+                modifier = Modifier
+                    .background(MaterialTheme.colorScheme.primary)
+                    .onGloballyPositioned { coordinates ->
+                        // Capture the height of the TopBar
+                        topBarHeight = coordinates.size.height
+                    }
+            ) {
+                TopBar(title = title, onNavigationIconClick = onGoBack)
+            }
+        } else {
+            // Reset height when top bar is hidden
+            topBarHeight = 0
         }
 
         // Content Area
@@ -50,7 +56,6 @@ fun RouteSurface(
         }
     }
 }
-
 @Preview
 @Composable
 fun RouteSurfacePreview() {

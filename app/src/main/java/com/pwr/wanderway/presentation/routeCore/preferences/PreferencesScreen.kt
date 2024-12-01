@@ -1,7 +1,6 @@
 package com.pwr.wanderway.presentation.routeCore.preferences
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -19,7 +18,6 @@ import com.pwr.wanderway.R
 import com.pwr.wanderway.presentation.commons.ButtonColor
 import com.pwr.wanderway.presentation.commons.WideButton
 import com.pwr.wanderway.presentation.routeCore.commons.Dropdown
-import com.pwr.wanderway.presentation.routeCore.commons.RouteSurface
 import com.pwr.wanderway.ui.theme.AppTheme
 
 
@@ -27,42 +25,33 @@ import com.pwr.wanderway.ui.theme.AppTheme
 fun PreferencesScreen(viewModel: PreferencesViewModel = viewModel()) {
     val dropdownConfigs = viewModel.dropdownConfigs
 
-    Box(
-        modifier = Modifier.fillMaxSize()
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(start = 16.dp, end = 8.dp, bottom = 6.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        RouteSurface(
-            title = stringResource(id = R.string.preferences_screen_title),
-            onGoBack = { /* TODO */ }
+        LazyColumn(
+            modifier = Modifier
+                .fillMaxWidth()
+                .weight(1f),
+            verticalArrangement = Arrangement.spacedBy(16.dp) // Allow the column to take only the available space
         ) {
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(start = 16.dp, end = 8.dp, bottom = 6.dp),
-                verticalArrangement = Arrangement.spacedBy(16.dp)
-            ) {
-                LazyColumn(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .weight(1f),
-                    verticalArrangement = Arrangement.spacedBy(16.dp) // Allow the column to take only the available space
-                ) {
-                    items(dropdownConfigs) { config ->
-                        Dropdown(config = config)
-                    }
-                }
-
-                WideButton(
-                    text = stringResource(id = R.string.go_to_advanced),
-                    onClick = { /* TODO */ },
-                    colorType = ButtonColor.SECONDARY
-                )
-                WideButton(
-                    text = stringResource(id = R.string.save),
-                    onClick = { /* TODO */ },
-                    colorType = ButtonColor.PRIMARY
-                )
+            items(dropdownConfigs) { config ->
+                Dropdown(config = config)
             }
         }
+
+        WideButton(
+            text = stringResource(id = R.string.go_to_advanced),
+            onClick = { /* TODO */ },
+            colorType = ButtonColor.SECONDARY
+        )
+        WideButton(
+            text = stringResource(id = R.string.save),
+            onClick = { /* TODO */ },
+            colorType = ButtonColor.PRIMARY
+        )
     }
 }
 

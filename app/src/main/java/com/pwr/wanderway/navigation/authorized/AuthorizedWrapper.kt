@@ -4,13 +4,15 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.pwr.wanderway.navigation.Destination
+import com.pwr.wanderway.navigation.overrides.navigateTo
 import kotlinx.coroutines.flow.map
 
 @Composable
@@ -18,19 +20,29 @@ fun AuthorizedWrapper(
     navController: NavHostController = rememberNavController(),
     moveToUnauthorized: () -> Unit
 ) {
-
-    val activeRoute = remember(navController) {
+    val activeDestination by remember(navController) {
         navController.currentBackStackEntryFlow
-            .map { it.destination.route }
-    }.collectAsState(initial = Destination.AUTHORIZED_GROUP.route)
+            .map { entry ->
+                Destination.entries.find { it.route == entry.destination.route }
+            }
+    }.collectAsStateWithLifecycle(initialValue = Destination.HOME_SCREEN)
 
     Scaffold(
         topBar = {
             TopBar(
-                route = Destination.entries.find { it.route == activeRoute.value },
-                onNavigationIconClick = {})
+                route = activeDestination,
+                onNavigationIconClick = {
+                    navController.popBackStack()
+                }
+            )
         },
-        bottomBar = { NavBar(navController) }
+        bottomBar = {
+            NavBar(
+                homeNav = { navController.navigateTo(Destination.HOME_SCREEN) },
+                forumNav = { navController.navigateTo(Destination.FORUM_SCREEN) },
+                accountNav = { navController.navigateTo(Destination.ACCOUNT_SETTINGS_SCREEN) }
+            )
+        }
     ) { paddingValues ->
         Box(
             modifier = Modifier.padding(
@@ -40,7 +52,6 @@ fun AuthorizedWrapper(
                 paddingValues.calculateBottomPadding()
             )
         ) {
-
             AuthorizedNavGraph(
                 navController = navController,
                 moveToUnauthorized = moveToUnauthorized

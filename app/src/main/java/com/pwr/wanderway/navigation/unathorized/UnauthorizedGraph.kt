@@ -3,8 +3,9 @@ package com.pwr.wanderway.navigation.unathorized
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
 import com.pwr.wanderway.navigation.Destination
+import com.pwr.wanderway.navigation.overrides.composable
+import com.pwr.wanderway.navigation.overrides.navigateTo
 import com.pwr.wanderway.presentation.entryScreens.activateAccount.ActivateAccountScreen
 import com.pwr.wanderway.presentation.entryScreens.login.LoginScreen
 import com.pwr.wanderway.presentation.entryScreens.register.RegisterScreen
@@ -20,42 +21,41 @@ fun UnauthorizedNavGraph(
         route = Destination.UNAUTHORIZED_GROUP.route,
         startDestination = Destination.WELCOME_SCREEN.route
     ) {
-        composable(route = Destination.WELCOME_SCREEN.route) {
+        composable(Destination.WELCOME_SCREEN) {
             WelcomeScreen(
                 onLoginClick = {
-                    navController.navigate(Destination.LOGIN_SCREEN.route)
+                    navController.navigateTo(Destination.LOGIN_SCREEN)
                 },
                 onRegisterClick = {
-                    navController.navigate(Destination.REGISTER_SCREEN.route)
+                    navController.navigateTo(Destination.REGISTER_SCREEN)
                 }
             )
         }
-        composable(route = Destination.LOGIN_SCREEN.route) {
+        composable(Destination.LOGIN_SCREEN) {
             LoginScreen(
                 onLoginSuccess = {
                     navController.popBackStack()
-//                    navController.navigate(Destination.AuthorizedGroup) // Navigate to the main graph
-                    moveToAuthorized()
+                    moveToAuthorized() // Move to the authorized graph
                 },
                 onBackClick = {
                     navController.popBackStack()
                 }
             )
         }
-        composable(route = Destination.REGISTER_SCREEN.route) {
+        composable(Destination.REGISTER_SCREEN) {
             RegisterScreen(
                 onRegisterSuccess = {
-                    navController.navigate(Destination.ACTIVATE_ACCOUNT_SCREEN.route)
+                    navController.navigateTo(Destination.ACTIVATE_ACCOUNT_SCREEN)
                 },
                 onGoBackClick = {
                     navController.popBackStack()
                 }
             )
         }
-        composable(route = Destination.ACTIVATE_ACCOUNT_SCREEN.route) {
+        composable(Destination.ACTIVATE_ACCOUNT_SCREEN) {
             ActivateAccountScreen(
                 onSuccess = {
-                    navController.navigate(Destination.LOGIN_SCREEN.route)
+                    navController.navigateTo(Destination.LOGIN_SCREEN)
                 }
             )
         }

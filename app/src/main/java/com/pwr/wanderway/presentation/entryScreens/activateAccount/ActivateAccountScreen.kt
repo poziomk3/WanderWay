@@ -16,17 +16,17 @@ fun ActivateAccountScreen(
     onSuccess: () -> Unit
 ) {
     EntryScreenLayout(
-        title = stringResource(id = R.string.activate_account_label),
+        title = stringResource(id = R.string.entry_screen_title_activate_account),
         content = {
             Box(
                 contentAlignment = Alignment.Center
             ) {
                 Text(
-                    stringResource(id = R.string.activate_account_sublabel)
+                    stringResource(id = R.string.entry_screen_subtitle_activate_account)
                 )
             }
         },
-        rightButton = stringResource(id = R.string.got_it),
+        rightButton = stringResource(id = R.string.entry_screen_button_ok),
         rightButtonOnClick = { onSuccess() })
 }
 

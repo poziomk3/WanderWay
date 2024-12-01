@@ -13,8 +13,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.pwr.wanderway.R
 
 @Composable
 fun NavBar(
@@ -27,14 +29,24 @@ fun NavBar(
         NavigationBarItem(
             selected = currentDestination == Destination.FORUM_SCREEN,
             onClick = { navController.navigate(Destination.FORUM_SCREEN) },
-            icon = { Icon(imageVector = Icons.Filled.ThumbUp, contentDescription = "Forum") },
-            label = { Text("Forum") }
+            icon = {
+                Icon(
+                    imageVector = Icons.Filled.ThumbUp,
+                    contentDescription = stringResource(R.string.bottom_bar_forum)
+                )
+            },
+            label = { Text(stringResource(R.string.bottom_bar_forum)) }
         )
         NavigationBarItem(
             selected = currentDestination == Destination.HOME_SCREEN,
             onClick = { navController.navigate(Destination.HOME_SCREEN) },
-            icon = { Icon(imageVector = Icons.Filled.Home, contentDescription = "Home") },
-            label = { Text("Home") }
+            icon = {
+                Icon(
+                    imageVector = Icons.Filled.Home,
+                    contentDescription = stringResource(R.string.bottom_bar_home)
+                )
+            },
+            label = { Text(stringResource(R.string.bottom_bar_home)) }
         )
         NavigationBarItem(
             selected = currentDestination == Destination.ACCOUNT_SETTINGS_SCREEN,
@@ -42,10 +54,10 @@ fun NavBar(
             icon = {
                 Icon(
                     imageVector = Icons.Filled.AccountCircle,
-                    contentDescription = "Settings"
+                    contentDescription = stringResource(R.string.bottom_bar_account)
                 )
             },
-            label = { Text("Account") }
+            label = { Text(stringResource(R.string.bottom_bar_account)) }
         )
     }
 }

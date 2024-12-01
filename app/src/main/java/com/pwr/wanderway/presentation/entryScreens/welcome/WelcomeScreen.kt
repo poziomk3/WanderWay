@@ -18,16 +18,16 @@ fun WelcomeScreen(
     onRegisterClick: () -> Unit
 ) {
     EntryScreenLayout(
-        title = stringResource(id = R.string.welcome_label),
+        title = stringResource(id = R.string.entry_screen_title),
         content = {
             Box(
                 contentAlignment = Alignment.Center
             ) {
-                Text(stringResource(id = R.string.welcome_sublabel))
+                Text(stringResource(id = R.string.entry_screen_subtitle))
             }
         },
-        rightButton = stringResource(id = R.string.login),
-        leftButton = stringResource(id = R.string.register),
+        rightButton = stringResource(id = R.string.entry_screen_login),
+        leftButton = stringResource(id = R.string.entry_screen_register),
         rightButtonOnClick = { onLoginClick() },
         leftButtonOnClick = { onRegisterClick() },
     )

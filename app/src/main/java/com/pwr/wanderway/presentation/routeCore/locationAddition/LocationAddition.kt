@@ -32,7 +32,7 @@ fun LocationAdditionScreen() {
         Text(
             modifier = Modifier.fillMaxWidth(),
             textAlign = TextAlign.Center,
-            text = stringResource(id = R.string.add_location_description),
+            text = stringResource(id = R.string.add_location_screen_description),
             style = MaterialTheme.typography.titleMedium,
             color = MaterialTheme.colorScheme.onBackground
         )
@@ -49,7 +49,7 @@ fun LocationAdditionScreen() {
         )
 
         WideButton(
-            text = stringResource(id = R.string.add_location_button),
+            text = stringResource(id = R.string.add_location_screen_button),
             onClick = { /* TODO */ },
             colorType = ButtonColor.PRIMARY
         )

@@ -49,7 +49,7 @@ fun RouteCard(
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Text(
-                text = stringResource(R.string.route) + " " + number,
+                text = stringResource(R.string.route_choice_screen_route) + " " + number,
                 modifier = Modifier
                     .padding(16.dp),
                 textAlign = TextAlign.Center,
@@ -61,11 +61,11 @@ fun RouteCard(
                         containerColor = MaterialTheme.colorScheme.primary,
                         labelColor = MaterialTheme.colorScheme.onPrimary
                     ),
-                    label = { Text(stringResource(R.string.go_for_it)) }
+                    label = { Text(stringResource(R.string.route_choice_screen_button_ok)) }
                 )
                 SuggestionChip(
                     onClick = { /* TODO */ },
-                    label = { Text(stringResource(R.string.details)) }
+                    label = { Text(stringResource(R.string.route_choice_screen_button_details)) }
                 )
             }
 

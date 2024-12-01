@@ -15,12 +15,9 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.google.android.gms.maps.model.CameraPosition
-import com.google.android.gms.maps.model.LatLng
-import com.google.maps.android.compose.GoogleMap
-import com.google.maps.android.compose.rememberCameraPositionState
 import com.pwr.wanderway.presentation.commons.ButtonColor
 import com.pwr.wanderway.presentation.commons.WideButton
+import com.pwr.wanderway.presentation.routeCore.commons.Map.Map
 import com.pwr.wanderway.ui.theme.AppTheme
 
 @Composable
@@ -69,7 +66,7 @@ fun HomeScreen(
                     )
                 }
             }
-            MapScreen()
+            Map()
             WideButton(ButtonColor.PRIMARY, "Test Button", onClick = onClick)
         }
     }
@@ -84,15 +81,3 @@ fun HomeScreenPreview() {
 }
 
 
-@Composable
-fun MapScreen() {
-    val atasehir = LatLng(40.9971, 29.1007)
-    val cameraPositionState = rememberCameraPositionState {
-        position = CameraPosition.fromLatLngZoom(atasehir, 15f)
-    }
-
-    GoogleMap(
-        modifier = Modifier.fillMaxSize(),
-        cameraPositionState = cameraPositionState
-    )
-}

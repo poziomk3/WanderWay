@@ -62,6 +62,7 @@ dependencies {
     implementation("androidx.datastore:datastore-preferences:1.1.1")
     implementation("com.google.dagger:hilt-android:2.51.1")
     implementation("com.android.identity:identity-doctypes-jvm:202411.1")
+    implementation("com.google.android.gms:play-services-location:21.3.0")
     kapt("com.google.dagger:hilt-android-compiler:2.51.1")
     implementation("androidx.datastore:datastore-preferences-core:1.1.1")
     implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
@@ -76,6 +77,7 @@ dependencies {
     implementation("androidx.compose.material3:material3:1.3.1")
 
     implementation("com.google.maps.android:maps-compose:6.2.1")
+    implementation("com.google.accompanist:accompanist-permissions:0.33.0-alpha")
     // Navigation
     implementation("androidx.navigation:navigation-compose:2.8.4")
     implementation("androidx.navigation:navigation-runtime-ktx:2.8.4")

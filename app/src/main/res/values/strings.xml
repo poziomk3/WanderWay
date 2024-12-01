@@ -29,5 +29,9 @@
     <string name="preferences_screen_title">Your preferences!</string>
     <string name="go_to_advanced">Go to advanced options</string>
     <string name="save">Save</string>
+    <string name="route_choice_screen_title">We generated routes for you!</string>
+    <string name="route">Route</string>
+    <string name="details">See details!</string>
+    <string name="go_for_it">Go for it!</string>
 
 </resources>

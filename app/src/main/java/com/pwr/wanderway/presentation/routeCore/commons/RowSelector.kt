@@ -1,9 +1,7 @@
-package com.pwr.wanderway.presentation.commons
+package com.pwr.wanderway.presentation.routeCore.commons
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowForward
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.material3.MaterialTheme
@@ -13,28 +11,26 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.pwr.wanderway.ui.theme.AppTheme
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
+import com.pwr.wanderway.data.model.RowSelectorConfig
 
 @Composable
 fun RowSelector(
-    text: String,
-    icon: ImageVector = Icons.AutoMirrored.Filled.ArrowForward,
-    onClick: (() -> Unit)? = null
+    config: RowSelectorConfig = RowSelectorConfig()
 ) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .padding(16.dp)
-            .clickable { onClick?.invoke() },
+            .clickable { config.onClick.invoke() },
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
-            text = text,
+            text = config.text,
             style = MaterialTheme.typography.bodySmall
         )
         Icon(
-            imageVector = icon,
+            imageVector = config.icon,
             contentDescription = null
         )
     }
@@ -44,8 +40,6 @@ fun RowSelector(
 @Composable
 fun RowSelectorPreview() {
     AppTheme {
-        RowSelector(
-            text = "Add starting point"
-        )
+        RowSelector()
     }
 }

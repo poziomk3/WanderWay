@@ -1,5 +1,6 @@
 package com.pwr.wanderway.navigation.authorized
 
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -18,7 +19,8 @@ import com.pwr.wanderway.navigation.Destination
 @Composable
 fun TopBar(
     route: Destination?,
-    onNavigationIconClick: () -> Unit = {}
+    onNavigationIconClick: () -> Unit = {},
+    actions: @Composable RowScope.() -> Unit = {}
 ) {
     CenterAlignedTopAppBar(
         colors = TopAppBarDefaults.centerAlignedTopAppBarColors(),
@@ -30,7 +32,8 @@ fun TopBar(
                     contentDescription = "back-navigation"
                 )
             }
-        }
+        },
+        actions = actions
     )
 }
 

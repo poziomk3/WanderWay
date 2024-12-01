@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -15,12 +16,9 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.google.android.gms.maps.model.CameraPosition
-import com.google.android.gms.maps.model.LatLng
-import com.google.maps.android.compose.GoogleMap
-import com.google.maps.android.compose.rememberCameraPositionState
 import com.pwr.wanderway.presentation.commons.ButtonColor
 import com.pwr.wanderway.presentation.commons.WideButton
+import com.pwr.wanderway.presentation.routeCore.commons.Map.Map
 import com.pwr.wanderway.ui.theme.AppTheme
 
 @Composable
@@ -35,7 +33,7 @@ fun HomeScreen(
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.SpaceBetween,
+            verticalArrangement = Arrangement.spacedBy(16.dp),
             modifier = Modifier
                 .fillMaxSize()
                 .padding(16.dp)
@@ -43,7 +41,7 @@ fun HomeScreen(
             Column(
                 modifier = Modifier
                     .padding(16.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
+                horizontalAlignment = Alignment.CenterHorizontally,
 
             ) {
                 Text(
@@ -69,7 +67,10 @@ fun HomeScreen(
                     )
                 }
             }
-            MapScreen()
+            Map(
+                myLocationButton = true,
+                modifier = Modifier.fillMaxWidth().weight(1f)
+            )
             WideButton(ButtonColor.PRIMARY, "Test Button", onClick = onClick)
         }
     }
@@ -84,15 +85,3 @@ fun HomeScreenPreview() {
 }
 
 
-@Composable
-fun MapScreen() {
-    val atasehir = LatLng(40.9971, 29.1007)
-    val cameraPositionState = rememberCameraPositionState {
-        position = CameraPosition.fromLatLngZoom(atasehir, 15f)
-    }
-
-    GoogleMap(
-        modifier = Modifier.fillMaxSize(),
-        cameraPositionState = cameraPositionState
-    )
-}

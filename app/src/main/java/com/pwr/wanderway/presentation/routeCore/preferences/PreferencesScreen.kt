@@ -22,7 +22,7 @@ import com.pwr.wanderway.ui.theme.AppTheme
 
 
 @Composable
-fun PreferencesScreen(viewModel: PreferencesViewModel = viewModel()) {
+fun PreferencesScreen(viewModel: PreferencesViewModel = viewModel(), backNav: () -> Unit) {
     val dropdownConfigs = viewModel.dropdownConfigs
 
     Column(
@@ -49,7 +49,7 @@ fun PreferencesScreen(viewModel: PreferencesViewModel = viewModel()) {
         )
         WideButton(
             text = stringResource(id = R.string.preferences_screen_button_2),
-            onClick = { /* TODO */ },
+            onClick = { backNav() },
             colorType = ButtonColor.PRIMARY
         )
     }
@@ -61,7 +61,7 @@ fun PreferencesScreen(viewModel: PreferencesViewModel = viewModel()) {
 fun PreferencesScreenScreenPreview() {
     AppTheme {
         Surface {
-            PreferencesScreen()
+            PreferencesScreen(backNav = { })
         }
     }
 }

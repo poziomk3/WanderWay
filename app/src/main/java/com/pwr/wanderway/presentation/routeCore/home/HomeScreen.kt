@@ -23,7 +23,7 @@ import com.pwr.wanderway.ui.theme.AppTheme
 
 @Composable
 fun HomeScreen(
-    onClick: () -> Unit
+    buildYourOwnRouteNav: () -> Unit
 ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -62,7 +62,7 @@ fun HomeScreen(
                 .fillMaxWidth()
                 .weight(1f)
         )
-        WideButton(ButtonColor.PRIMARY, stringResource(R.string.home_screen_button), onClick = onClick)
+        WideButton(ButtonColor.PRIMARY, stringResource(R.string.home_screen_button), onClick = buildYourOwnRouteNav)
     }
 }
 
@@ -70,7 +70,7 @@ fun HomeScreen(
 @Composable
 fun HomeScreenPreview() {
     AppTheme {
-        HomeScreen(onClick = {})
+        HomeScreen(buildYourOwnRouteNav = {})
     }
 }
 

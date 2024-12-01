@@ -26,7 +26,9 @@ import com.pwr.wanderway.R
 @Composable
 fun RouteCard(
     number: Int, // Number parameter
-    content: @Composable () -> Unit
+    onClick1: () -> Unit? = { },
+    onClick2: () -> Unit? = { },
+    content: @Composable () -> Unit,
 ) {
     ElevatedCard(
         elevation = CardDefaults.cardElevation(
@@ -56,7 +58,7 @@ fun RouteCard(
             )
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 SuggestionChip(
-                    onClick = { /* TODO */ },
+                    onClick = { onClick1() },
                     colors = SuggestionChipDefaults.suggestionChipColors(
                         containerColor = MaterialTheme.colorScheme.primary,
                         labelColor = MaterialTheme.colorScheme.onPrimary
@@ -64,7 +66,7 @@ fun RouteCard(
                     label = { Text(stringResource(R.string.route_choice_screen_button_ok)) }
                 )
                 SuggestionChip(
-                    onClick = { /* TODO */ },
+                    onClick = { onClick2() },
                     label = { Text(stringResource(R.string.route_choice_screen_button_details)) }
                 )
             }

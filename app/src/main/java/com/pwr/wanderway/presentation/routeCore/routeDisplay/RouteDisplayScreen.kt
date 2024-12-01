@@ -4,7 +4,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
@@ -21,7 +20,7 @@ import com.pwr.wanderway.presentation.routeCore.commons.MapComponent.MapComponen
 import com.pwr.wanderway.ui.theme.AppTheme
 
 @Composable
-fun RouteDisplayScreen() {
+fun RouteDisplayScreen(buildYourOwnRouteNav: () -> Unit, locationAdditionNav: () -> Unit) {
     val rows = listOf(
         InfoRowData(label = "Elapsed time:", value = "00:15:13"),
         InfoRowData(label = "Distance:", value = "1500m / 5700 steps"),
@@ -36,7 +35,7 @@ fun RouteDisplayScreen() {
         MapComponent(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(150.dp)
+                .weight(1f)
         )
         Column {
             // Each row of the card
@@ -46,12 +45,12 @@ fun RouteDisplayScreen() {
         }
         WideButton(
             text = stringResource(id = R.string.route_display_screen_button_1),
-            onClick = { /* TODO */ },
+            onClick = { buildYourOwnRouteNav() },
             colorType = ButtonColor.SECONDARY
         )
         WideButton(
             text = stringResource(id = R.string.route_display_screen_button_2),
-            onClick = { /* TODO */ },
+            onClick = { locationAdditionNav() },
             colorType = ButtonColor.PRIMARY
         )
     }
@@ -62,7 +61,8 @@ fun RouteDisplayScreen() {
 fun RouteDisplayScreenPreview() {
     AppTheme {
         Surface {
-            RouteDisplayScreen()
+            RouteDisplayScreen({ }) {
+            }
         }
     }
 }

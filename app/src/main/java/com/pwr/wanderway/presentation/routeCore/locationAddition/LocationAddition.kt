@@ -18,48 +18,41 @@ import androidx.compose.ui.unit.dp
 import com.pwr.wanderway.R
 import com.pwr.wanderway.presentation.commons.ButtonColor
 import com.pwr.wanderway.presentation.commons.WideButton
-import com.pwr.wanderway.presentation.routeCore.commons.RouteSurface
 import com.pwr.wanderway.presentation.routeCore.commons.SearchBarWithSuggestions
 import com.pwr.wanderway.ui.theme.AppTheme
 
 @Composable
 fun LocationAdditionScreen() {
-    Box(modifier = Modifier.fillMaxSize()) {
-        RouteSurface(
-            title = stringResource(id = R.string.add_location_title),
-            onGoBack = { /* TODO */ }
-        ) {
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(16.dp)
-            ) {
-                Text(
-                    modifier = Modifier.fillMaxWidth(),
-                    textAlign = TextAlign.Center,
-                    text = stringResource(id = R.string.add_location_description),
-                    style = MaterialTheme.typography.titleMedium,
-                    color = MaterialTheme.colorScheme.onBackground
-                )
 
-                SearchBarWithSuggestions()
-              
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp)
+    ) {
+        Text(
+            modifier = Modifier.fillMaxWidth(),
+            textAlign = TextAlign.Center,
+            text = stringResource(id = R.string.add_location_description),
+            style = MaterialTheme.typography.titleMedium,
+            color = MaterialTheme.colorScheme.onBackground
+        )
 
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(0.dp, 16.dp)
-                        .weight(1f)
-                        .background(MaterialTheme.colorScheme.errorContainer)
-                )
+        SearchBarWithSuggestions()
 
-                WideButton(
-                    text = stringResource(id = R.string.add_location_button),
-                    onClick = { /* TODO */ },
-                    colorType = ButtonColor.PRIMARY
-                )
-            }
-        }
+
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(0.dp, 16.dp)
+                .weight(1f)
+                .background(MaterialTheme.colorScheme.errorContainer)
+        )
+
+        WideButton(
+            text = stringResource(id = R.string.add_location_button),
+            onClick = { /* TODO */ },
+            colorType = ButtonColor.PRIMARY
+        )
     }
 }
 

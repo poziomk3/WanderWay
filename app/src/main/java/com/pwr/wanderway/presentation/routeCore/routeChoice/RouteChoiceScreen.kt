@@ -13,41 +13,29 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.pwr.wanderway.R
 import com.pwr.wanderway.presentation.routeCore.commons.RouteCard
-import com.pwr.wanderway.presentation.routeCore.commons.RouteSurface
 import com.pwr.wanderway.ui.theme.AppTheme
 
 @Composable
 fun RouteChoiceScreen() {
-    Box(
-        modifier = Modifier.fillMaxSize()
+    LazyColumn(
+        modifier = Modifier
+            .fillMaxSize(),
+        contentPadding = PaddingValues(8.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        RouteSurface(
-            title = stringResource(id = R.string.route_choice_screen_title),
-            onGoBack = { /* TODO */ }
-        ) {
-            LazyColumn(
-                modifier = Modifier
-                    .fillMaxSize(),
-                contentPadding = PaddingValues(8.dp),
-                verticalArrangement = Arrangement.spacedBy(16.dp)
+        itemsIndexed(List(5) { 0 }) { index, _ ->
+            RouteCard(
+                index + 1
             ) {
-                itemsIndexed(List(5) { 0 }) { index, _ ->
-                    RouteCard(
-                        index + 1
-                    ) {
-                        Box(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .height(150.dp)
-                                .background(MaterialTheme.colorScheme.errorContainer)
-                        )
-                    }
-                }
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(150.dp)
+                        .background(MaterialTheme.colorScheme.errorContainer)
+                )
             }
         }
     }

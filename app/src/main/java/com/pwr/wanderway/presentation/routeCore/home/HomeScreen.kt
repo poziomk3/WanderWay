@@ -30,6 +30,7 @@ fun HomeScreen(
     Box(
         modifier = Modifier
             .fillMaxSize()
+            .padding(8.dp)
             .background(MaterialTheme.colorScheme.background)
     ) {
         Column(

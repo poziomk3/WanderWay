@@ -1,4 +1,4 @@
-package com.pwr.wanderway.presentation.routeCore.buildYourRoute
+package com.pwr.wanderway.presentation.routeCore.routeDisplay
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -10,7 +10,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.pwr.wanderway.ui.theme.AppTheme
 
 @Composable
-fun BuildYourRouteScreen() {
+fun RouteDisplayScreen() {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -21,10 +21,10 @@ fun BuildYourRouteScreen() {
 
 @Preview
 @Composable
-fun BuildYourRouteScreenPreview() {
+fun RouteDisplayScreenPreview() {
     AppTheme {
         Surface {
-            BuildYourRouteScreen()
+            RouteDisplayScreen()
         }
     }
 }

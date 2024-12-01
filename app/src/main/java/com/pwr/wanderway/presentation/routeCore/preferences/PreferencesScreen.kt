@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
@@ -39,7 +40,7 @@ fun PreferencesScreen(viewModel: PreferencesViewModel = viewModel()) {
                     .padding(start = 16.dp, end = 8.dp, bottom = 6.dp),
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
-                androidx.compose.foundation.lazy.LazyColumn(
+                LazyColumn(
                     modifier = Modifier
                         .fillMaxWidth()
                         .weight(1f),

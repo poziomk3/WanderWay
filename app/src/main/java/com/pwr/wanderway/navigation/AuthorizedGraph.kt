@@ -16,6 +16,7 @@ import com.pwr.wanderway.presentation.forum.forumHome.ForumHome
 import com.pwr.wanderway.presentation.routeCore.buildYourRoute.BuildYourRouteScreen
 import com.pwr.wanderway.presentation.routeCore.home.HomeScreen
 import com.pwr.wanderway.presentation.routeCore.preferences.PreferencesScreen
+import com.pwr.wanderway.presentation.routeCore.routeChoice.RouteChoiceScreen
 
 @Composable
 fun AuthorizedNavGraph(navController: NavHostController, moveToUnauthorized: () -> Unit) {
@@ -42,6 +43,9 @@ fun AuthorizedNavGraph(navController: NavHostController, moveToUnauthorized: () 
         }
         composable(route = Destination.PREFERENCES_SCREEN) {
             PreferencesScreen()
+        }
+        composable(route=Destination.ROUTE_CHOICE_SCREEN) {
+            RouteChoiceScreen()
         }
     }
 }

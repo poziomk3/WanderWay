@@ -1,9 +1,9 @@
 package com.pwr.wanderway.presentation.routeCore.locationAddition
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -22,12 +22,12 @@ import com.pwr.wanderway.presentation.routeCore.commons.SearchBarWithSuggestions
 import com.pwr.wanderway.ui.theme.AppTheme
 
 @Composable
-fun LocationAdditionScreen() {
+fun LocationAdditionScreen(backNav: () -> Unit) {
 
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp)
+            .padding(16.dp), verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         Text(
             modifier = Modifier.fillMaxWidth(),
@@ -41,12 +41,12 @@ fun LocationAdditionScreen() {
         MapComponent(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(150.dp)
+                .weight(1f)
         )
 
         WideButton(
             text = stringResource(id = R.string.add_location_screen_button),
-            onClick = { /* TODO */ },
+            onClick = { backNav() },
             colorType = ButtonColor.PRIMARY
         )
     }
@@ -58,7 +58,7 @@ fun LocationAdditionScreen() {
 fun LocationAdditionScreenPreview() {
     AppTheme {
         Surface {
-            LocationAdditionScreen()
+            LocationAdditionScreen {}
         }
     }
 }

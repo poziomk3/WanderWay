@@ -1,7 +1,10 @@
 package com.pwr.wanderway.navigation.authorized
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -25,7 +28,7 @@ fun AuthorizedWrapper(
             .map { entry ->
                 Destination.entries.find { it.route == entry.destination.route }
             }
-    }.collectAsStateWithLifecycle(initialValue = Destination.HOME_SCREEN)
+    }.collectAsStateWithLifecycle(initialValue = Destination.AUTHORIZED_GROUP)
 
     Scaffold(
         topBar = {
@@ -45,12 +48,14 @@ fun AuthorizedWrapper(
         }
     ) { paddingValues ->
         Box(
-            modifier = Modifier.padding(
-                0.dp,
-                paddingValues.calculateTopPadding(),
-                0.dp,
-                paddingValues.calculateBottomPadding()
-            )
+            modifier = Modifier
+                .padding(
+                    0.dp,
+                    paddingValues.calculateTopPadding(),
+                    0.dp,
+                    paddingValues.calculateBottomPadding()
+                )
+                .fillMaxSize()
         ) {
             AuthorizedNavGraph(
                 navController = navController,

@@ -13,6 +13,7 @@ enum class Destination(val route: String) {
     PREFERENCES_SCREEN("PreferencesScreen"),
     ROUTE_CHOICE_SCREEN("RouteChoiceScreen"),
     ROUTE_DISPLAY_SCREEN("RouteDisplayScreen"),
+    LOCATION_ADDITION_SCREEN("LocationAdditionScreen"),
     FORUM_SCREEN("Forum"),
     ACCOUNT_SETTINGS_SCREEN("AccountSettings");
 }

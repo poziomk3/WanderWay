@@ -17,7 +17,7 @@ import com.pwr.wanderway.presentation.routeCore.commons.RouteCard
 import com.pwr.wanderway.ui.theme.AppTheme
 
 @Composable
-fun RouteChoiceScreen() {
+fun RouteChoiceScreen(routeDisplayNav: () -> Unit) {
     LazyColumn(
         modifier = Modifier
             .fillMaxSize(),
@@ -26,7 +26,10 @@ fun RouteChoiceScreen() {
     ) {
         itemsIndexed(List(5) { 0 }) { index, _ ->
             RouteCard(
-                index + 1
+                number = index + 1,
+                onClick1 = {
+                    routeDisplayNav()
+                },
             ) {
                 MapComponent(
                     myLocation = false,
@@ -45,7 +48,7 @@ fun RouteChoiceScreen() {
 fun PreferencesScreenScreenPreview() {
     AppTheme {
         Surface {
-            RouteChoiceScreen()
+            RouteChoiceScreen { }
         }
     }
 }

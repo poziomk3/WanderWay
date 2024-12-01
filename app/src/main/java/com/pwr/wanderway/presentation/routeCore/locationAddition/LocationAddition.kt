@@ -1,10 +1,9 @@
 package com.pwr.wanderway.presentation.routeCore.locationAddition
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -18,6 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.pwr.wanderway.R
 import com.pwr.wanderway.presentation.commons.ButtonColor
 import com.pwr.wanderway.presentation.commons.WideButton
+import com.pwr.wanderway.presentation.routeCore.commons.MapComponent.MapComponent
 import com.pwr.wanderway.presentation.routeCore.commons.SearchBarWithSuggestions
 import com.pwr.wanderway.ui.theme.AppTheme
 
@@ -38,14 +38,10 @@ fun LocationAdditionScreen() {
         )
 
         SearchBarWithSuggestions()
-
-
-        Box(
+        MapComponent(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(0.dp, 16.dp)
-                .weight(1f)
-                .background(MaterialTheme.colorScheme.errorContainer)
+                .height(150.dp)
         )
 
         WideButton(

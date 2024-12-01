@@ -1,8 +1,6 @@
 package com.pwr.wanderway.presentation.routeCore.home
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -20,14 +18,13 @@ import androidx.compose.ui.unit.dp
 import com.pwr.wanderway.R
 import com.pwr.wanderway.presentation.commons.ButtonColor
 import com.pwr.wanderway.presentation.commons.WideButton
-import com.pwr.wanderway.presentation.routeCore.commons.Map.Map
+import com.pwr.wanderway.presentation.routeCore.commons.MapComponent.MapComponent
 import com.pwr.wanderway.ui.theme.AppTheme
 
 @Composable
 fun HomeScreen(
     onClick: () -> Unit
 ) {
-
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(16.dp),
@@ -57,14 +54,15 @@ fun HomeScreen(
                     color = MaterialTheme.colorScheme.onBackground
                 )
             }
-            Map(
-                myLocationButton = true,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .weight(1f)
-            )
-            WideButton(ButtonColor.PRIMARY, "Test Button", onClick = onClick)
+
         }
+        MapComponent(
+            myLocationButton = true,
+            modifier = Modifier
+                .fillMaxWidth()
+                .weight(1f)
+        )
+        WideButton(ButtonColor.PRIMARY, stringResource(R.string.home_screen_button), onClick = onClick)
     }
 }
 

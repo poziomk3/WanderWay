@@ -1,8 +1,6 @@
-package com.pwr.wanderway.presentation.routeCore.commons.Map
+package com.pwr.wanderway.presentation.routeCore.commons.MapComponent
 
 import android.Manifest
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -22,7 +20,7 @@ import com.google.maps.android.compose.rememberCameraPositionState
 
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
-fun Map(
+fun MapComponent(
     locationViewModel: LocationViewModel = viewModel(),
     defaultLocation: LatLng = LatLng(52.191097, 19.355406),
     myLocation: Boolean = true,
@@ -58,7 +56,8 @@ fun Map(
     }
 
     currentLocation?.let { location ->
-        cameraPositionState.position = CameraPosition.fromLatLngZoom(LatLng(location.latitude, location.longitude), 15f)
+        cameraPositionState.position =
+            CameraPosition.fromLatLngZoom(LatLng(location.latitude, location.longitude), 15f)
     }
 
     GoogleMap(

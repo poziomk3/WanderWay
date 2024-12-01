@@ -1,22 +1,34 @@
 package com.pwr.wanderway.presentation.routeCore.commons.Map
 
 import android.Manifest
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberPermissionState
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
+import com.google.maps.android.compose.GoogleMap
+import com.google.maps.android.compose.MapProperties
+import com.google.maps.android.compose.MapUiSettings
 import com.google.maps.android.compose.rememberCameraPositionState
 
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
-fun Map(locationViewModel: LocationViewModel = viewModel()) {
+fun Map(
+    locationViewModel: LocationViewModel = viewModel(),
+    defaultLocation: LatLng = LatLng(52.191097, 19.355406),
+    myLocation: Boolean = true,
+    myLocationButton: Boolean = false,
+    zoomControls: Boolean = false
+
+) {
     // Manage permission state
     val locationPermissionState = rememberPermissionState(Manifest.permission.ACCESS_FINE_LOCATION)
 
@@ -40,20 +52,21 @@ fun Map(locationViewModel: LocationViewModel = viewModel()) {
         return
     }
 
-    // Show the location or a fallback message
-    currentLocation?.let { location ->
-        val latLng = LatLng(location.latitude, location.longitude)
-        val cameraPositionState = rememberCameraPositionState {
-            position = CameraPosition.fromLatLngZoom(latLng, 15f)
-        }
-
-        // Replace the Text composable with GoogleMap when using Maps Compose
-//        GoogleMap(
-//            modifier = Modifier.fillMaxSize(),
-//            cameraPositionState = cameraPositionState
-//        )
-        Text("Location: Latitude = ${latLng.latitude}, Longitude = ${latLng.longitude}")
-    } ?: run {
-        Text("Fetching location or no location available.")
+    val cameraPositionState = rememberCameraPositionState {
+        position = CameraPosition.fromLatLngZoom(defaultLocation, 5.5f)
     }
+
+    currentLocation?.let { location ->
+        cameraPositionState.position = CameraPosition.fromLatLngZoom(LatLng(location.latitude, location.longitude), 15f)
+    }
+
+    GoogleMap(
+        cameraPositionState = cameraPositionState,
+        modifier = Modifier.fillMaxSize(),
+        uiSettings = MapUiSettings(
+            myLocationButtonEnabled = myLocationButton,
+            zoomControlsEnabled = zoomControls
+        ),
+        properties = MapProperties(isMyLocationEnabled = myLocation)
+    )
 }

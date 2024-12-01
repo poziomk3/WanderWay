@@ -66,7 +66,7 @@ fun HomeScreen(
                     )
                 }
             }
-            Map()
+            Map(myLocationButton = true)
             WideButton(ButtonColor.PRIMARY, "Test Button", onClick = onClick)
         }
     }

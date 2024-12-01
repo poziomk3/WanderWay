@@ -1,4 +1,4 @@
-package com.pwr.wanderway.navigation
+package com.pwr.wanderway.navigation.authorized
 
 
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -17,6 +17,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.pwr.wanderway.R
+import com.pwr.wanderway.navigation.Destination
 
 @Composable
 fun NavBar(

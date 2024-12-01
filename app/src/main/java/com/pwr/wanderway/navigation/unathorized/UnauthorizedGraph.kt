@@ -1,10 +1,10 @@
-package com.pwr.wanderway.navigation
+package com.pwr.wanderway.navigation.unathorized
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
+import com.pwr.wanderway.navigation.Destination
 import com.pwr.wanderway.presentation.entryScreens.activateAccount.ActivateAccountScreen
 import com.pwr.wanderway.presentation.entryScreens.login.LoginScreen
 import com.pwr.wanderway.presentation.entryScreens.register.RegisterScreen
@@ -63,10 +63,3 @@ fun UnauthorizedNavGraph(
 }
 
 
-@Composable
-fun UnauthorizedWrapper(
-    navController: NavHostController = rememberNavController(),
-    moveToAuthorized: () -> Unit
-) {
-    UnauthorizedNavGraph(navController = navController, moveToAuthorized = moveToAuthorized)
-}

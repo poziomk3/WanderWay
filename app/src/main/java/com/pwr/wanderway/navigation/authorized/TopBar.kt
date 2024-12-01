@@ -1,4 +1,4 @@
-package com.pwr.wanderway.presentation.routeCore.commons
+package com.pwr.wanderway.navigation.authorized
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack

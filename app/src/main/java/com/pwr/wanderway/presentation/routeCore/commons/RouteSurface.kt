@@ -8,7 +8,13 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.onGloballyPositioned
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.pwr.wanderway.ui.theme.AppTheme
@@ -19,18 +25,26 @@ fun RouteSurface(
     onGoBack: () -> Unit,
     content: @Composable () -> Unit
 ) {
+    var topBarHeight by remember { mutableStateOf(0) }
+
     Box(modifier = Modifier.fillMaxSize()) {
+        // Top Bar
         Box(
             modifier = Modifier
-                .background(MaterialTheme.colorScheme.error)
+                .background(MaterialTheme.colorScheme.primary)
+                .onGloballyPositioned { coordinates ->
+                    // Capture the height of the TopBar
+                    topBarHeight = coordinates.size.height
+                }
         ) {
             TopBar(title = title, onNavigationIconClick = onGoBack)
         }
 
+        // Content Area
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(top = 90.dp)
+                .padding(top = with(LocalDensity.current) { topBarHeight.toDp() }) // Convert height to dp
         ) {
             content()
         }
@@ -45,9 +59,8 @@ fun RouteSurfacePreview() {
             title = "Title",
             onGoBack = { }
         ) {
-
             LazyColumn {
-                items(100) { index -> // Example list items
+                items(100) { index ->
                     Text("Item #$index", modifier = Modifier.padding(16.dp))
                 }
             }

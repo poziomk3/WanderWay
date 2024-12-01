@@ -66,6 +66,7 @@ dependencies {
     implementation("androidx.datastore:datastore-preferences-core:1.1.1")
     implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
     // AndroidX & Compose
+    implementation(platform("androidx.compose:compose-bom:2024.11.00"))
     implementation("androidx.core:core-ktx:1.15.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.7")
     implementation("androidx.activity:activity-compose:1.9.3")

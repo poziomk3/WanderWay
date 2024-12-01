@@ -26,4 +26,8 @@
     <string name="add_location_description">Type in the name of the attraction \nor find a place on the map</string>
     <string name="google_maps_key">GOOGLE_API_KEY</string>
 
+    <string name="preferences_screen_title">Your preferences!</string>
+    <string name="go_to_advanced">Go to advanced options</string>
+    <string name="save">Save</string>
+
 </resources>

@@ -17,20 +17,20 @@ fun UnauthorizedNavGraph(
 ) {
     NavHost(
         navController = navController,
-        route = Destination.UNAUTHORIZED_GROUP,
-        startDestination = Destination.WELCOME_SCREEN
+        route = Destination.UNAUTHORIZED_GROUP.route,
+        startDestination = Destination.WELCOME_SCREEN.route
     ) {
-        composable(route = Destination.WELCOME_SCREEN) {
+        composable(route = Destination.WELCOME_SCREEN.route) {
             WelcomeScreen(
                 onLoginClick = {
-                    navController.navigate(Destination.LOGIN_SCREEN)
+                    navController.navigate(Destination.LOGIN_SCREEN.route)
                 },
                 onRegisterClick = {
-                    navController.navigate(Destination.REGISTER_SCREEN)
+                    navController.navigate(Destination.REGISTER_SCREEN.route)
                 }
             )
         }
-        composable(route = Destination.LOGIN_SCREEN) {
+        composable(route = Destination.LOGIN_SCREEN.route) {
             LoginScreen(
                 onLoginSuccess = {
                     navController.popBackStack()
@@ -42,20 +42,20 @@ fun UnauthorizedNavGraph(
                 }
             )
         }
-        composable(route = Destination.REGISTER_SCREEN) {
+        composable(route = Destination.REGISTER_SCREEN.route) {
             RegisterScreen(
                 onRegisterSuccess = {
-                    navController.navigate(Destination.ACTIVATE_ACCOUNT_SCREEN)
+                    navController.navigate(Destination.ACTIVATE_ACCOUNT_SCREEN.route)
                 },
                 onGoBackClick = {
                     navController.popBackStack()
                 }
             )
         }
-        composable(route = Destination.ACTIVATE_ACCOUNT_SCREEN) {
+        composable(route = Destination.ACTIVATE_ACCOUNT_SCREEN.route) {
             ActivateAccountScreen(
                 onSuccess = {
-                    navController.navigate(Destination.LOGIN_SCREEN)
+                    navController.navigate(Destination.LOGIN_SCREEN.route)
                 }
             )
         }

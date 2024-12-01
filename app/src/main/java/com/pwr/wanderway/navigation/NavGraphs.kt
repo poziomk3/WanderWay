@@ -10,20 +10,20 @@ import androidx.navigation.compose.composable
 fun RootNavigationGraph(navController: NavHostController) {
     NavHost(
         navController = navController,
-        route = Destination.ROOT,
-        startDestination = Destination.AUTHORIZED_GROUP
+        route = Destination.ROOT.route,
+        startDestination = Destination.AUTHORIZED_GROUP.route
     ) {
-        composable(route = Destination.UNAUTHORIZED_GROUP) {
+        composable(route = Destination.UNAUTHORIZED_GROUP.route) {
             UnauthorizedWrapper(
                 moveToAuthorized = {
-                    navController.navigate(Destination.AUTHORIZED_GROUP)
+                    navController.navigate(Destination.AUTHORIZED_GROUP.route)
                 }
             )
         }
-        composable(route = Destination.AUTHORIZED_GROUP) {
+        composable(route = Destination.AUTHORIZED_GROUP.route) {
             AuthorizedWrapper(
                 moveToUnauthorized = {
-                    navController.navigate(Destination.UNAUTHORIZED_GROUP)
+                    navController.navigate(Destination.UNAUTHORIZED_GROUP.route)
                 }
             )
         }
@@ -31,20 +31,25 @@ fun RootNavigationGraph(navController: NavHostController) {
 }
 
 
-object Destination {
-    const val ROOT = "Root"
-    const val UNAUTHORIZED_GROUP = "UnauthorizedGroup"
-    const val WELCOME_SCREEN = "WelcomeScreen"
-    const val LOGIN_SCREEN = "LoginScreen"
-    const val REGISTER_SCREEN = "RegisterScreen"
-    const val ACTIVATE_ACCOUNT_SCREEN = "ActivateAccountScreen"
 
-    const val AUTHORIZED_GROUP = "AuthorizedGroup"
-    const val HOME_SCREEN = "HomeScreen"
-    const val BUILD_YOUR_OWN_ROUTE_SCREEN = "BuildYourRouteScreen"
-    const val PREFERENCES_SCREEN = "PreferencesScreen"
-    const val ROUTE_CHOICE_SCREEN = "RouteChoiceScreen"
-    const val ROUTE_DISPLAY_SCREEN = "RouteDisplayScreen"
-    const val FORUM_SCREEN = "Forum"
-    const val ACCOUNT_SETTINGS_SCREEN = "AccountSettings"
+
+enum class Destination(val route: String) {
+    ROOT("Root"),
+    UNAUTHORIZED_GROUP("UnauthorizedGroup"),
+    WELCOME_SCREEN("WelcomeScreen"),
+    LOGIN_SCREEN("LoginScreen"),
+    REGISTER_SCREEN("RegisterScreen"),
+    ACTIVATE_ACCOUNT_SCREEN("ActivateAccountScreen"),
+    AUTHORIZED_GROUP("AuthorizedGroup"),
+    HOME_SCREEN("HomeScreen"),
+    BUILD_YOUR_OWN_ROUTE_SCREEN("BuildYourRouteScreen"),
+    PREFERENCES_SCREEN("PreferencesScreen"),
+    ROUTE_CHOICE_SCREEN("RouteChoiceScreen"),
+    ROUTE_DISPLAY_SCREEN("RouteDisplayScreen"),
+    FORUM_SCREEN("Forum"),
+    ACCOUNT_SETTINGS_SCREEN("AccountSettings");
+}
+
+inline fun <reified T : Enum<T>> mapStringToEnum(value: String?, propertySelector: (T) -> String): T? {
+    return enumValues<T>().find { propertySelector(it) == value }
 }

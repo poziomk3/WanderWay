@@ -52,12 +52,13 @@ android {
 
     packaging {
         resources {
-            excludes +=   "META-INF/versions/9/OSGI-INF/MANIFEST.MF"
+            excludes += "META-INF/versions/9/OSGI-INF/MANIFEST.MF"
         }
     }
 }
 
 dependencies {
+    implementation("com.google.accompanist:accompanist-permissions:0.31.5-beta")
     // Hilt
     implementation("androidx.datastore:datastore-preferences:1.1.1")
     implementation("com.google.dagger:hilt-android:2.51.1")

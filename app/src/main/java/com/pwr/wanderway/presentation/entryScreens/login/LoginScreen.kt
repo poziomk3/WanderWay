@@ -43,20 +43,20 @@ fun LoginScreen(
     }
 
     EntryScreenLayout(
-        title = stringResource(id = R.string.login_label),
+        title = stringResource(id = R.string.entry_screen_label_login),
         content = {
             Column {
                 OnPrimaryTextField(
                     value = username,
                     onValueChange = { username = it },
-                    label = stringResource(id = R.string.login)
+                    label = stringResource(id = R.string.entry_screen_login)
                 )
                 Spacer(modifier = Modifier.size(16.dp))
                 OnPrimaryTextField(
                     visualTransformation = PasswordVisualTransformation(),
                     value = password,
                     onValueChange = { password = it },
-                    label = stringResource(id = R.string.password)
+                    label = stringResource(id = R.string.entry_screen_password)
                 )
                 Spacer(modifier = Modifier.size(16.dp))
                 if (loginError != null)
@@ -68,11 +68,11 @@ fun LoginScreen(
                     CircularProgressIndicator()
             }
         },
-        leftButton = stringResource(id = R.string.go_back),
+        leftButton = stringResource(id = R.string.entry_screen_go_back),
         leftButtonOnClick = {
             onBackClick()
         },
-        rightButton = stringResource(id = R.string.login),
+        rightButton = stringResource(id = R.string.entry_screen_login),
         rightButtonOnClick = {
             viewModel.onLoginClicked(username, password)
         },

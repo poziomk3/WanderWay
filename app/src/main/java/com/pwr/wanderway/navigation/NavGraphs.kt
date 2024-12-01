@@ -6,9 +6,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 
 
-
-
-
 @Composable
 fun RootNavigationGraph(navController: NavHostController) {
     NavHost(
@@ -34,7 +31,6 @@ fun RootNavigationGraph(navController: NavHostController) {
 }
 
 
-
 object Destination {
     const val ROOT = "Root"
     const val UNAUTHORIZED_GROUP = "UnauthorizedGroup"
@@ -46,8 +42,9 @@ object Destination {
     const val AUTHORIZED_GROUP = "AuthorizedGroup"
     const val HOME_SCREEN = "HomeScreen"
     const val BUILD_YOUR_OWN_ROUTE_SCREEN = "BuildYourRouteScreen"
-    const val PREFERENCES_SCREEN="PreferencesScreen"
+    const val PREFERENCES_SCREEN = "PreferencesScreen"
     const val ROUTE_CHOICE_SCREEN = "RouteChoiceScreen"
+    const val ROUTE_DISPLAY_SCREEN = "RouteDisplayScreen"
     const val FORUM_SCREEN = "Forum"
     const val ACCOUNT_SETTINGS_SCREEN = "AccountSettings"
 }

@@ -1,37 +1,56 @@
 <resources>
     <string name="app_name">WanderWay</string>
 
-    <string name="welcome_label">Welcome to WanderWay!</string>
-    <string name="welcome_sublabel">Let’s plan out your best trip ever!</string>
-    <string name="login">Login</string>
-    <string name="register">Register</string>
+    <!--    topbars-->
+    <string name="top_bar_home">Ready for adventure?</string>
+    <string name="top_bar_build_your_route">Build your route!</string>
+    <string name="top_bar_forum">Latest on forum!</string>
+    <string name="top_bar_account_settings">Account settings</string>
+    <string name="top_bar_preferences">Your preferences</string>
+    <string name="top_bar_route_choice">We generated routes for you!</string>
+    <string name="top_bar_route_display">Route in progress!</string>
+    <string name="top_bar_default">Wander Way!</string>
 
-    <string name="login_label">Log in!</string>
-    <string name="go_back">Go back</string>
-    <string name="password">Password</string>
-    <string name="email">Email</string>
+    <!--    bottombars-->
+    <string name="bottom_bar_home">Home</string>
+    <string name="bottom_bar_forum">Forum</string>
+    <string name="bottom_bar_account">Account</string>
 
 
-    <string name="got_it">Got it!</string>
-    <string name="activate_account_label">Activate your account!</string>
-    <string name="activate_account_sublabel">You should shortly receive a confirmation email.</string>
-    <string name="error_empty_fields">You didn\'t insert required fields.</string>
-    <string name="login_error">Login or password is invalid.</string>
-    <string name="confirm_password">Repeat password</string>
-    <string name="invalid_email">Entered Email is invalid.</string>
-    <string name="password_mismatch_or_short">Passowords are either too short or not the same.</string>
-    <string name="build_your_route">Build your route!</string>
-    <string name="add_location_title">Add location!</string>
-    <string name="add_location_button">Add it!</string>
-    <string name="add_location_description">Type in the name of the attraction \nor find a place on the map</string>
-    <string name="google_maps_key">GOOGLE_API_KEY</string>
+    <!--    entry screens-->
+    <string name="entry_screen_title">Welcome to WanderWay!</string>
+    <string name="entry_screen_subtitle">Let’s plan out your best trip ever!</string>
+    <string name="entry_screen_login">Login</string>
+    <string name="entry_screen_register">Register</string>
+    <string name="entry_screen_label_login">Log in!</string>
+    <string name="entry_screen_go_back">Go back</string>
+    <string name="entry_screen_password">Password</string>
+    <string name="entry_screen_email">Email</string>
+    <string name="entry_screen_button_ok">Got it!</string>
+    <string name="entry_screen_repeat_password">Repeat password</string>
+    <string name="entry_screen_title_activate_account">Activate your account!</string>
+    <string name="entry_screen_subtitle_activate_account">You should shortly receive a confirmation email.</string>
 
-    <string name="preferences_screen_title">Your preferences!</string>
-    <string name="go_to_advanced">Go to advanced options</string>
-    <string name="save">Save</string>
-    <string name="route_choice_screen_title">We generated routes for you!</string>
-    <string name="route">Route</string>
-    <string name="details">See details!</string>
-    <string name="go_for_it">Go for it!</string>
+    <!--    home screen-->
+    <string name="home_screen_label_1">Let\'s start with a simple question…</string>
+    <string name="home_screen_label_2">What do you want to see?</string>
+    <string name="home_screen_button">Let\'s go!</string>
+    <!-- preferences screen  -->
+    <string name="preferences_screen_button_1">Go to advanced options</string>
+    <string name="preferences_screen_button_2">Save</string>
+    <!--    route display screen-->
+    <string name="route_display_screen_button_1">Alter route!</string>
+    <string name="route_display_screen_button_2">Add attraction!</string>
 
+    <!--    route choice screen-->
+    <string name="route_choice_screen_route">Route</string>
+    <string name="route_choice_screen_button_details">See details!</string>
+    <string name="route_choice_screen_button_ok">Go for it!</string>
+    <!--add location screen-->
+    <string name="add_location_screen_button">Add it!</string>
+    <string name="add_location_screen_description">Type in the name of the attraction \nor find a place on the map</string>
+
+
+    <!--keys-->
+    <string name="key_google_api">GOOGLE_API_KEY</string>
 </resources>

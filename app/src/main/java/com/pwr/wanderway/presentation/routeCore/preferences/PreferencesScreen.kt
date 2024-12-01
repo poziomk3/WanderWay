@@ -43,12 +43,12 @@ fun PreferencesScreen(viewModel: PreferencesViewModel = viewModel()) {
         }
 
         WideButton(
-            text = stringResource(id = R.string.go_to_advanced),
+            text = stringResource(id = R.string.preferences_screen_button_1),
             onClick = { /* TODO */ },
             colorType = ButtonColor.SECONDARY
         )
         WideButton(
-            text = stringResource(id = R.string.save),
+            text = stringResource(id = R.string.preferences_screen_button_2),
             onClick = { /* TODO */ },
             colorType = ButtonColor.PRIMARY
         )

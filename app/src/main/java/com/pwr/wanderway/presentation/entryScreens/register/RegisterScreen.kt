@@ -44,33 +44,33 @@ fun RegisterScreen(
     }
 
     EntryScreenLayout(
-        title = stringResource(id = R.string.register),
+        title = stringResource(id = R.string.entry_screen_register),
         content = {
             Column {
                 OnPrimaryTextField(
                     value = email,
                     onValueChange = { email = it },
-                    label = stringResource(id = R.string.email)
+                    label = stringResource(id = R.string.entry_screen_email)
                 )
                 Spacer(modifier = Modifier.size(16.dp))
                 OnPrimaryTextField(
                     value = username,
                     onValueChange = { username = it },
-                    label = stringResource(id = R.string.login)
+                    label = stringResource(id = R.string.entry_screen_login)
                 )
                 Spacer(modifier = Modifier.size(16.dp))
                 OnPrimaryTextField(
                     visualTransformation = PasswordVisualTransformation(),
                     value = password,
                     onValueChange = { password = it },
-                    label = stringResource(id = R.string.password)
+                    label = stringResource(id = R.string.entry_screen_password)
                 )
                 Spacer(modifier = Modifier.size(16.dp))
                 OnPrimaryTextField(
                     visualTransformation = PasswordVisualTransformation(),
                     value = confirmPassword,
                     onValueChange = { confirmPassword = it },
-                    label = stringResource(id = R.string.confirm_password)
+                    label = stringResource(id = R.string.entry_screen_repeat_password)
                 )
                 Spacer(modifier = Modifier.size(16.dp))
                 if (registerError != null) {
@@ -84,11 +84,11 @@ fun RegisterScreen(
                 }
             }
         },
-        leftButton = stringResource(id = R.string.go_back),
+        leftButton = stringResource(id = R.string.entry_screen_go_back),
         leftButtonOnClick = {
             onGoBackClick()
         },
-        rightButton = stringResource(id = R.string.register),
+        rightButton = stringResource(id = R.string.entry_screen_register),
         rightButtonOnClick = {
             viewModel.onRegisterClicked(email, username, password, confirmPassword)
 

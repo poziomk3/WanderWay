@@ -1,5 +1,6 @@
 package com.pwr.wanderway.presentation.routeCore.preferences
 
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -9,8 +10,12 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -31,6 +36,14 @@ fun PreferencesScreen(viewModel: PreferencesViewModel = hiltViewModel(), backNav
     // Observe active preferences
     val activePreferences by viewModel.getAllActivePreferences()
         .collectAsState(initial = emptyMap())
+    Log.d("PreferencesScreen", activePreferences.toString())
+
+    var tempPreferences by remember { mutableStateOf(activePreferences) }
+
+
+    LaunchedEffect(activePreferences) {
+        tempPreferences = activePreferences // Reassign to active preferences
+    }
 
     Column(
         modifier = Modifier
@@ -45,27 +58,28 @@ fun PreferencesScreen(viewModel: PreferencesViewModel = hiltViewModel(), backNav
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             items(preferenceConfigurations) { config ->
-                // Compute label-to-option mapping (safe for composable calls)
+                // Compute label-to-option mapping
                 val optionLabelMap = config.options.associateWith { getPreferenceOptionLabel(it) }
-
                 // Determine the active preference or fallback to default
-                val activeOption = activePreferences[config.category]?.name
+                val activeOption = tempPreferences[config.category]?.name
                     ?: config.defaultOption.name
 
                 // Get the currently selected item label
                 val selectedItemLabel =
                     optionLabelMap[config.options.find { it.name == activeOption }]
-                        ?: getPreferenceOptionLabel(config.defaultOption)
+                        ?: "essa"
 
                 Dropdown(
                     config = mapPreferenceConfigToDropdownConfig(config),
-                    selectedItem = selectedItemLabel, // Pass the current selected item's label
+                    selectedItem = selectedItemLabel,
                     onItemSelected = { selectedLabel ->
-                        // Use the pre-mapped label-to-option relationship
+                        // Update the temporary preferences state
                         val selectedOption =
                             optionLabelMap.entries.find { it.value == selectedLabel }?.key
                         if (selectedOption != null) {
-                            viewModel.savePreference(config.category, selectedOption)
+                            tempPreferences = tempPreferences.toMutableMap().apply {
+                                this[config.category] = selectedOption
+                            }
                         }
                     }
                 )
@@ -74,17 +88,25 @@ fun PreferencesScreen(viewModel: PreferencesViewModel = hiltViewModel(), backNav
 
         WideButton(
             text = stringResource(id = R.string.preferences_screen_button_1),
-            onClick = { /* Save Action */ },
+            onClick = {
+                // Clear temporary preferences (reset to initial state)
+                tempPreferences = activePreferences
+            },
             colorType = ButtonColor.SECONDARY
         )
         WideButton(
             text = stringResource(id = R.string.preferences_screen_button_2),
-            onClick = { backNav() },
+            onClick = {
+                // Save temporary preferences to ViewModel
+                tempPreferences.forEach { (category, option) ->
+                    viewModel.savePreference(category, option)
+                }
+                backNav() // Navigate back
+            },
             colorType = ButtonColor.PRIMARY
         )
     }
 }
-
 
 @Composable
 @Preview

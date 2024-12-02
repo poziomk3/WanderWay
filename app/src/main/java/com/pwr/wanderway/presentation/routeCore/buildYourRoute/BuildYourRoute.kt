@@ -64,11 +64,11 @@ fun BuildYourRouteScreen(
         )
         DestInfo(
             label = stringResource(R.string.starting_in),
-            contents = { Text(text = "Location 1") }
+            contents = { Text(text = "-") }
         )
         DestInfo(
             label = stringResource(R.string.finishing_in),
-            contents = { Text(text = "Destination 1, Destination 2") }
+            contents = { Text(text = "-") }
         )
         DestInfo(
             label = stringResource(R.string.attractions_not_seen_yet),

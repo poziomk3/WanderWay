@@ -9,27 +9,27 @@ class BuildYourRouteViewModel: ViewModel(){
     // create list of example attractions, with callback which removes the composable onCLick
     val unseenDestinations = listOf(
         RowSelectorConfig(
-            text = "Destination 1",
+            text = "Ogród japoński",
             icon = Icons.Filled.Clear,
             onClick = { }
         ),
         RowSelectorConfig(
-            text = "Destination 2",
+            text = "Panorama Racławicka",
             icon = Icons.Filled.Clear,
             onClick = { }
         ),
         RowSelectorConfig(
-            text = "Destination 3",
+            text = "Wieża Matematyczna",
             icon = Icons.Filled.Clear,
             onClick = { }
         ),
         RowSelectorConfig(
-            text = "Destination 4",
+            text = "Muzeum Narodowe",
             icon = Icons.Filled.Clear,
             onClick = { }
         ),
         RowSelectorConfig(
-            text = "Destination 5",
+            text = "Muzeum Neonów",
             icon = Icons.Filled.Clear,
             onClick = { }
         ),

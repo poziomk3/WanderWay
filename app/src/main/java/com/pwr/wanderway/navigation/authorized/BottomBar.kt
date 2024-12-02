@@ -16,7 +16,7 @@ import androidx.compose.ui.res.stringResource
 import com.pwr.wanderway.R
 
 @Composable
-fun NavBar(
+fun BottomBar(
     homeNav: () -> Unit,
     forumNav: () -> Unit,
     accountNav: () -> Unit

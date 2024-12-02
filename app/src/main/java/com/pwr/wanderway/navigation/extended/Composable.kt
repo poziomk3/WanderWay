@@ -1,4 +1,4 @@
-package com.pwr.wanderway.navigation.overrides
+package com.pwr.wanderway.navigation.extended
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavGraphBuilder

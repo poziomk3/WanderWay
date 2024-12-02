@@ -13,7 +13,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.pwr.wanderway.navigation.Destination
-import com.pwr.wanderway.navigation.overrides.navigateTo
+import com.pwr.wanderway.navigation.extended.navigateTo
 import kotlinx.coroutines.flow.map
 
 @Composable
@@ -45,7 +45,7 @@ fun AuthorizedWrapper(
             )
         },
         bottomBar = {
-            NavBar(
+            BottomBar(
                 homeNav = { navController.navigateTo(Destination.HOME_SCREEN) },
                 forumNav = { navController.navigateTo(Destination.FORUM_SCREEN) },
                 accountNav = { navController.navigateTo(Destination.ACCOUNT_SETTINGS_SCREEN) }

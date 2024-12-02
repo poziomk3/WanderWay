@@ -4,8 +4,8 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import com.pwr.wanderway.navigation.authorized.AuthorizedWrapper
-import com.pwr.wanderway.navigation.overrides.composable
-import com.pwr.wanderway.navigation.overrides.navigateTo
+import com.pwr.wanderway.navigation.extended.composable
+import com.pwr.wanderway.navigation.extended.navigateTo
 import com.pwr.wanderway.navigation.unathorized.UnauthorizedWrapper
 
 

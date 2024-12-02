@@ -21,6 +21,11 @@ fun AuthorizedWrapper(
     navController: NavHostController = rememberNavController(),
     moveToUnauthorized: () -> Unit
 ) {
+    val entryRoutes = listOf(
+        Destination.HOME_SCREEN,
+        Destination.FORUM_SCREEN,
+        Destination.ACCOUNT_SETTINGS_SCREEN
+    )
     val activeDestination by remember(navController) {
         navController.currentBackStackEntryFlow
             .map { entry ->
@@ -32,8 +37,10 @@ fun AuthorizedWrapper(
         topBar = {
             TopBar(
                 route = activeDestination,
-                onNavigationIconClick = {
-                    navController.popBackStack()
+                onNavigationIconClick = if (activeDestination in entryRoutes) {
+                    null
+                } else {
+                    { navController.popBackStack() }
                 }
             )
         },

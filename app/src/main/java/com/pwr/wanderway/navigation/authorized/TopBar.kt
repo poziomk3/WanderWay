@@ -19,18 +19,20 @@ import com.pwr.wanderway.navigation.Destination
 @Composable
 fun TopBar(
     route: Destination?,
-    onNavigationIconClick: () -> Unit = {},
+    onNavigationIconClick: (() -> Unit)? = null,
     actions: @Composable RowScope.() -> Unit = {}
 ) {
     CenterAlignedTopAppBar(
         colors = TopAppBarDefaults.centerAlignedTopAppBarColors(),
         title = { Text(stringResource(id = getTopBarTitle(route))) },
         navigationIcon = {
-            IconButton(onClick = onNavigationIconClick) {
-                Icon(
-                    imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                    contentDescription = "back-navigation"
-                )
+            if (onNavigationIconClick != null) { // Show icon only if onNavigationIconClick is not null
+                IconButton(onClick = onNavigationIconClick) {
+                    Icon(
+                        imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                        contentDescription = "back-navigation"
+                    )
+                }
             }
         },
         actions = actions

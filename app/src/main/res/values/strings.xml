@@ -60,6 +60,65 @@
     <string name="build_your_route_screen_finishing_in">Finishing in:</string>
     <string name="build_your_route_screen_attractions_not_seen_yet">Attractions not seen yet:</string>
 
+
+    <!--preferences-->
+    <!-- Preference Categories -->
+    <string name="preference_category_duration">Duration of trip</string>
+    <string name="preference_category_sightseeing">Type of sightseeing</string>
+    <string name="preference_category_group">Group type</string>
+    <string name="preference_category_difficulty">Difficulty level</string>
+    <string name="preference_category_weather">Preferred weather</string>
+    <string name="preference_category_transport">Preferred transport</string>
+    <string name="preference_category_meal">Meal preferences</string>
+    <string name="preference_category_budget">Budget range</string>
+    <string name="preference_category_activity">Activity preferences</string>
+    <!-- Duration options -->
+    <string name="preference_option_half_day">Half-day</string>
+    <string name="preference_option_full_day">Full-day</string>
+    <string name="preference_option_weekend">Weekend</string>
+
+    <!-- Sightseeing options -->
+    <string name="preference_option_historical">Historical</string>
+    <string name="preference_option_nature">Nature</string>
+    <string name="preference_option_modern_attractions">Modern attractions</string>
+
+    <!-- Group options -->
+    <string name="preference_option_solo">Solo</string>
+    <string name="preference_option_family">Family</string>
+    <string name="preference_option_friends">Friends</string>
+    <string name="preference_option_tour_group">Tour group</string>
+
+    <!-- Difficulty options -->
+    <string name="preference_option_easy">Easy</string>
+    <string name="preference_option_moderate">Moderate</string>
+    <string name="preference_option_challenging">Challenging</string>
+
+    <!-- Weather options -->
+    <string name="preference_option_any">Any</string>
+    <string name="preference_option_sunny">Sunny</string>
+    <string name="preference_option_cloudy">Cloudy</string>
+    <string name="preference_option_cool">Cool</string>
+
+    <!-- Transport options -->
+    <string name="preference_option_car">Car</string>
+    <string name="preference_option_public_transport">Public transport</string>
+    <string name="preference_option_bike">Bike</string>
+    <string name="preference_option_walking">Walking</string>
+
+    <!-- Meal options -->
+    <string name="preference_option_quick_snacks">Quick snacks</string>
+    <string name="preference_option_local_cuisine">Local cuisine</string>
+    <string name="preference_option_packed_lunch">Packed lunch</string>
+
+    <!-- Budget options -->
+    <string name="preference_option_low">Low</string>
+    <string name="preference_option_medium">Medium</string>
+    <string name="preference_option_high">High</string>
+
+    <!-- Activity options -->
+    <string name="preference_option_relaxing">Relaxing</string>
+    <string name="preference_option_adventurous">Adventurous</string>
+    <string name="preference_option_educational">Educational</string>
     <!--keys-->
     <string name="key_google_api">GOOGLE_API_KEY</string>
 </resources>

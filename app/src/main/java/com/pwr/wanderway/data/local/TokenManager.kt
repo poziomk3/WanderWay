@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.flow.map
 
-val Context.dataStore by preferencesDataStore(name = "auth_data_store")
+val Context.authDataStore by preferencesDataStore(name = "auth_data_store")
 
 class TokenManager(private val context: Context) {
 
@@ -20,36 +20,36 @@ class TokenManager(private val context: Context) {
     }
 
     suspend fun saveAccessToken(token: String, expiryTime: Long) {
-        context.dataStore.edit { preferences ->
+        context.authDataStore.edit { preferences ->
             preferences[ACCESS_TOKEN_KEY] = token
             preferences[TOKEN_EXPIRY_TIME_KEY] = expiryTime
         }
     }
 
-    val accessTokenFlow: Flow<String?> = context.dataStore.data
+    val accessTokenFlow: Flow<String?> = context.authDataStore.data
         .map { preferences ->
             preferences[ACCESS_TOKEN_KEY]
         }
 
-    val tokenExpiryTimeFlow: Flow<Long?> = context.dataStore.data
+    val tokenExpiryTimeFlow: Flow<Long?> = context.authDataStore.data
         .map { preferences ->
             preferences[TOKEN_EXPIRY_TIME_KEY]
         }
 
     suspend fun saveRefreshToken(token: String) {
-        context.dataStore.edit { preferences ->
+        context.authDataStore.edit { preferences ->
             preferences[REFRESH_TOKEN_KEY] = token
         }
     }
 
-    val refreshTokenFlow: Flow<String?> = context.dataStore.data
+    val refreshTokenFlow: Flow<String?> = context.authDataStore.data
         .map { preferences ->
             preferences[REFRESH_TOKEN_KEY]
         }
 
     suspend fun hasValidAccessToken(): Boolean {
         val currentTime = System.currentTimeMillis()
-        val expiryTime = context.dataStore.data.map { preferences ->
+        val expiryTime = context.authDataStore.data.map { preferences ->
             preferences[TOKEN_EXPIRY_TIME_KEY]
         }.firstOrNull()
 
@@ -57,7 +57,7 @@ class TokenManager(private val context: Context) {
     }
 
     suspend fun clearTokens() {
-        context.dataStore.edit { preferences ->
+        context.authDataStore.edit { preferences ->
             preferences.clear()
         }
     }

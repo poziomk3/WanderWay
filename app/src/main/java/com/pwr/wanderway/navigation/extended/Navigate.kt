@@ -1,4 +1,4 @@
-package com.pwr.wanderway.navigation.overrides
+package com.pwr.wanderway.navigation.extended
 
 import androidx.navigation.NavHostController
 import com.pwr.wanderway.navigation.Destination

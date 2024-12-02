@@ -23,19 +23,21 @@ import com.pwr.wanderway.data.model.DropdownConfig
 @Composable
 fun Dropdown(
     config: DropdownConfig,
+    selectedItem: String, // Current selected item
+    onItemSelected: (String) -> Unit, // Callback to notify parent
     modifier: Modifier = Modifier
 ) {
     var expanded by remember { mutableStateOf(false) }
-    var selectedItem by remember { mutableStateOf(config.defaultOption) }
 
     Box(
         modifier = modifier
             .fillMaxWidth()
             .wrapContentSize(Alignment.TopStart)
     ) {
+        // OutlinedTextField to display the current selection
         OutlinedTextField(
-            value = selectedItem,
-            onValueChange = {},
+            value = selectedItem, // Current selected item
+            onValueChange = {}, // No-op since it's read-only
             label = { Text(text = config.label) },
             readOnly = true,
             modifier = Modifier.fillMaxWidth(),
@@ -48,6 +50,7 @@ fun Dropdown(
             }
         )
 
+        // DropdownMenu with options
         DropdownMenu(
             expanded = expanded,
             onDismissRequest = { expanded = false },
@@ -57,8 +60,8 @@ fun Dropdown(
                 DropdownMenuItem(
                     text = { Text(item) },
                     onClick = {
-                        selectedItem = item
-                        expanded = false
+                        onItemSelected(item) // Notify the parent of the selected item
+                        expanded = false // Close the dropdown
                     }
                 )
             }

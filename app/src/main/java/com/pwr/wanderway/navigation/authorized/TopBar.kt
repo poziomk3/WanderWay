@@ -12,8 +12,8 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.pwr.wanderway.R
 import com.pwr.wanderway.navigation.Destination
+import com.pwr.wanderway.utils.mappers.topBarDisplayNames
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -24,7 +24,7 @@ fun TopBar(
 ) {
     CenterAlignedTopAppBar(
         colors = TopAppBarDefaults.centerAlignedTopAppBarColors(),
-        title = { Text(stringResource(id = getTopBarTitle(route))) },
+        title = { Text(topBarDisplayNames[route]?.let { stringResource(id = it) } ?: "") },
         navigationIcon = {
             if (onNavigationIconClick != null) { // Show icon only if onNavigationIconClick is not null
                 IconButton(onClick = onNavigationIconClick) {
@@ -37,21 +37,6 @@ fun TopBar(
         },
         actions = actions
     )
-}
-
-
-@Composable
-fun getTopBarTitle(route: Destination?): Int {
-    return when (route) {
-        Destination.HOME_SCREEN -> R.string.top_bar_home
-        Destination.BUILD_YOUR_OWN_ROUTE_SCREEN -> R.string.top_bar_build_your_route
-        Destination.FORUM_SCREEN -> R.string.top_bar_forum
-        Destination.ACCOUNT_SETTINGS_SCREEN -> R.string.top_bar_account_settings
-        Destination.PREFERENCES_SCREEN -> R.string.top_bar_preferences
-        Destination.ROUTE_CHOICE_SCREEN -> R.string.top_bar_route_choice
-        Destination.ROUTE_DISPLAY_SCREEN -> R.string.top_bar_route_display
-        else -> R.string.top_bar_default
-    }
 }
 
 

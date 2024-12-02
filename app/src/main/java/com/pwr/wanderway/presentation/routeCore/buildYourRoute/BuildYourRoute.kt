@@ -38,40 +38,40 @@ fun BuildYourRouteScreen(
     ) {
         RowSelector(
             config = RowSelectorConfig(
-                text = stringResource(R.string.add_starting_point),
+                text = stringResource(R.string.build_your_route_screen_add_starting_point),
                 onClick = locationAdditionNav
             )
         )
         RowSelector(
             config = RowSelectorConfig(
-                text = stringResource(R.string.add_destination),
+                text = stringResource(R.string.build_your_route_screen_add_destination),
                 onClick = { }
             )
         )
         WideButton(
-            text = stringResource(R.string.change_your_personal_preferences),
+            text = stringResource(R.string.build_your_route_screen_change_your_personal_preferences),
             onClick = { preferencesNav() },
             colorType = ButtonColor.SECONDARY
         )
         WideButton(
-            text = stringResource(R.string.create_route),
+            text = stringResource(R.string.build_your_route_screen_create_route),
             onClick = routeChoiceNav,
             colorType = ButtonColor.PRIMARY
         )
         Text(
-            text = stringResource(R.string.trip_overview),
+            text = stringResource(R.string.build_your_route_screen_trip_overview),
             style = MaterialTheme.typography.titleLarge.copy(fontWeight = androidx.compose.ui.text.font.FontWeight.ExtraBold)
         )
         DestInfo(
-            label = stringResource(R.string.starting_in),
+            label = stringResource(R.string.build_your_route_screen_starting_in),
             contents = { Text(text = "-") }
         )
         DestInfo(
-            label = stringResource(R.string.finishing_in),
+            label = stringResource(R.string.build_your_route_screen_finishing_in),
             contents = { Text(text = "-") }
         )
         DestInfo(
-            label = stringResource(R.string.attractions_not_seen_yet),
+            label = stringResource(R.string.build_your_route_screen_attractions_not_seen_yet),
             contents = {
                 LazyColumn {
                     items(buildYourRouteViewModel.unseenDestinations) { config ->

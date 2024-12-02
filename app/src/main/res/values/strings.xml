@@ -51,14 +51,14 @@
     <string name="add_location_screen_description">Type in the name of the attraction \nor find a place on the map</string>
 
     <!--build your route screen-->
-    <string name="change_your_personal_preferences">Change your personal preferences</string>
-    <string name="add_starting_point">Add starting point</string>
-    <string name="add_destination">Add destination</string>
-    <string name="create_route">Create route</string>
-    <string name="trip_overview">Trip overview</string>
-    <string name="starting_in">Starting in:</string>
-    <string name="finishing_in">Finishing in:</string>
-    <string name="attractions_not_seen_yet">Attractions not seen yet:</string>
+    <string name="build_your_route_screen_change_your_personal_preferences">Change your personal preferences</string>
+    <string name="build_your_route_screen_add_starting_point">Add starting point</string>
+    <string name="build_your_route_screen_add_destination">Add destination</string>
+    <string name="build_your_route_screen_create_route">Create route</string>
+    <string name="build_your_route_screen_trip_overview">Trip overview</string>
+    <string name="build_your_route_screen_starting_in">Starting in:</string>
+    <string name="build_your_route_screen_finishing_in">Finishing in:</string>
+    <string name="build_your_route_screen_attractions_not_seen_yet">Attractions not seen yet:</string>
 
     <!--keys-->
     <string name="key_google_api">GOOGLE_API_KEY</string>

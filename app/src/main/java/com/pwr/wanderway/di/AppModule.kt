@@ -1,6 +1,7 @@
 package com.pwr.wanderway.di
 
 import android.content.Context
+import com.pwr.wanderway.data.local.PreferencesManager
 import com.pwr.wanderway.data.local.TokenManager
 import com.pwr.wanderway.data.repository.AuthRepository
 import com.pwr.wanderway.network.ApiClient
@@ -21,6 +22,13 @@ object AppModule {
     fun provideTokenManager(@ApplicationContext context: Context): TokenManager {
         return TokenManager(context)
     }
+
+    @Provides
+    @Singleton
+    fun providePreferencesManager(@ApplicationContext context: Context): PreferencesManager {
+        return PreferencesManager(context)
+    }
+
 
     @Provides
     @Singleton

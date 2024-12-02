@@ -50,6 +50,15 @@
     <string name="add_location_screen_button">Add it!</string>
     <string name="add_location_screen_description">Type in the name of the attraction \nor find a place on the map</string>
 
+    <!--build your route screen-->
+    <string name="change_your_personal_preferences">Change your personal preferences</string>
+    <string name="add_starting_point">Add starting point</string>
+    <string name="add_destination">Add destination</string>
+    <string name="create_route">Create route</string>
+    <string name="trip_overview">Trip overview</string>
+    <string name="starting_in">Starting in:</string>
+    <string name="finishing_in">Finishing in:</string>
+    <string name="attractions_not_seen_yet">Attractions not seen yet:</string>
 
     <!--keys-->
     <string name="key_google_api">GOOGLE_API_KEY</string>

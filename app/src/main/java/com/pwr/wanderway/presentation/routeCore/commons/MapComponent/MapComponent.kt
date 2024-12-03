@@ -17,6 +17,7 @@ import com.google.maps.android.compose.GoogleMap
 import com.google.maps.android.compose.MapProperties
 import com.google.maps.android.compose.MapUiSettings
 import com.google.maps.android.compose.rememberCameraPositionState
+import kotlinx.coroutines.delay
 
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
@@ -24,9 +25,10 @@ fun MapComponent(
     locationViewModel: LocationViewModel = viewModel(),
     defaultLocation: LatLng = LatLng(52.191097, 19.355406),
     myLocation: Boolean = true,
-    myLocationButton: Boolean = false,
+    myLocationButton: Boolean = true,
     zoomControls: Boolean = false,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    refreshIntervalMillis: Long = 2000 // Refresh interval in milliseconds
 ) {
     // Manage permission state
     val locationPermissionState = rememberPermissionState(Manifest.permission.ACCESS_FINE_LOCATION)
@@ -41,9 +43,18 @@ fun MapComponent(
         }
     }
 
+    // Automatically refresh location every delta time
+    LaunchedEffect(locationPermissionState.status.isGranted) {
+        if (locationPermissionState.status.isGranted) {
+            while (true) {
+                locationViewModel.fetchLastLocation()
+                delay(refreshIntervalMillis) // Wait for the specified interval
+            }
+        }
+    }
+
     // UI when permission is not granted
     if (!locationPermissionState.status.isGranted) {
-        // Ask for the permission
         LaunchedEffect(Unit) {
             locationPermissionState.launchPermissionRequest()
         }
@@ -56,8 +67,10 @@ fun MapComponent(
     }
 
     currentLocation?.let { location ->
-        cameraPositionState.position =
-            CameraPosition.fromLatLngZoom(LatLng(location.latitude, location.longitude), 15f)
+        LaunchedEffect(location) { // Update camera position only when location changes
+            cameraPositionState.position =
+                CameraPosition.fromLatLngZoom(LatLng(location.latitude, location.longitude), 15f)
+        }
     }
 
     GoogleMap(
@@ -70,3 +83,4 @@ fun MapComponent(
         properties = MapProperties(isMyLocationEnabled = myLocation),
     )
 }
+

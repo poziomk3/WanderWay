@@ -56,6 +56,9 @@ fun AuthorizedNavGraph(navController: NavHostController, moveToUnauthorized: () 
             SettingsScreen(
                 preferencesNav = {
                     navController.navigateTo(Destination.PREFERENCES_SCREEN)
+                },
+                logout = {
+                    moveToUnauthorized()
                 }
             )
         }

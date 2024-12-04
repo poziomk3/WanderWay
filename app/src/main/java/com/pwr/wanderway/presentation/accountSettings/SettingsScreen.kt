@@ -16,17 +16,20 @@ import com.pwr.wanderway.presentation.commons.MainIcon
 import com.pwr.wanderway.presentation.commons.RowSelector
 
 @Composable
-fun SettingsScreen(preferencesNav: () -> Unit) {
+fun SettingsScreen(preferencesNav: () -> Unit, logout: () -> Unit) {
 
     val options = listOf(
-        RowSelectorConfig(label = stringResource(R.string.settings_preferences), onClick = preferencesNav),
+        RowSelectorConfig(
+            label = stringResource(R.string.settings_preferences),
+            onClick = preferencesNav
+        ),
         RowSelectorConfig(label = stringResource(R.string.settings_language), onClick = {}),
         RowSelectorConfig(label = stringResource(R.string.settings_notifications), onClick = {}),
         RowSelectorConfig(label = stringResource(R.string.settings_privacy), onClick = {}),
         RowSelectorConfig(label = stringResource(R.string.settings_security), onClick = {}),
         RowSelectorConfig(label = stringResource(R.string.settings_help), onClick = {}),
         RowSelectorConfig(label = stringResource(R.string.settings_delete_account), onClick = {}),
-        RowSelectorConfig(label = stringResource(R.string.settings_logout), onClick = {})
+        RowSelectorConfig(label = stringResource(R.string.settings_logout), onClick = logout)
     )
 
 
@@ -52,5 +55,5 @@ fun SettingsScreen(preferencesNav: () -> Unit) {
 @Composable
 @Preview
 fun SettingsScreenPreview() {
-    SettingsScreen(preferencesNav = {})
+    SettingsScreen(preferencesNav = {}, logout = {})
 }

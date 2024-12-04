@@ -1,13 +1,13 @@
-name: Build
+name: Test
 
 on:
-  push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
+  workflow_run:
+    workflows: ["Build"]
+    types:
+      - completed
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
 
     steps:
@@ -27,5 +27,14 @@ jobs:
       - name: Set executable permissions for gradlew
         run: chmod +x ./gradlew
 
-      - name: Run Gradle build
-        run: ./gradlew build
+      - name: Run Unit Tests
+        run: ./gradlew test
+
+      - name: Run Instrumentation Tests
+        run: ./gradlew connectedAndroidTest
+
+      - name: Upload Test Results
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-results
+          path: app/build/reports

@@ -58,6 +58,7 @@ android {
 }
 
 dependencies {
+    implementation ("io.coil-kt:coil-compose:2.3.0")
     implementation("com.google.accompanist:accompanist-permissions:0.31.5-beta")
     // Hilt
     implementation("androidx.datastore:datastore-preferences:1.1.1")

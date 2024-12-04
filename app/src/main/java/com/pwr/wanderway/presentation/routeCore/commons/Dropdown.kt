@@ -18,7 +18,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.pwr.wanderway.data.model.DropdownConfig
+
+
+data class DropdownConfig(
+    val label: String,
+    val options: List<String>,
+    val defaultOption: String
+)
 
 @Composable
 fun Dropdown(

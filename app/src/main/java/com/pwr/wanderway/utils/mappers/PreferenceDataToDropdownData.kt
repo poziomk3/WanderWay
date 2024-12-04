@@ -2,10 +2,10 @@ package com.pwr.wanderway.utils.mappers
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
-import com.pwr.wanderway.data.model.DropdownConfig
 import com.pwr.wanderway.data.model.preferences.PreferenceCategory
 import com.pwr.wanderway.data.model.preferences.PreferenceConfig
 import com.pwr.wanderway.data.model.preferences.PreferenceOption
+import com.pwr.wanderway.presentation.routeCore.commons.DropdownConfig
 
 
 @Composable

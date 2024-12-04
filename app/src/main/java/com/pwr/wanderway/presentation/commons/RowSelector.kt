@@ -13,10 +13,16 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.pwr.wanderway.data.model.RowSelectorConfig
 import com.pwr.wanderway.ui.theme.AppTheme
+
+data class RowSelectorConfig(
+    val label: String,
+    val icon: ImageVector = Icons.AutoMirrored.Filled.ArrowForward,
+    val onClick: () -> Unit = {}
+)
 
 @Composable
 fun RowSelector(

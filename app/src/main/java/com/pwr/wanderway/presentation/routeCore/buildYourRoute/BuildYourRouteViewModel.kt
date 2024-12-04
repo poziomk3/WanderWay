@@ -3,7 +3,7 @@ package com.pwr.wanderway.presentation.routeCore.buildYourRoute
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Clear
 import androidx.lifecycle.ViewModel
-import com.pwr.wanderway.data.model.RowSelectorConfig
+import com.pwr.wanderway.presentation.commons.RowSelectorConfig
 
 class BuildYourRouteViewModel: ViewModel(){
     // create list of example attractions, with callback which removes the composable onCLick

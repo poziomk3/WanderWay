@@ -9,8 +9,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.pwr.wanderway.data.model.InfoRowData
 
+
+data class InfoRowData(val label: String, val value: String)
 @Composable
 fun InfoRow(infoRow:InfoRowData) {
     Row(

@@ -11,9 +11,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.pwr.wanderway.R
-import com.pwr.wanderway.data.model.RowSelectorConfig
 import com.pwr.wanderway.presentation.commons.MainIcon
 import com.pwr.wanderway.presentation.commons.RowSelector
+import com.pwr.wanderway.presentation.commons.RowSelectorConfig
 
 @Composable
 fun SettingsScreen(preferencesNav: () -> Unit, logout: () -> Unit) {

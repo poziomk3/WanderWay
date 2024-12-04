@@ -15,9 +15,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.pwr.wanderway.R
-import com.pwr.wanderway.data.model.RowSelectorConfig
 import com.pwr.wanderway.presentation.commons.ButtonColor
 import com.pwr.wanderway.presentation.commons.RowSelector
+import com.pwr.wanderway.presentation.commons.RowSelectorConfig
 import com.pwr.wanderway.presentation.commons.WideButton
 import com.pwr.wanderway.presentation.routeCore.commons.DestInfo
 import com.pwr.wanderway.ui.theme.AppTheme

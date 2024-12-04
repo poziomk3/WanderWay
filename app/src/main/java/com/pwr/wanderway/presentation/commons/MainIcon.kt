@@ -11,11 +11,11 @@ import com.pwr.wanderway.R
 import com.pwr.wanderway.ui.theme.AppTheme
 
 @Composable
-fun MainIcon() {
+fun MainIcon(size: Int = 50) {
     Image(
         painter = painterResource(id = R.drawable.icon),
         contentDescription = null,
-        modifier = Modifier.size(50.dp)
+        modifier = Modifier.size(size.dp)
     )
 }
 

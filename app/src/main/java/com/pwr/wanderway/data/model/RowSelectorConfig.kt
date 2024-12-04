@@ -5,7 +5,7 @@ import androidx.compose.material.icons.automirrored.filled.ArrowForward
 import androidx.compose.ui.graphics.vector.ImageVector
 
 data class RowSelectorConfig(
-    val text: String = "RowSelector",
+    val label: String,
     val icon: ImageVector = Icons.AutoMirrored.Filled.ArrowForward,
     val onClick: () -> Unit = {}
 )

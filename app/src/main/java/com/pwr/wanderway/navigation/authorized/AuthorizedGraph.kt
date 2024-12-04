@@ -6,7 +6,7 @@ import androidx.navigation.compose.NavHost
 import com.pwr.wanderway.navigation.Destination
 import com.pwr.wanderway.navigation.extended.composable
 import com.pwr.wanderway.navigation.extended.navigateTo
-import com.pwr.wanderway.presentation.accountSettings.settingsHome.SettingsHomeScreen
+import com.pwr.wanderway.presentation.accountSettings.SettingsScreen
 import com.pwr.wanderway.presentation.forum.forumHome.ForumHome
 import com.pwr.wanderway.presentation.routeCore.buildYourRoute.BuildYourRouteScreen
 import com.pwr.wanderway.presentation.routeCore.home.HomeScreen
@@ -53,9 +53,12 @@ fun AuthorizedNavGraph(navController: NavHostController, moveToUnauthorized: () 
             ForumHome()
         }
         composable(Destination.ACCOUNT_SETTINGS_SCREEN) {
-            SettingsHomeScreen(
+            SettingsScreen(
                 preferencesNav = {
                     navController.navigateTo(Destination.PREFERENCES_SCREEN)
+                },
+                logout = {
+                    moveToUnauthorized()
                 }
             )
         }

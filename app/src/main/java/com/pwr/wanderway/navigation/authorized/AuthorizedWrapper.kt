@@ -46,6 +46,7 @@ fun AuthorizedWrapper(
         },
         bottomBar = {
             BottomBar(
+                activeDestination=activeDestination ?: Destination.HOME_SCREEN,
                 homeNav = { navController.navigateTo(Destination.HOME_SCREEN) },
                 forumNav = { navController.navigateTo(Destination.FORUM_SCREEN) },
                 accountNav = { navController.navigateTo(Destination.ACCOUNT_SETTINGS_SCREEN) }

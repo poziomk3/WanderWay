@@ -1,10 +1,8 @@
 package com.pwr.wanderway.presentation.commons
 
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -25,11 +23,30 @@ enum class ButtonColor {
 @Composable
 fun buttonColor(colorType: ButtonColor): Pair<Color, Color> {
     return when (colorType) {
-        ButtonColor.PRIMARY -> Pair(MaterialTheme.colorScheme.primary, MaterialTheme.colorScheme.onPrimary)
-        ButtonColor.SECONDARY -> Pair(MaterialTheme.colorScheme.secondary, MaterialTheme.colorScheme.onSecondary)
-        ButtonColor.BACKGROUND -> Pair(MaterialTheme.colorScheme.background, MaterialTheme.colorScheme.onBackground)
-        ButtonColor.SURFACE -> Pair(MaterialTheme.colorScheme.surface, MaterialTheme.colorScheme.onSurface)
-        ButtonColor.ERROR -> Pair(MaterialTheme.colorScheme.error, MaterialTheme.colorScheme.onError)
+        ButtonColor.PRIMARY -> Pair(
+            MaterialTheme.colorScheme.primary,
+            MaterialTheme.colorScheme.onPrimary
+        )
+
+        ButtonColor.SECONDARY -> Pair(
+            MaterialTheme.colorScheme.secondary,
+            MaterialTheme.colorScheme.onSecondary
+        )
+
+        ButtonColor.BACKGROUND -> Pair(
+            MaterialTheme.colorScheme.background,
+            MaterialTheme.colorScheme.onBackground
+        )
+
+        ButtonColor.SURFACE -> Pair(
+            MaterialTheme.colorScheme.surface,
+            MaterialTheme.colorScheme.onSurface
+        )
+
+        ButtonColor.ERROR -> Pair(
+            MaterialTheme.colorScheme.error,
+            MaterialTheme.colorScheme.onError
+        )
     }
 }
 
@@ -41,16 +58,17 @@ fun WideButton(
     onClick: (() -> Unit)? = null
 ) {
     val colors = buttonColor(colorType)
-    Button(
+    ElevatedButton(
+        elevation = ButtonDefaults.elevatedButtonElevation(
+            defaultElevation = 16.dp
+        ),
         enabled = enabled,
         onClick = { onClick?.invoke() },
-        colors = ButtonDefaults.buttonColors(
+        colors = ButtonDefaults.elevatedButtonColors(
             containerColor = colors.first,
             contentColor = colors.second,
         ),
-        shape = RoundedCornerShape(5.dp),
         modifier = Modifier
-            .height(50.dp)
             .fillMaxWidth()
     ) {
         Text(text, style = MaterialTheme.typography.bodyMedium)

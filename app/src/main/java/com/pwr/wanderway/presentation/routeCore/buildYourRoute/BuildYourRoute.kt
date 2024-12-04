@@ -17,9 +17,9 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.pwr.wanderway.R
 import com.pwr.wanderway.data.model.RowSelectorConfig
 import com.pwr.wanderway.presentation.commons.ButtonColor
+import com.pwr.wanderway.presentation.commons.RowSelector
 import com.pwr.wanderway.presentation.commons.WideButton
 import com.pwr.wanderway.presentation.routeCore.commons.DestInfo
-import com.pwr.wanderway.presentation.routeCore.commons.RowSelector
 import com.pwr.wanderway.ui.theme.AppTheme
 
 @Composable
@@ -38,13 +38,13 @@ fun BuildYourRouteScreen(
     ) {
         RowSelector(
             config = RowSelectorConfig(
-                text = stringResource(R.string.build_your_route_screen_add_starting_point),
+                label = stringResource(R.string.build_your_route_screen_add_starting_point),
                 onClick = locationAdditionNav
             )
         )
         RowSelector(
             config = RowSelectorConfig(
-                text = stringResource(R.string.build_your_route_screen_add_destination),
+                label = stringResource(R.string.build_your_route_screen_add_destination),
                 onClick = { }
             )
         )

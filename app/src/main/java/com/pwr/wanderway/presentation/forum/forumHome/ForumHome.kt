@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -15,9 +14,7 @@ import com.pwr.wanderway.presentation.forum.commons.ForumPostCard
 @Composable
 fun ForumHome() {
     Surface(
-        color = MaterialTheme.colorScheme.errorContainer,
         modifier = Modifier.fillMaxSize()
-
     )
     {
         LazyColumn(
@@ -31,7 +28,7 @@ fun ForumHome() {
                     user = "John Doe",
                     routeName = "Trail to Blue Lake",
                     title = "Spectacular Views at Blue Lake",
-                    imgUrl = "https://picsum.photos/200/300", // Placeholder image
+                    imgUrl = "https://picsum.photos/200/300",
                     onClick = { /* Handle click */ }
                 )
             }

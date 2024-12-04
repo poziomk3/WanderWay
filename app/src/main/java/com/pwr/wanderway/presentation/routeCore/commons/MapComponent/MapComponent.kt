@@ -7,6 +7,8 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.isGranted
@@ -62,7 +64,7 @@ fun MapComponent(
 
     GoogleMap(
         cameraPositionState = cameraPositionState,
-        modifier = modifier,
+        modifier = modifier.shadow(8.dp),
         uiSettings = MapUiSettings(
             myLocationButtonEnabled = myLocationButton,
             zoomControlsEnabled = zoomControls

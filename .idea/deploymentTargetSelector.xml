@@ -8,9 +8,6 @@
       <SelectionState runConfigName="BottomBarTest">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="bottomBar_displaysAllNavigationItems()">
-        <option name="selectionMode" value="DROPDOWN" />
-      </SelectionState>
     </selectionStates>
   </component>
 </project>

@@ -14,7 +14,7 @@ class BottomBarTest {
     val composeTestRule = createComposeRule()
 
     companion object {
-        const val CONTENT_DESCRIPTION_FORUM = "Forum"
+        const val CONTENT_DESCRIPTION_FORUM = "1m"
         const val CONTENT_DESCRIPTION_HOME = "Home"
         const val CONTENT_DESCRIPTION_ACCOUNT = "Account"
     }

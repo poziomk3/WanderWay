@@ -4,6 +4,7 @@ import android.content.Context
 import com.pwr.wanderway.data.local.PreferencesManager
 import com.pwr.wanderway.data.local.TokenManager
 import com.pwr.wanderway.data.repository.AuthRepository
+import com.pwr.wanderway.data.repository.RouteRepository
 import com.pwr.wanderway.network.ApiClient
 import com.pwr.wanderway.network.ApiService
 import dagger.Module
@@ -29,6 +30,11 @@ object AppModule {
         return PreferencesManager(context)
     }
 
+    @Provides
+    @Singleton
+    fun provideRouteRepository(apiService: ApiService): RouteRepository {
+        return RouteRepository(apiService)
+    }
 
     @Provides
     @Singleton

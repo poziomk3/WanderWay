@@ -2,9 +2,11 @@ package com.pwr.wanderway.network
 
 import com.pwr.wanderway.data.model.LoginRequest
 import com.pwr.wanderway.data.model.RegisterRequest
+import com.pwr.wanderway.data.model.api.route.AllPOIsDTO
 import com.yourpackage.data.model.TokenResponse
 import retrofit2.Response
 import retrofit2.http.Body
+import retrofit2.http.GET
 import retrofit2.http.POST
 
 interface ApiService {
@@ -16,4 +18,7 @@ interface ApiService {
 
     @POST("/auth/token/refresh/")
     suspend fun refreshToken(@Body refreshData: Map<String, String>): Response<TokenResponse>
+
+    @GET("/route/poi")
+    suspend fun getAllPOIs(): Response<AllPOIsDTO>
 }

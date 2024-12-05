@@ -1,20 +1,29 @@
 package com.pwr.wanderway.presentation.entryScreens.welcome
 
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.pwr.wanderway.navigation.Destination
+import com.pwr.wanderway.data.repository.AuthRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class WelcomeViewModel() : ViewModel() {
+@HiltViewModel
+class WelcomeViewModel @Inject constructor(
+    private val authRepository: AuthRepository
+) : ViewModel() {
 
-    val isDialogVisible: MutableState<Boolean> = mutableStateOf(true)
-    fun onLoginClicked() {
-            isDialogVisible.value = false
+    private val _isLoggedIn = MutableStateFlow(false)
+    val isLoggedIn: StateFlow<Boolean> get() = _isLoggedIn
+
+    init {
+        checkLoginStatus()
     }
 
-    fun onRegisterClicked() {
-            isDialogVisible.value = false
+    private fun checkLoginStatus() {
+        viewModelScope.launch {
+            _isLoggedIn.value = authRepository.hasToken()
+        }
     }
 }

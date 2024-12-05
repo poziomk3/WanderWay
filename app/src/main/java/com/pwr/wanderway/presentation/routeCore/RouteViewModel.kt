@@ -1,22 +1,48 @@
 package com.pwr.wanderway.presentation.routeCore
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.pwr.wanderway.data.model.route.PointOfInterest
+import com.pwr.wanderway.data.repository.RouteRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-//@HiltViewModel
-class RouteViewModel : ViewModel() {
+@HiltViewModel
+class RouteViewModel @Inject constructor(
+    private val routeRepository: RouteRepository
+) : ViewModel() {
 
-    val collectedPointsOfInterest = mutableListOf<PointOfInterest>()
+    private val _collectedPointsOfInterest = MutableStateFlow<List<PointOfInterest>>(emptyList())
+    val collectedPointsOfInterest: StateFlow<List<PointOfInterest>> get() = _collectedPointsOfInterest
 
     fun addPointOfInterest(pointOfInterest: PointOfInterest) {
-        collectedPointsOfInterest.add(pointOfInterest)
+        _collectedPointsOfInterest.update { currentPoints ->
+            currentPoints + pointOfInterest
+        }
     }
 
     fun removePointOfInterest(pointOfInterest: PointOfInterest) {
-        collectedPointsOfInterest.remove(pointOfInterest)
+        _collectedPointsOfInterest.update { currentPoints ->
+            currentPoints - pointOfInterest
+        }
     }
 
     fun clearPointsOfInterest() {
-        collectedPointsOfInterest.clear()
+        _collectedPointsOfInterest.value = emptyList()
+    }
+
+    fun loadPointsOfInterest() {
+        viewModelScope.launch {
+            try {
+                routeRepository.getRoutePOIs()
+                _collectedPointsOfInterest.value = routeRepository.pois
+            } catch (e: Exception) {
+                // Handle the error appropriately, e.g., log or update UI
+            }
+        }
     }
 }

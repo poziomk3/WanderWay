@@ -28,6 +28,9 @@ fun UnauthorizedNavGraph(
                 },
                 onRegisterClick = {
                     navController.navigateTo(Destination.REGISTER_SCREEN)
+                },
+                onAlreadyLoggedIn = {
+                    moveToAuthorized() // Move to the authorized graph
                 }
             )
         }

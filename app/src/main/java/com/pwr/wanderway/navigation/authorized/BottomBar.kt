@@ -54,7 +54,7 @@ fun BottomBar(
         modifier = Modifier
             .fillMaxWidth(),
         contentColor = MaterialTheme.colorScheme.onPrimary,
-        containerColor = MaterialTheme.colorScheme.primary,
+        containerColor = MaterialTheme.colorScheme.secondary,
     ) {
         navItems.forEach { (onClick, iconRes, labelRes, activeDestination) ->
             NavigationBarItem(

@@ -1,4 +1,4 @@
-name: Pipelines
+name: pipelines
 
 on:
   push:
@@ -66,14 +66,31 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
 
-      - name: Set executable permissions for gradlew
-        run: chmod +x ./gradlew
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v2
+        with:
+          api-level: 31
+          target: default
+          arch: x86_64
+          profile: default
+          emulator: true
 
-      - name: Run Tests
-        run: ./gradlew test
+      - name: Create Emulator
+        run: echo "no" | avdmanager create avd -n test -k "system-images;android-31;default;x86_64"
+
+      - name: Start Emulator
+        run: |
+          nohup emulator -avd test -no-snapshot-save -no-audio -no-window &
+          adb wait-for-device
+
+      - name: Verify Emulator is Running
+        run: adb shell getprop init.svc.bootanim | grep stopped
+
+      - name: Run Compose UI Tests
+        run: ./gradlew connectedAndroidTest
 
       - name: Upload Test Results
         uses: actions/upload-artifact@v3
         with:
-          name: test-results
-          path: build/test-results
+          name: ui-test-results
+          path: app/build/reports/androidTests/connected/

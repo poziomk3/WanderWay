@@ -10,13 +10,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.pwr.wanderway.R
 import com.pwr.wanderway.presentation.commons.MainIcon
 import com.pwr.wanderway.presentation.commons.RowSelector
 import com.pwr.wanderway.presentation.commons.RowSelectorConfig
 
 @Composable
-fun SettingsScreen(preferencesNav: () -> Unit, logout: () -> Unit) {
+fun SettingsScreen(
+    preferencesNav: () -> Unit, logout: () -> Unit,
+    settingsViewModel: SettingsViewModel = hiltViewModel()
+) {
 
     val options = listOf(
         RowSelectorConfig(
@@ -29,7 +33,10 @@ fun SettingsScreen(preferencesNav: () -> Unit, logout: () -> Unit) {
         RowSelectorConfig(label = stringResource(R.string.settings_security), onClick = {}),
         RowSelectorConfig(label = stringResource(R.string.settings_help), onClick = {}),
         RowSelectorConfig(label = stringResource(R.string.settings_delete_account), onClick = {}),
-        RowSelectorConfig(label = stringResource(R.string.settings_logout), onClick = logout)
+        RowSelectorConfig(label = stringResource(R.string.settings_logout), onClick = {
+            settingsViewModel.logout()
+            logout()
+        })
     )
 
 
@@ -55,5 +62,5 @@ fun SettingsScreen(preferencesNav: () -> Unit, logout: () -> Unit) {
 @Composable
 @Preview
 fun SettingsScreenPreview() {
-    SettingsScreen(preferencesNav = {}, logout = {})
+    SettingsScreen(preferencesNav = {}, logout = {}, hiltViewModel())
 }

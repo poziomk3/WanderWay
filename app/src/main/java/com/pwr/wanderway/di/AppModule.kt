@@ -32,9 +32,8 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideApiService(): ApiService {
-        // Assuming ApiClient has a method to get the ApiService
-        return ApiClient.apiService
+    fun provideApiService(tokenManager: TokenManager): ApiService {
+        return ApiClient.create(tokenManager)
     }
 
     @Provides

@@ -95,14 +95,22 @@ class AuthRepository(
             Result.failure(e)
         }
     }
+    suspend fun logout() {
+        tokenManager.clearTokens()
+    }
 
     private fun calculateExpiryTime(): Long {
         val oneHourMillis = 60 * 60 * 1000L // 1 hour in milliseconds
         return System.currentTimeMillis() + oneHourMillis
     }
+    suspend fun hasToken(): Boolean {
+        val accessToken = tokenManager.accessTokenFlow.firstOrNull()
+        return !accessToken.isNullOrEmpty() && tokenManager.hasValidAccessToken()
+    }
 
 
 }
+
 
 
 object ApiErrorHandler {

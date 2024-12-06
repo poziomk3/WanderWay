@@ -33,7 +33,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.pwr.wanderway.R
 import com.pwr.wanderway.presentation.commons.ButtonColor
 import com.pwr.wanderway.presentation.commons.WideButton
-import com.pwr.wanderway.presentation.routeCore.RouteViewModel
+import com.pwr.wanderway.coreViewModels.RouteViewModel
 import com.pwr.wanderway.presentation.routeCore.commons.MapComponent.MapComponent
 import com.pwr.wanderway.presentation.routeCore.commons.SearchBar
 import com.pwr.wanderway.presentation.routeCore.commons.SearchBarItem

@@ -26,7 +26,6 @@ fun WelcomeScreen(
     val isLoggedIn = welcomeViewModel.isLoggedIn.collectAsState(initial = false)
 
     if (isLoggedIn.value) {
-        // Navigate to the main screen or execute the callback
         onAlreadyLoggedIn()
     } else {
         EntryScreenLayout(

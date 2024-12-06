@@ -10,15 +10,12 @@ class RouteRepository @Inject constructor(
     private val apiService: ApiService,
     private val routePreferencesManager: RoutePreferencesManager
 ) {
-    private val _pois = mutableListOf<PointOfInterest>()
-    val pois: List<PointOfInterest> get() = _pois
 
-    suspend fun getRoutePOIs() {
 
+    suspend fun getRoutePOIs(): List<PointOfInterest> {
         val response = apiService.getAllPOIs()
-        if (response.isSuccessful) {
-            _pois.clear()
-            _pois.addAll(response.body()?.pois?.map {
+        return if (response.isSuccessful) { // Explicitly return the result
+            response.body()?.pois?.map {
                 PointOfInterest(
                     id = it.id,
                     name = it.name,
@@ -26,29 +23,33 @@ class RouteRepository @Inject constructor(
                     latitude = it.latitude,
                     longitude = it.longitude
                 )
-            }.orEmpty())
+            }.orEmpty()
         } else {
             throw Exception("Failed to fetch POIs: ${response.errorBody()?.string()}")
         }
     }
 
-    suspend fun generateRoute(pois: List<PointOfInterest>) {
-        val poiIds = pois.map { it.id }
-        val requestBody = RouteGenerateRequest(poiIds, preferences = listOf())
-        val response = apiService.generateRoute(requestBody)
-        if (response.isSuccessful) {
+    suspend fun generateRoutes(poisArg: List<PointOfInterest>): List<Int> {
+        val preferences = "preferences"
+        val pois = poisArg.map { it.id }
 
+        val response = apiService.generateRoute(RouteGenerateRequest(pois, preferences))
+
+        return if (response.isSuccessful) {
+            response.body()?.routeIds.orEmpty()
         } else {
-            throw Exception("Failed to generate route: ${response.errorBody()?.string()}")
+            val errorMessage = response.errorBody()?.string()
+            throw Exception("Failed to fetch routes: $errorMessage")
         }
     }
 
-    suspend fun getRouteById(id: Int) {
+    suspend fun getRouteById(id: Int): ByteArray {
         val response = apiService.getRouteById(id)
-        if (response.isSuccessful) {
-        }
-        else {
+        return if (response.isSuccessful) {
+            response.body()?.readBytes() ?: byteArrayOf()
+        } else {
             throw Exception("Failed to fetch route: ${response.errorBody()?.string()}")
         }
     }
+
 }

@@ -12,8 +12,16 @@ enum class Destination(val route: String) {
     BUILD_YOUR_OWN_ROUTE_SCREEN("BuildYourRouteScreen"),
     PREFERENCES_SCREEN("PreferencesScreen"),
     ROUTE_CHOICE_SCREEN("RouteChoiceScreen"),
-    ROUTE_DISPLAY_SCREEN("RouteDisplayScreen"),
+    ROUTE_DISPLAY_SCREEN("RouteDisplayScreen/{routeId}"),
     LOCATION_ADDITION_SCREEN("LocationAdditionScreen"),
     FORUM_SCREEN("Forum"),
     ACCOUNT_SETTINGS_SCREEN("AccountSettings");
+
+
+
+    companion object {
+        fun createRouteWithArgument(destination: Destination, argument: String): String {
+            return destination.route.replace("{routeId}", argument)
+        }
+    }
 }

@@ -6,29 +6,38 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.pwr.wanderway.coreViewModels.RouteViewModel
 import com.pwr.wanderway.presentation.routeCore.commons.MapComponent.MapComponent
 import com.pwr.wanderway.presentation.routeCore.commons.RouteCard
 import com.pwr.wanderway.ui.theme.AppTheme
 
 @Composable
-fun RouteChoiceScreen(routeDisplayNav: () -> Unit) {
+fun RouteChoiceScreen(
+    routeDisplayNav: (routeNumber:Int) -> Unit,
+    routeViewModel: RouteViewModel,
+    routeChoiceViewModel: RouteChoiceViewModel = RouteChoiceViewModel(routeViewModel)
+) {
+    val routeIds = routeChoiceViewModel.routeIds.collectAsState(initial = emptyList())
+
     LazyColumn(
         modifier = Modifier
             .fillMaxSize(),
         contentPadding = PaddingValues(8.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        itemsIndexed(List(5) { 0 }) { index, _ ->
+        items(routeIds.value) { routeId ->
             RouteCard(
-                number = index + 1,
+                number = routeId,
                 onClick1 = {
-                    routeDisplayNav()
+                    routeDisplayNav(routeId)
                 },
             ) {
                 MapComponent(
@@ -48,7 +57,10 @@ fun RouteChoiceScreen(routeDisplayNav: () -> Unit) {
 fun PreferencesScreenScreenPreview() {
     AppTheme {
         Surface {
-            RouteChoiceScreen { }
+            RouteChoiceScreen(
+                routeDisplayNav = {},
+                routeViewModel = hiltViewModel(),
+            )
         }
     }
 }

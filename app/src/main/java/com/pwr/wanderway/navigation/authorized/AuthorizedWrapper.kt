@@ -9,9 +9,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.pwr.wanderway.coreViewModels.PreferencesViewModel
+import com.pwr.wanderway.coreViewModels.RouteViewModel
 import com.pwr.wanderway.navigation.Destination
 import com.pwr.wanderway.navigation.extended.navigateTo
 import kotlinx.coroutines.flow.map
@@ -21,6 +24,8 @@ fun AuthorizedWrapper(
     navController: NavHostController = rememberNavController(),
     moveToUnauthorized: () -> Unit
 ) {
+    val routeViewModel: RouteViewModel = hiltViewModel()
+    val preferencesViewModel: PreferencesViewModel = hiltViewModel()
     val entryRoutes = listOf(
         Destination.HOME_SCREEN,
         Destination.FORUM_SCREEN,
@@ -46,7 +51,7 @@ fun AuthorizedWrapper(
         },
         bottomBar = {
             BottomBar(
-                activeDestination=activeDestination ?: Destination.HOME_SCREEN,
+                activeDestination = activeDestination ?: Destination.HOME_SCREEN,
                 homeNav = { navController.navigateTo(Destination.HOME_SCREEN) },
                 forumNav = { navController.navigateTo(Destination.FORUM_SCREEN) },
                 accountNav = { navController.navigateTo(Destination.ACCOUNT_SETTINGS_SCREEN) }
@@ -65,7 +70,9 @@ fun AuthorizedWrapper(
         ) {
             AuthorizedNavGraph(
                 navController = navController,
-                moveToUnauthorized = moveToUnauthorized
+                moveToUnauthorized = moveToUnauthorized,
+                routeViewModel = routeViewModel,
+                preferencesViewModel = preferencesViewModel
             )
         }
     }

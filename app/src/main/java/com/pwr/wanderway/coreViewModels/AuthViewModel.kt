@@ -2,6 +2,8 @@ package com.pwr.wanderway.coreViewModels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.pwr.wanderway.data.model.LoginRequest
+import com.pwr.wanderway.data.model.RegisterRequest
 import com.pwr.wanderway.data.repository.AuthRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -27,6 +29,9 @@ class AuthViewModel @Inject constructor(
     private val _errorMessage = MutableStateFlow<String?>(null)
     val errorMessage: StateFlow<String?> get() = _errorMessage
 
+    private val _isRegistrationSuccessful = MutableStateFlow(false)
+    val isRegistrationSuccessful: StateFlow<Boolean> get() = _isRegistrationSuccessful
+
     fun checkLoginStatus() {
         viewModelScope.launch(Dispatchers.IO) {
             val hasToken = authRepository.hasToken()
@@ -37,52 +42,41 @@ class AuthViewModel @Inject constructor(
     }
 
     fun loginUser(username: String, password: String) {
-        if (username.isBlank() || password.isBlank()) {
-            _errorMessage.value = "Username and password cannot be empty."
-            return
-        }
-
         _isLoading.value = true
         _errorMessage.value = null
+
         viewModelScope.launch(Dispatchers.IO) {
-            val result = authRepository.loginUser(username, password)
+            val result = authRepository.login(LoginRequest(username, password))
+
             withContext(Dispatchers.Main) {
                 _isLoading.value = false
                 if (result.isSuccess) {
                     _isLoggedIn.value = true
+                    _errorMessage.value = null
                 } else {
-                    _errorMessage.value = "Login failed. Please try again."
+                    _isLoggedIn.value = false
+                    _errorMessage.value = result.exceptionOrNull()?.message ?: "Unknown error occurred."
                 }
             }
         }
     }
 
-    fun registerUser(
-        email: String,
-        username: String,
-        password: String,
-        confirmPassword: String
-    ) {
-        if (email.isBlank() || username.isBlank() || password.isBlank() || confirmPassword.isBlank()) {
-            _errorMessage.value = "All fields must be filled."
-            return
-        }
 
-        if (password != confirmPassword) {
-            _errorMessage.value = "Passwords do not match."
-            return
-        }
-
+    fun registerUser(registerRequest: RegisterRequest) {
         _isLoading.value = true
         _errorMessage.value = null
+        _isRegistrationSuccessful.value = false
+
         viewModelScope.launch(Dispatchers.IO) {
-            val result = authRepository.registerUser(email, username, password, confirmPassword)
+            val result = authRepository.register(registerRequest)
             withContext(Dispatchers.Main) {
                 _isLoading.value = false
                 if (result.isSuccess) {
+                    _isRegistrationSuccessful.value = true
                     _errorMessage.value = null
                 } else {
-                    _errorMessage.value = "Registration failed. Please try again."
+                    _isRegistrationSuccessful.value = false
+                    _errorMessage.value = result.exceptionOrNull()?.message ?: "Unknown error occurred."
                 }
             }
         }
@@ -96,4 +90,19 @@ class AuthViewModel @Inject constructor(
             }
         }
     }
+
+    fun resetRegistrationState() {
+        _isRegistrationSuccessful.value = false
+        _errorMessage.value = null
+    }
+
+    fun resetLoginState() {
+        _isLoggedIn.value = false
+        _errorMessage.value = null
+    }
+
+    fun setErrorMessage(message: String) {
+        _errorMessage.value = message
+    }
 }
+

@@ -49,7 +49,6 @@ fun EntryScreenLayout(
             modifier = Modifier
                 .fillMaxSize(), contentAlignment = Alignment.Center
         ) {
-            // Add the background image
             Image(
                 painter = painterResource(id = R.drawable.welcome_background),
                 contentDescription = null, // Decorative background image
@@ -78,7 +77,7 @@ fun EntryScreenLayout(
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Column(
-                        verticalArrangement = Arrangement.spacedBy(16.dp),
+                        verticalArrangement = Arrangement.spacedBy(4.dp),
                         horizontalAlignment = Alignment.CenterHorizontally,
                         modifier = Modifier.padding(16.dp)
                     ) {

@@ -15,7 +15,6 @@ class TokenManager(private val context: Context) {
 
     companion object {
         private val ACCESS_TOKEN_KEY = stringPreferencesKey("access_token")
-        private val REFRESH_TOKEN_KEY = stringPreferencesKey("refresh_token")
         private val TOKEN_EXPIRY_TIME_KEY = longPreferencesKey("token_expiry_time")
     }
 
@@ -34,17 +33,6 @@ class TokenManager(private val context: Context) {
     val tokenExpiryTimeFlow: Flow<Long?> = context.authDataStore.data
         .map { preferences ->
             preferences[TOKEN_EXPIRY_TIME_KEY]
-        }
-
-    suspend fun saveRefreshToken(token: String) {
-        context.authDataStore.edit { preferences ->
-            preferences[REFRESH_TOKEN_KEY] = token
-        }
-    }
-
-    val refreshTokenFlow: Flow<String?> = context.authDataStore.data
-        .map { preferences ->
-            preferences[REFRESH_TOKEN_KEY]
         }
 
     suspend fun hasValidAccessToken(): Boolean {

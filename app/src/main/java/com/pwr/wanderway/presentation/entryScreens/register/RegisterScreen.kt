@@ -42,8 +42,10 @@ fun RegisterScreen(
     val isLoading = registerViewModel.isLoading.collectAsState(initial = false)
     val errorMessage = registerViewModel.errorMessage.collectAsState(initial = null)
 
-    LaunchedEffect(isLoading.value) {
-        if (isLoading.value) {
+    val isRegistrationSuccessful = registerViewModel.isRegistrationSuccessful.collectAsState(initial = false)
+
+    LaunchedEffect(isRegistrationSuccessful.value) {
+        if (isRegistrationSuccessful.value) {
             onRegisterSuccess()
         }
     }

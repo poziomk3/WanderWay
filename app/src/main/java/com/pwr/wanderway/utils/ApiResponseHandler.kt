@@ -6,7 +6,7 @@ object ApiResponseHandler {
     fun <T> handleResponse(response: Response<T>): Result<T?> {
         return if (response.isSuccessful) {
             if (response.code() == 204) {
-                Result.success(null) // Handle no content as success
+                Result.success(null)
             } else {
                 response.body()?.let {
                     Result.success(it)

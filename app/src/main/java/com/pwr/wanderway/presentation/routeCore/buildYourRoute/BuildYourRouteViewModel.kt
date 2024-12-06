@@ -23,6 +23,10 @@ class BuildYourRouteViewModel(
         }
     }
 
+    fun onCreateRoute() {
+        routeViewModel.generateRoutes()
+    }
+
     private fun createRowSelectorConfig(pointOfInterest: PointOfInterest): RowSelectorConfig {
         return RowSelectorConfig(
             label = pointOfInterest.name,

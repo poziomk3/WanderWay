@@ -2,6 +2,7 @@ package com.pwr.wanderway.data.repository
 
 import com.pwr.wanderway.data.local.RoutePreferencesManager
 import com.pwr.wanderway.data.model.PointOfInterest
+import com.pwr.wanderway.data.model.api.route.RouteGenerateRequest
 import com.pwr.wanderway.network.ApiService
 import javax.inject.Inject
 
@@ -9,18 +10,12 @@ class RouteRepository @Inject constructor(
     private val apiService: ApiService,
     private val routePreferencesManager: RoutePreferencesManager
 ) {
-    private val _pois = mutableListOf<PointOfInterest>()
-    val pois: List<PointOfInterest> get() = _pois
 
-    private val _collectedPOIs = mutableListOf<PointOfInterest>()
-    val collectedPOIs: List<PointOfInterest> get() = _collectedPOIs
 
-    // Fetch POIs from API and update the local list
-    suspend fun getRoutePOIs() {
+    suspend fun getRoutePOIs(): List<PointOfInterest> {
         val response = apiService.getAllPOIs()
-        if (response.isSuccessful) {
-            _pois.clear()
-            _pois.addAll(response.body()?.pois?.map {
+        return if (response.isSuccessful) { // Explicitly return the result
+            response.body()?.pois?.map {
                 PointOfInterest(
                     id = it.id,
                     name = it.name,
@@ -28,24 +23,33 @@ class RouteRepository @Inject constructor(
                     latitude = it.latitude,
                     longitude = it.longitude
                 )
-            }.orEmpty())
+            }.orEmpty()
         } else {
             throw Exception("Failed to fetch POIs: ${response.errorBody()?.string()}")
         }
     }
 
-    // Save a collected POI
-    fun saveCollectedPOI(poi: PointOfInterest) {
-        _collectedPOIs.add(poi)
+    suspend fun generateRoutes(poisArg: List<PointOfInterest>): List<Int> {
+        val preferences = "preferences"
+        val pois = poisArg.map { it.id }
+
+        val response = apiService.generateRoute(RouteGenerateRequest(pois, preferences))
+
+        return if (response.isSuccessful) {
+            response.body()?.routeIds.orEmpty()
+        } else {
+            val errorMessage = response.errorBody()?.string()
+            throw Exception("Failed to fetch routes: $errorMessage")
+        }
     }
 
-    // Remove a collected POI
-    fun deleteCollectedPOI(poi: PointOfInterest) {
-        _collectedPOIs.remove(poi)
+    suspend fun getRouteById(id: Int): ByteArray {
+        val response = apiService.getRouteById(id)
+        return if (response.isSuccessful) {
+            response.body()?.readBytes() ?: byteArrayOf()
+        } else {
+            throw Exception("Failed to fetch route: ${response.errorBody()?.string()}")
+        }
     }
 
-    // Clear all collected POIs
-    fun clearCollectedPOIs() {
-        _collectedPOIs.clear()
-    }
 }

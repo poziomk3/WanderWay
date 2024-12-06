@@ -2,7 +2,10 @@ package com.pwr.wanderway.navigation.authorized
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 import com.pwr.wanderway.coreViewModels.PreferencesViewModel
 import com.pwr.wanderway.coreViewModels.RouteViewModel
 import com.pwr.wanderway.navigation.Destination
@@ -32,69 +35,69 @@ fun AuthorizedNavGraph(
 
 
         composable(Destination.HOME_SCREEN) {
-            HomeScreen(
-                buildYourOwnRouteNav = {
-                    navController.navigateTo(Destination.BUILD_YOUR_OWN_ROUTE_SCREEN)
-                }
-            )
+            HomeScreen(buildYourOwnRouteNav = {
+                navController.navigateTo(Destination.BUILD_YOUR_OWN_ROUTE_SCREEN)
+            })
         }
         composable(Destination.BUILD_YOUR_OWN_ROUTE_SCREEN) {
-            BuildYourRouteScreen(
-                locationAdditionNav = {
-                    navController.navigateTo(Destination.LOCATION_ADDITION_SCREEN)
-                },
-                preferencesNav = {
-                    navController.navigateTo(Destination.PREFERENCES_SCREEN)
-                },
-                routeChoiceNav = {
-                    navController.navigateTo(Destination.ROUTE_CHOICE_SCREEN)
-                },
-                routeViewModel = routeViewModel
+            BuildYourRouteScreen(locationAdditionNav = {
+                navController.navigateTo(Destination.LOCATION_ADDITION_SCREEN)
+            }, preferencesNav = {
+                navController.navigateTo(Destination.PREFERENCES_SCREEN)
+            }, routeChoiceNav = {
+                navController.navigateTo(Destination.ROUTE_CHOICE_SCREEN)
+            }, routeViewModel = routeViewModel
             )
         }
         composable(Destination.LOCATION_ADDITION_SCREEN) {
             LocationAdditionScreen(
                 backNav = {
                     navController.popBackStack()
-                },
-                routeViewModel = routeViewModel
+                }, routeViewModel = routeViewModel
             )
         }
         composable(Destination.FORUM_SCREEN) {
             ForumHome()
         }
         composable(Destination.ACCOUNT_SETTINGS_SCREEN) {
-            SettingsScreen(
-                preferencesNav = {
-                    navController.navigateTo(Destination.PREFERENCES_SCREEN)
-                },
-                logout = {
-                    moveToUnauthorized()
-                }
-            )
+            SettingsScreen(preferencesNav = {
+                navController.navigateTo(Destination.PREFERENCES_SCREEN)
+            }, logout = {
+                moveToUnauthorized()
+            })
         }
         composable(Destination.PREFERENCES_SCREEN) {
             PreferencesScreen(
                 backNav = {
                     navController.popBackStack()
-                },
-                preferencesViewModel = preferencesViewModel
+                }, preferencesViewModel = preferencesViewModel
             )
         }
         composable(Destination.ROUTE_CHOICE_SCREEN) {
             RouteChoiceScreen(
-                routeDisplayNav = {
-                    navController.navigateTo(Destination.ROUTE_DISPLAY_SCREEN)
-                }
+                routeDisplayNav = { id ->
+                    navController.navigate(
+                        Destination.createRouteWithArgument(
+                            Destination.ROUTE_DISPLAY_SCREEN,
+                            id.toString()
+                        )
+                    )
+                }, routeViewModel = routeViewModel
             )
         }
-        composable(Destination.ROUTE_DISPLAY_SCREEN) {
+        composable(
+            route = Destination.ROUTE_DISPLAY_SCREEN.route,
+            arguments = listOf(navArgument("routeId") { type = NavType.StringType })
+        ) { backStackEntry ->
+            val routeId = backStackEntry.arguments?.getString("routeId") ?: ""
             RouteDisplayScreen(
                 buildYourOwnRouteNav = {
                     navController.navigateTo(Destination.BUILD_YOUR_OWN_ROUTE_SCREEN)
-                }, locationAdditionNav = {
+                },
+                locationAdditionNav = {
                     navController.navigateTo(Destination.LOCATION_ADDITION_SCREEN)
-                }
+                },
+                routeId = routeId // Pass the extracted routeId
             )
         }
 

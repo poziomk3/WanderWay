@@ -63,7 +63,10 @@ fun BuildYourRouteScreen(
         // Create route button
         WideButton(
             text = stringResource(R.string.build_your_route_screen_create_route),
-            onClick = routeChoiceNav,
+            onClick = {
+                buildYourRouteViewModel.onCreateRoute()
+                routeChoiceNav()
+            },
             colorType = ButtonColor.PRIMARY
         )
 

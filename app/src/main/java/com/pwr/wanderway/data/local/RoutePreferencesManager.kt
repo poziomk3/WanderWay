@@ -27,6 +27,8 @@ class RoutePreferencesManager(private val context: Context) {
         }
     }
 
+
+
     // Clear all preferences (optional utility method)
     suspend fun clearPreferences() {
         context.userPreferencesDataStore.edit { preferences ->

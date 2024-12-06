@@ -12,6 +12,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.pwr.wanderway.R
 import com.pwr.wanderway.coreViewModels.AuthViewModel
+import com.pwr.wanderway.presentation.commons.Loader
 import com.pwr.wanderway.presentation.entryScreens.commons.EntryScreenLayout
 import com.pwr.wanderway.ui.theme.AppTheme
 
@@ -23,26 +24,37 @@ fun WelcomeScreen(
     onAlreadyLoggedIn: () -> Unit
 ) {
     val isLoggedIn by authViewModel.isLoggedIn.collectAsState(initial = false)
+    val isCheckingLogin by authViewModel.isCheckingLogin.collectAsState(initial = true)
+
+    LaunchedEffect(Unit) {
+        authViewModel.checkLoginStatus()
+    }
+
     LaunchedEffect(isLoggedIn) {
-        if (isLoggedIn) {
+        if (isLoggedIn && !isCheckingLogin) {
             onAlreadyLoggedIn()
         }
     }
 
-    EntryScreenLayout(
-        title = stringResource(id = R.string.entry_screen_title),
-        content = {
-            Box(
-                contentAlignment = Alignment.Center
-            ) {
-                Text(stringResource(id = R.string.entry_screen_subtitle))
-            }
-        },
-        rightButton = stringResource(id = R.string.entry_screen_login),
-        leftButton = stringResource(id = R.string.entry_screen_register),
-        rightButtonOnClick = { onLoginClick() },
-        leftButtonOnClick = { onRegisterClick() },
-    )
+    if (isCheckingLogin) {
+        Loader()
+    } else {
+        // Normal WelcomeScreen content
+        EntryScreenLayout(
+            title = stringResource(id = R.string.entry_screen_title),
+            content = {
+                Box(
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(stringResource(id = R.string.entry_screen_subtitle))
+                }
+            },
+            rightButton = stringResource(id = R.string.entry_screen_login),
+            leftButton = stringResource(id = R.string.entry_screen_register),
+            rightButtonOnClick = { onLoginClick() },
+            leftButtonOnClick = { onRegisterClick() },
+        )
+    }
 }
 
 @Preview

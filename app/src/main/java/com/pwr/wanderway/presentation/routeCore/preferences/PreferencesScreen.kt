@@ -25,6 +25,7 @@ import com.pwr.wanderway.R
 import com.pwr.wanderway.data.model.preferences.preferenceConfigurations
 import com.pwr.wanderway.presentation.commons.ButtonColor
 import com.pwr.wanderway.presentation.commons.WideButton
+import com.pwr.wanderway.presentation.routeCore.PreferencesViewModel
 import com.pwr.wanderway.presentation.routeCore.commons.Dropdown
 import com.pwr.wanderway.ui.theme.AppTheme
 import com.pwr.wanderway.utils.mappers.getPreferenceOptionLabel

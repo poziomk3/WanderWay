@@ -1,4 +1,4 @@
-package com.yourpackage.data.model
+package com.pwr.wanderway.data.model
 
 data class TokenResponse(
     val access: String,

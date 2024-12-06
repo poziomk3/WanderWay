@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.map
 
 val Context.userPreferencesDataStore by preferencesDataStore(name = "user_preferences")
 
-class PreferencesManager(private val context: Context) {
+class RoutePreferencesManager(private val context: Context) {
 
     // Save a preference using its backend name
     suspend fun savePreference(key: String, value: String) {

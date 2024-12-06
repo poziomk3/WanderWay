@@ -1,4 +1,4 @@
-package com.pwr.wanderway.data.model.route
+package com.pwr.wanderway.data.model
 
 data class PointOfInterest(
     val id: Int,

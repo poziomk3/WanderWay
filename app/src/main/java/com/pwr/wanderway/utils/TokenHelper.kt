@@ -1,7 +1,7 @@
 package com.pwr.wanderway.utils
 
 import com.pwr.wanderway.data.local.TokenManager
-import com.yourpackage.data.model.TokenResponse
+import com.pwr.wanderway.data.model.TokenResponse
 
 
 

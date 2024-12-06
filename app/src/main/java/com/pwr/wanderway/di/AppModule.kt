@@ -1,9 +1,10 @@
 package com.pwr.wanderway.di
 
 import android.content.Context
-import com.pwr.wanderway.data.local.PreferencesManager
+import com.pwr.wanderway.data.local.RoutePreferencesManager
 import com.pwr.wanderway.data.local.TokenManager
 import com.pwr.wanderway.data.repository.AuthRepository
+import com.pwr.wanderway.data.repository.RoutePreferencesRepository
 import com.pwr.wanderway.data.repository.RouteRepository
 import com.pwr.wanderway.network.ApiClient
 import com.pwr.wanderway.network.ApiService
@@ -24,16 +25,30 @@ object AppModule {
         return TokenManager(context)
     }
 
+
     @Provides
     @Singleton
-    fun providePreferencesManager(@ApplicationContext context: Context): PreferencesManager {
-        return PreferencesManager(context)
+    fun provideRoutePreferencesManager(@ApplicationContext context: Context): RoutePreferencesManager {
+        return RoutePreferencesManager(context)
     }
 
     @Provides
     @Singleton
-    fun provideRouteRepository(apiService: ApiService): RouteRepository {
-        return RouteRepository(apiService)
+    fun provideRoutePreferencesRepository(
+        routePreferencesManager: RoutePreferencesManager
+    ): RoutePreferencesRepository {
+        return RoutePreferencesRepository(
+            routePreferencesManager
+        )
+    }
+
+    @Provides
+    @Singleton
+    fun provideRouteRepository(
+        apiService: ApiService,
+        routePreferencesManager: RoutePreferencesManager
+    ): RouteRepository {
+        return RouteRepository(apiService, routePreferencesManager)
     }
 
     @Provides

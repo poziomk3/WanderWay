@@ -9,6 +9,9 @@ class WelcomeViewModel(
 
     val isLoggedIn = authViewModel.isLoggedIn
 
+    init{
+        checkLoginStatus()
+    }
     fun checkLoginStatus() {
         authViewModel.checkLoginStatus()
     }

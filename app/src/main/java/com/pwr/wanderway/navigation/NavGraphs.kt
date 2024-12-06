@@ -14,7 +14,7 @@ fun RootNavigationGraph(navController: NavHostController) {
     NavHost(
         navController = navController,
         route = Destination.ROOT.route,
-        startDestination = Destination.AUTHORIZED_GROUP.route
+        startDestination = Destination.UNAUTHORIZED_GROUP.route
     ) {
         composable(Destination.UNAUTHORIZED_GROUP) {
             UnauthorizedWrapper(

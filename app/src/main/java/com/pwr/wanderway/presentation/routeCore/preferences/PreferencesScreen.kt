@@ -37,9 +37,9 @@ import com.pwr.wanderway.utils.mappers.mapPreferenceConfigToDropdownConfig
 
 
 @Composable
-fun PreferencesScreen(viewModel: PreferencesViewModel = hiltViewModel(), backNav: () -> Unit) {
-    val loading by viewModel.loading.collectAsState()
-    val activePreferences by viewModel.getAllActivePreferences().collectAsState()
+fun PreferencesScreen(preferencesViewModel: PreferencesViewModel, backNav: () -> Unit) {
+    val loading by preferencesViewModel.loading.collectAsState()
+    val activePreferences by preferencesViewModel.getAllActivePreferences().collectAsState()
 
     if (loading) {
         // Show a loading indicator while preferences are being loaded
@@ -50,11 +50,11 @@ fun PreferencesScreen(viewModel: PreferencesViewModel = hiltViewModel(), backNav
             activePreferences = activePreferences,
             onSavePreferences = { preferences ->
                 preferences.forEach { (category, option) ->
-                    viewModel.savePreference(category, option)
+                    preferencesViewModel.savePreference(category, option)
                 }
                 backNav()
             },
-            onResetPreferences = { viewModel.getAllActivePreferences().value }
+            onResetPreferences = { preferencesViewModel.getAllActivePreferences().value }
         )
     }
 }
@@ -136,7 +136,7 @@ fun LoadingScreen() {
 fun PreferencesScreenScreenPreview() {
     AppTheme {
         Surface {
-            PreferencesScreen(backNav = { })
+            PreferencesScreen(backNav = { }, preferencesViewModel = hiltViewModel())
         }
     }
 }

@@ -4,6 +4,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.input.rememberTextFieldState
@@ -28,6 +29,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.traversalIndex
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 
 
@@ -50,6 +52,7 @@ fun SearchBar(
         Modifier
             .fillMaxWidth()
             .padding(horizontal = 8.dp)
+            .height(250.dp)
     ) {
         DockedSearchBar(
             modifier =
@@ -83,7 +86,7 @@ fun SearchBar(
 
 
             // Limit to four suggestions
-            val limitedSuggestions = filteredSuggestions.take(4)
+            val limitedSuggestions = filteredSuggestions
 
 
             Column(
@@ -94,7 +97,13 @@ fun SearchBar(
                 limitedSuggestions.forEach { suggestion ->
                     ListItem(
                         headlineContent = { Text(suggestion.name) },
-                        supportingContent = { Text(suggestion.additionalInfo ?: "") },
+
+                        supportingContent = {
+                            Text(
+                                suggestion.additionalInfo ?: "", maxLines = 2,
+                                overflow = TextOverflow.Ellipsis
+                            )
+                        },
                         colors = ListItemDefaults.colors(containerColor = Color.Transparent),
                         modifier =
                         Modifier
@@ -104,7 +113,6 @@ fun SearchBar(
                                 onSearch(suggestion.id)
                             }
                             .fillMaxWidth()
-                            .padding(horizontal = 4.dp, vertical = 2.dp)
                     )
                 }
             }

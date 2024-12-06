@@ -19,29 +19,59 @@ class RouteViewModel @Inject constructor(
     private val _collectedPointsOfInterest = MutableStateFlow<List<PointOfInterest>>(emptyList())
     val collectedPointsOfInterest: StateFlow<List<PointOfInterest>> get() = _collectedPointsOfInterest
 
+    private val _suggestedPointsOfInterest = MutableStateFlow<List<PointOfInterest>>(emptyList())
+    val suggestedPointsOfInterest: StateFlow<List<PointOfInterest>> get() = _suggestedPointsOfInterest
+
+    init {
+        println("Initial Collected Points of Interest: ${_collectedPointsOfInterest.value}")
+        observePointsOfInterest()
+    }
+
+    // Fetch POIs from the repository and populate suggestions
+    fun loadPointsOfInterest() {
+        viewModelScope.launch {
+            try {
+                routeRepository.getRoutePOIs()
+                _suggestedPointsOfInterest.value = routeRepository.pois
+            } catch (e: Exception) {
+                println("Error fetching suggested POIs: ${e.message}")
+            }
+        }
+    }
+
+    // Stash a selected POI into collectedPointsOfInterest
     fun addPointOfInterest(pointOfInterest: PointOfInterest) {
         _collectedPointsOfInterest.update { currentPoints ->
             currentPoints + pointOfInterest
         }
     }
 
+    // Remove a POI from collectedPointsOfInterest
     fun removePointOfInterest(pointOfInterest: PointOfInterest) {
         _collectedPointsOfInterest.update { currentPoints ->
             currentPoints - pointOfInterest
         }
     }
 
+    // Reorder POIs in collectedPointsOfInterest
+    fun reorderPointsOfInterest(fromIndex: Int, toIndex: Int) {
+        _collectedPointsOfInterest.update { currentPoints ->
+            val mutableList = currentPoints.toMutableList()
+            val item = mutableList.removeAt(fromIndex)
+            mutableList.add(toIndex, item)
+            mutableList
+        }
+    }
+
+    // Clear all collected POIs
     fun clearPointsOfInterest() {
         _collectedPointsOfInterest.value = emptyList()
     }
 
-    fun loadPointsOfInterest() {
+    private fun observePointsOfInterest() {
         viewModelScope.launch {
-            try {
-                routeRepository.getRoutePOIs()
-                _collectedPointsOfInterest.value = routeRepository.pois
-            } catch (e: Exception) {
-                // Handle the error appropriately, e.g., log or update UI
+            _collectedPointsOfInterest.collect { pointsOfInterest ->
+                println("Collected Points of Interest: $pointsOfInterest")
             }
         }
     }

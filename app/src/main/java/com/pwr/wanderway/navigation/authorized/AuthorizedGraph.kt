@@ -3,6 +3,8 @@ package com.pwr.wanderway.navigation.authorized
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
+import com.pwr.wanderway.coreViewModels.PreferencesViewModel
+import com.pwr.wanderway.coreViewModels.RouteViewModel
 import com.pwr.wanderway.navigation.Destination
 import com.pwr.wanderway.navigation.extended.composable
 import com.pwr.wanderway.navigation.extended.navigateTo
@@ -16,12 +18,19 @@ import com.pwr.wanderway.presentation.routeCore.routeChoice.RouteChoiceScreen
 import com.pwr.wanderway.presentation.routeCore.routeDisplay.RouteDisplayScreen
 
 @Composable
-fun AuthorizedNavGraph(navController: NavHostController, moveToUnauthorized: () -> Unit) {
+fun AuthorizedNavGraph(
+    navController: NavHostController,
+    moveToUnauthorized: () -> Unit,
+    routeViewModel: RouteViewModel,
+    preferencesViewModel: PreferencesViewModel
+) {
     NavHost(
         navController = navController,
-        route = Destination.AUTHORIZED_GROUP.route, // This is still `route` here but encapsulated in Destination.
+        route = Destination.AUTHORIZED_GROUP.route,
         startDestination = Destination.HOME_SCREEN.route
     ) {
+
+
         composable(Destination.HOME_SCREEN) {
             HomeScreen(
                 buildYourOwnRouteNav = {
@@ -39,14 +48,16 @@ fun AuthorizedNavGraph(navController: NavHostController, moveToUnauthorized: () 
                 },
                 routeChoiceNav = {
                     navController.navigateTo(Destination.ROUTE_CHOICE_SCREEN)
-                }
+                },
+                routeViewModel = routeViewModel
             )
         }
         composable(Destination.LOCATION_ADDITION_SCREEN) {
             LocationAdditionScreen(
                 backNav = {
                     navController.popBackStack()
-                }
+                },
+                routeViewModel = routeViewModel
             )
         }
         composable(Destination.FORUM_SCREEN) {
@@ -66,7 +77,8 @@ fun AuthorizedNavGraph(navController: NavHostController, moveToUnauthorized: () 
             PreferencesScreen(
                 backNav = {
                     navController.popBackStack()
-                }
+                },
+                preferencesViewModel = preferencesViewModel
             )
         }
         composable(Destination.ROUTE_CHOICE_SCREEN) {

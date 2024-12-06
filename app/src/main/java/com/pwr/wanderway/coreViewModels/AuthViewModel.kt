@@ -4,9 +4,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.pwr.wanderway.data.repository.AuthRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
@@ -26,8 +28,11 @@ class AuthViewModel @Inject constructor(
     val errorMessage: StateFlow<String?> get() = _errorMessage
 
     fun checkLoginStatus() {
-        viewModelScope.launch {
-            _isLoggedIn.value = authRepository.hasToken()
+        viewModelScope.launch(Dispatchers.IO) {
+            val hasToken = authRepository.hasToken()
+            withContext(Dispatchers.Main) {
+                _isLoggedIn.value = hasToken
+            }
         }
     }
 
@@ -39,13 +44,15 @@ class AuthViewModel @Inject constructor(
 
         _isLoading.value = true
         _errorMessage.value = null
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             val result = authRepository.loginUser(username, password)
-            _isLoading.value = false
-            if (result.isSuccess) {
-                _isLoggedIn.value = true
-            } else {
-                _errorMessage.value = "Login failed. Please try again."
+            withContext(Dispatchers.Main) {
+                _isLoading.value = false
+                if (result.isSuccess) {
+                    _isLoggedIn.value = true
+                } else {
+                    _errorMessage.value = "Login failed. Please try again."
+                }
             }
         }
     }
@@ -68,21 +75,25 @@ class AuthViewModel @Inject constructor(
 
         _isLoading.value = true
         _errorMessage.value = null
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             val result = authRepository.registerUser(email, username, password, confirmPassword)
-            _isLoading.value = false
-            if (result.isSuccess) {
-                _errorMessage.value = null
-            } else {
-                _errorMessage.value = "Registration failed. Please try again."
+            withContext(Dispatchers.Main) {
+                _isLoading.value = false
+                if (result.isSuccess) {
+                    _errorMessage.value = null
+                } else {
+                    _errorMessage.value = "Registration failed. Please try again."
+                }
             }
         }
     }
 
     fun logout() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             authRepository.logout()
-            _isLoggedIn.value = false
+            withContext(Dispatchers.Main) {
+                _isLoggedIn.value = false
+            }
         }
     }
 }

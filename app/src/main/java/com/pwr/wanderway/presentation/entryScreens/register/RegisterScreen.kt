@@ -19,7 +19,6 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.pwr.wanderway.R
 import com.pwr.wanderway.coreViewModels.AuthViewModel
 import com.pwr.wanderway.presentation.commons.OnPrimaryTextField
@@ -29,7 +28,7 @@ import com.pwr.wanderway.ui.theme.AppTheme
 @Composable
 fun RegisterScreen(
     authViewModel: AuthViewModel = hiltViewModel(), // Inject AuthViewModel
-    registerViewModel: RegisterViewModel = viewModel { RegisterViewModel(authViewModel) }, // Pass to RegisterViewModel
+    registerViewModel: RegisterViewModel = RegisterViewModel(authViewModel), // Pass to RegisterViewModel
     onRegisterSuccess: () -> Unit,
     onGoBackClick: () -> Unit
 ) {
@@ -42,7 +41,8 @@ fun RegisterScreen(
     val isLoading = registerViewModel.isLoading.collectAsState(initial = false)
     val errorMessage = registerViewModel.errorMessage.collectAsState(initial = null)
 
-    val isRegistrationSuccessful = registerViewModel.isRegistrationSuccessful.collectAsState(initial = false)
+    val isRegistrationSuccessful =
+        registerViewModel.isRegistrationSuccessful.collectAsState(initial = false)
 
     LaunchedEffect(isRegistrationSuccessful.value) {
         if (isRegistrationSuccessful.value) {

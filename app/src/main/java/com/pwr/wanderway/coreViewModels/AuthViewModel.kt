@@ -44,18 +44,23 @@ class AuthViewModel @Inject constructor(
     fun loginUser(username: String, password: String) {
         _isLoading.value = true
         _errorMessage.value = null
+
         viewModelScope.launch(Dispatchers.IO) {
             val result = authRepository.login(LoginRequest(username, password))
+
             withContext(Dispatchers.Main) {
                 _isLoading.value = false
                 if (result.isSuccess) {
                     _isLoggedIn.value = true
+                    _errorMessage.value = null
                 } else {
-                    _errorMessage.value = "Login failed. Please try again."
+                    _isLoggedIn.value = false
+                    _errorMessage.value = result.exceptionOrNull()?.message ?: "Unknown error occurred."
                 }
             }
         }
     }
+
 
     fun registerUser(registerRequest: RegisterRequest) {
         _isLoading.value = true
@@ -88,6 +93,11 @@ class AuthViewModel @Inject constructor(
 
     fun resetRegistrationState() {
         _isRegistrationSuccessful.value = false
+        _errorMessage.value = null
+    }
+
+    fun resetLoginState() {
+        _isLoggedIn.value = false
         _errorMessage.value = null
     }
 

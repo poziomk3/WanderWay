@@ -8,6 +8,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -18,14 +19,17 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.pwr.wanderway.R
+import com.pwr.wanderway.coreViewModels.AuthViewModel
 import com.pwr.wanderway.presentation.commons.OnPrimaryTextField
 import com.pwr.wanderway.presentation.entryScreens.commons.EntryScreenLayout
 import com.pwr.wanderway.ui.theme.AppTheme
 
 @Composable
 fun RegisterScreen(
-    viewModel: RegisterViewModel = hiltViewModel(),
+    authViewModel: AuthViewModel = hiltViewModel(), // Inject AuthViewModel
+    registerViewModel: RegisterViewModel = viewModel { RegisterViewModel(authViewModel) }, // Pass to RegisterViewModel
     onRegisterSuccess: () -> Unit,
     onGoBackClick: () -> Unit
 ) {
@@ -33,12 +37,13 @@ fun RegisterScreen(
     var username by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var confirmPassword by remember { mutableStateOf("") }
-    val isLoading by viewModel.isLoading
-    val registerError by viewModel.registerError
-    val registerSuccess by viewModel.registerSuccess
 
-    LaunchedEffect(registerSuccess) {
-        if (registerSuccess) {
+    // Use collectAsState to observe StateFlow values
+    val isLoading = registerViewModel.isLoading.collectAsState(initial = false)
+    val errorMessage = registerViewModel.errorMessage.collectAsState(initial = null)
+
+    LaunchedEffect(isLoading.value) {
+        if (isLoading.value) {
             onRegisterSuccess()
         }
     }
@@ -73,13 +78,13 @@ fun RegisterScreen(
                     label = stringResource(id = R.string.entry_screen_repeat_password)
                 )
                 Spacer(modifier = Modifier.size(16.dp))
-                if (registerError != null) {
+                if (!errorMessage.value.isNullOrEmpty()) {
                     Text(
-                        text = registerError!!,
-                        color = MaterialTheme.colorScheme.errorContainer
+                        text = errorMessage.value!!,
+                        color = MaterialTheme.colorScheme.error
                     )
                 }
-                if (isLoading) {
+                if (isLoading.value) {
                     CircularProgressIndicator()
                 }
             }
@@ -90,8 +95,7 @@ fun RegisterScreen(
         },
         rightButton = stringResource(id = R.string.entry_screen_register),
         rightButtonOnClick = {
-            viewModel.onRegisterClicked(email, username, password, confirmPassword)
-
+            registerViewModel.onRegisterClicked(email, username, password, confirmPassword)
         },
     )
 }
@@ -99,7 +103,11 @@ fun RegisterScreen(
 @Preview
 @Composable
 fun RegisterScreenPreview() {
+
     AppTheme {
-        RegisterScreen(hiltViewModel(), {}, {})
+        RegisterScreen(
+            onRegisterSuccess = {},
+            onGoBackClick = {}
+        )
     }
 }

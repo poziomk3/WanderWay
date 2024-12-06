@@ -8,6 +8,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -19,25 +20,28 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.pwr.wanderway.R
+import com.pwr.wanderway.coreViewModels.AuthViewModel
 import com.pwr.wanderway.presentation.commons.OnPrimaryTextField
 import com.pwr.wanderway.presentation.entryScreens.commons.EntryScreenLayout
 import com.pwr.wanderway.ui.theme.AppTheme
 
 @Composable
 fun LoginScreen(
-    viewModel: LoginViewModel = hiltViewModel(),
+    authViewModel: AuthViewModel = hiltViewModel(), // Hilt-injected AuthViewModel
+    loginViewModel: LoginViewModel = LoginViewModel(authViewModel), // Create LoginViewModel in params
     onLoginSuccess: () -> Unit,
     onBackClick: () -> Unit
 ) {
     var username by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
 
-    val isLoading by viewModel.isLoading
-    val loginError by viewModel.loginError
-    val loginSuccess by viewModel.loginSuccess
+    // Use collectAsState to observe StateFlow values
+    val isLoading = loginViewModel.isLoading.collectAsState(initial = false)
+    val errorMessage = loginViewModel.errorMessage.collectAsState(initial = null)
+    val isLoggedIn = loginViewModel.isLoggedIn.collectAsState(initial = false)
 
-    LaunchedEffect(loginSuccess) {
-        if (loginSuccess) {
+    LaunchedEffect(isLoggedIn.value) {
+        if (isLoggedIn.value) {
             onLoginSuccess()
         }
     }
@@ -59,12 +63,12 @@ fun LoginScreen(
                     label = stringResource(id = R.string.entry_screen_password)
                 )
                 Spacer(modifier = Modifier.size(16.dp))
-                if (loginError != null)
+                if (!errorMessage.value.isNullOrEmpty())
                     Text(
-                        text = loginError!!,
-                        color = MaterialTheme.colorScheme.errorContainer
+                        text = errorMessage.value!!,
+                        color = MaterialTheme.colorScheme.error
                     )
-                if (isLoading)
+                if (isLoading.value)
                     CircularProgressIndicator()
             }
         },
@@ -74,16 +78,18 @@ fun LoginScreen(
         },
         rightButton = stringResource(id = R.string.entry_screen_login),
         rightButtonOnClick = {
-            viewModel.onLoginClicked(username, password)
+            loginViewModel.onLoginClicked(username, password)
         },
     )
 }
-
 
 @Preview
 @Composable
 fun LoginScreenPreview() {
     AppTheme {
-        LoginScreen(hiltViewModel(), {}, {})
+        LoginScreen(
+            onLoginSuccess = {},
+            onBackClick = {}
+        )
     }
 }

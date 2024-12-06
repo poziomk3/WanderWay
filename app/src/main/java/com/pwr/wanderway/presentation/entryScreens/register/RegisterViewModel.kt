@@ -1,21 +1,14 @@
 package com.pwr.wanderway.presentation.entryScreens.register
 
-import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.pwr.wanderway.data.repository.AuthRepository
-import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.launch
-import javax.inject.Inject
+import com.pwr.wanderway.coreViewModels.AuthViewModel
 
-@HiltViewModel
-class RegisterViewModel @Inject constructor(
-    private val authRepository: AuthRepository
+class RegisterViewModel(
+    private val authViewModel: AuthViewModel
 ) : ViewModel() {
 
-    var isLoading = mutableStateOf(false)
-    var registerError = mutableStateOf<String?>(null)
-    var registerSuccess = mutableStateOf(false)
+    val isLoading = authViewModel.isLoading
+    val errorMessage = authViewModel.errorMessage
 
     fun onRegisterClicked(
         email: String,
@@ -23,41 +16,6 @@ class RegisterViewModel @Inject constructor(
         password: String,
         confirmPassword: String
     ) {
-        if (email.isBlank() || username.isBlank() || password.isBlank() || confirmPassword.isBlank()) {
-            registerError.value = "All fields must be filled."
-            return
-        }
-
-        if (!email.contains("@") || !email.contains(".")) {
-            registerError.value = "Invalid email format."
-            return
-        }
-
-        if (password != confirmPassword) {
-            registerError.value = "Passwords do not match."
-            return
-        }
-
-        if (password.length < 8) {
-            registerError.value = "Password must be at least 8 characters long."
-            return
-        }
-
-        isLoading.value = true
-        viewModelScope.launch {
-            val result = authRepository.registerUser(email, username, password, confirmPassword)
-            isLoading.value = false
-            when {
-                result.isSuccess -> {
-                    registerError.value = null
-                    registerSuccess.value = true
-                }
-
-                result.isFailure -> {
-                    registerError.value = "Registration failed. Please try again."
-                    registerSuccess.value = false
-                }
-            }
-        }
+        authViewModel.registerUser(email, username, password, confirmPassword)
     }
 }

@@ -4,12 +4,12 @@ import android.util.Log
 import com.pwr.wanderway.data.local.TokenManager
 import com.pwr.wanderway.data.model.LoginRequest
 import com.pwr.wanderway.data.model.RegisterRequest
+import com.pwr.wanderway.data.model.TokenResponse
+import com.pwr.wanderway.network.ApiErrorHandler
 import com.pwr.wanderway.network.ApiService
 import com.pwr.wanderway.utils.ApiResponseHandler
 import com.pwr.wanderway.utils.TokenHelper
-import com.yourpackage.data.model.TokenResponse
 import kotlinx.coroutines.flow.firstOrNull
-import retrofit2.Response
 
 
 class AuthRepository(
@@ -113,9 +113,3 @@ class AuthRepository(
 
 
 
-object ApiErrorHandler {
-    fun handleResponseError(response: Response<*>): String {
-        return response.errorBody()?.string()?.takeIf { it.isNotBlank() }
-            ?: "An unknown error occurred"
-    }
-}

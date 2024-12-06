@@ -1,8 +1,8 @@
-package com.pwr.wanderway.presentation.routeCore
+package com.pwr.wanderway.coreViewModels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.pwr.wanderway.data.model.route.PointOfInterest
+import com.pwr.wanderway.data.model.PointOfInterest
 import com.pwr.wanderway.data.repository.RouteRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

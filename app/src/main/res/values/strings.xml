@@ -133,6 +133,7 @@
     <string name="preference_option_relaxing">Relaxing</string>
     <string name="preference_option_adventurous">Adventurous</string>
     <string name="preference_option_educational">Educational</string>
+    <string name="route_display_go_for_it">Go for it!</string>
     <!--keys-->
 
 </resources>

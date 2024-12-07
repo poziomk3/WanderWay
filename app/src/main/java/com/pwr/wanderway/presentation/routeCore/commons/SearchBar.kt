@@ -20,6 +20,7 @@ import androidx.compose.material3.ListItemDefaults
 import androidx.compose.material3.SearchBarDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -42,10 +43,19 @@ const val SEARCH_PLACEHOLDER = "Search..."
 @Composable
 fun SearchBar(
     suggestions: List<SearchBarItem>,
-    onSearch: (String) -> Unit
+    onSearch: (String) -> Unit,
+    query: String
 ) {
     val textFieldState = rememberTextFieldState()
     var expanded by rememberSaveable { mutableStateOf(false) }
+
+    // Update the internal text field state when the external query changes
+    LaunchedEffect(query) {
+        if (textFieldState.text != query) {
+            textFieldState.setTextAndPlaceCursorAtEnd(query)
+        }
+    }
+
 
     var filteredSuggestions by rememberSaveable { mutableStateOf(suggestions) }
     Box(
@@ -65,7 +75,6 @@ fun SearchBar(
             shadowElevation = 8.dp,
             inputField = {
                 SearchBarDefaults.InputField(
-
                     state = textFieldState,
                     onSearch = { expanded = false },
                     expanded = expanded,

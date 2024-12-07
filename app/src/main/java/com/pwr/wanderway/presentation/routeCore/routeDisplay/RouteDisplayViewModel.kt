@@ -7,6 +7,8 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import com.pwr.wanderway.data.repository.RouteRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import org.xmlpull.v1.XmlPullParser
 import org.xmlpull.v1.XmlPullParserFactory
 import java.io.InputStream
@@ -18,6 +20,8 @@ class RouteDisplayViewModel @Inject constructor(
     private val routeRepository: RouteRepository,
 ) : ViewModel() {
 
+    private val _loading = MutableStateFlow(false)
+    val loading: StateFlow<Boolean> get() = _loading
 
     fun parseGpxFile(inputStream: InputStream): List<Pair<Double, Double>> {
         val waypoints = mutableListOf<Pair<Double, Double>>()
@@ -66,6 +70,7 @@ class RouteDisplayViewModel @Inject constructor(
 
 
     suspend fun handleRoute(routeId: Int, context: Context) {
+        _loading.value = true
         try {
             val inputStream = routeRepository.getRouteById(routeId)
 
@@ -74,6 +79,8 @@ class RouteDisplayViewModel @Inject constructor(
         } catch (e: Exception) {
             Toast.makeText(context, "Failed to process route: ${e.message}", Toast.LENGTH_LONG)
                 .show()
+        } finally {
+            _loading.value = false
         }
     }
 

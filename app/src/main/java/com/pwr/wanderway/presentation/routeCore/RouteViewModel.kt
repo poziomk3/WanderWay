@@ -43,6 +43,9 @@ class RouteViewModel @Inject constructor(
             currentPoints - pointOfInterest
         }
     }
+    fun emptyPointsOfInterest() {
+        _collectedPointsOfInterest.value = emptyList()
+    }
 
     fun reorderPointsOfInterest(fromIndex: Int, toIndex: Int) {
         _collectedPointsOfInterest.update { currentPoints ->

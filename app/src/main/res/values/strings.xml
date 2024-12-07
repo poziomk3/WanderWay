@@ -40,8 +40,8 @@
     <string name="preferences_screen_button_1">Go to advanced options</string>
     <string name="preferences_screen_button_2">Save</string>
     <!--    route display screen-->
-    <string name="route_display_screen_button_1">Alter route!</string>
-    <string name="route_display_screen_button_2">Add attraction!</string>
+    <string name="route_display_screen_restart">Create again!</string>
+    <string name="route_display_modify_route">AAlter route!</string>
 
     <!--    route choice screen-->
     <string name="route_choice_screen_route">Route</string>

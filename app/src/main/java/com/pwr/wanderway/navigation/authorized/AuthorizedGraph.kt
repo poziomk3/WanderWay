@@ -7,12 +7,12 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.pwr.wanderway.coreViewModels.PreferencesViewModel
-import com.pwr.wanderway.presentation.routeCore.RouteViewModel
 import com.pwr.wanderway.navigation.Destination
 import com.pwr.wanderway.navigation.extended.composable
 import com.pwr.wanderway.navigation.extended.navigateTo
 import com.pwr.wanderway.presentation.accountSettings.SettingsScreen
 import com.pwr.wanderway.presentation.forum.forumHome.ForumHome
+import com.pwr.wanderway.presentation.routeCore.RouteViewModel
 import com.pwr.wanderway.presentation.routeCore.buildYourRoute.BuildYourRouteScreen
 import com.pwr.wanderway.presentation.routeCore.home.HomeScreen
 import com.pwr.wanderway.presentation.routeCore.locationAddition.LocationAdditionScreen
@@ -94,9 +94,8 @@ fun AuthorizedNavGraph(
                 buildYourOwnRouteNav = {
                     navController.navigateTo(Destination.BUILD_YOUR_OWN_ROUTE_SCREEN)
                 },
-                locationAdditionNav = {
-                    navController.navigateTo(Destination.LOCATION_ADDITION_SCREEN)
-                },
+                routeViewModel =
+                routeViewModel,
                 routeId = routeId // Pass the extracted routeId
             )
         }

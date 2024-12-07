@@ -10,16 +10,24 @@ class AuthInterceptor(private val tokenManager: TokenManager) : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val requestBuilder = chain.request().newBuilder()
 
-        // Fetch the access token (this might need to be run on a coroutine)
         val accessToken = runBlocking {
-            tokenManager.accessTokenFlow.firstOrNull()
+            if (tokenManager.hasValidAccessToken()) {
+                tokenManager.accessTokenFlow.firstOrNull()
+            } else {
+                null // Token is invalid or not available
+            }
         }
 
-        // If token is available, add it to the Authorization header
         accessToken?.let {
             requestBuilder.addHeader("Authorization", "Bearer $it")
         }
 
-        return chain.proceed(requestBuilder.build())
+        val response = chain.proceed(requestBuilder.build())
+
+        if (response.code == 401) {
+            println("401 Unauthorized: Access token might be invalid or expired.")
+        }
+
+        return response
     }
 }

@@ -163,7 +163,7 @@ fun LocationAdditionScreen(
                             snippet = poi.description ?: "No description available",
                             onClick = {
                                 selectedPoi = poi // Update the selected POI state
-                                true
+                                false
                             }, icon = if (poi == selectedPoi) {
                                 BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)
                             } else {

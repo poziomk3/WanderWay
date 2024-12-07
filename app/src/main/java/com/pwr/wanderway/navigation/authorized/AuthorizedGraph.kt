@@ -6,26 +6,24 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.pwr.wanderway.presentation.preferences.PreferencesViewModel
 import com.pwr.wanderway.navigation.Destination
 import com.pwr.wanderway.navigation.extended.composable
 import com.pwr.wanderway.navigation.extended.navigateTo
 import com.pwr.wanderway.presentation.accountSettings.SettingsScreen
 import com.pwr.wanderway.presentation.forum.forumHome.ForumHome
-import com.pwr.wanderway.presentation.routeCore.RouteViewModel
+import com.pwr.wanderway.presentation.preferences.PreferencesScreen
 import com.pwr.wanderway.presentation.routeCore.BuildYourRouteScreen
 import com.pwr.wanderway.presentation.routeCore.HomeScreen
 import com.pwr.wanderway.presentation.routeCore.LocationAdditionScreen
-import com.pwr.wanderway.presentation.preferences.PreferencesScreen
 import com.pwr.wanderway.presentation.routeCore.RouteChoiceScreen
 import com.pwr.wanderway.presentation.routeCore.RouteDisplayScreen
+import com.pwr.wanderway.presentation.routeCore.RouteViewModel
 
 @Composable
 fun AuthorizedNavGraph(
     navController: NavHostController,
     moveToUnauthorized: () -> Unit,
     routeViewModel: RouteViewModel,
-    preferencesViewModel: PreferencesViewModel
 ) {
     NavHost(
         navController = navController,
@@ -70,7 +68,7 @@ fun AuthorizedNavGraph(
             PreferencesScreen(
                 backNav = {
                     navController.popBackStack()
-                }, preferencesViewModel = preferencesViewModel
+                }
             )
         }
         composable(Destination.ROUTE_CHOICE_SCREEN) {

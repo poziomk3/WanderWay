@@ -45,7 +45,6 @@ fun WelcomeScreen(
     if (isCheckingLogin) {
         Loader()
     } else {
-        // Normal WelcomeScreen content
         EntryScreenLayout(
             title = stringResource(id = R.string.entry_screen_title),
             content = {

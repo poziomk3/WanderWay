@@ -7,7 +7,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.pwr.wanderway.coreViewModels.PreferencesViewModel
-import com.pwr.wanderway.coreViewModels.RouteViewModel
+import com.pwr.wanderway.presentation.routeCore.RouteViewModel
 import com.pwr.wanderway.navigation.Destination
 import com.pwr.wanderway.navigation.extended.composable
 import com.pwr.wanderway.navigation.extended.navigateTo

@@ -14,7 +14,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.pwr.wanderway.coreViewModels.PreferencesViewModel
-import com.pwr.wanderway.coreViewModels.RouteViewModel
+import com.pwr.wanderway.presentation.routeCore.RouteViewModel
 import com.pwr.wanderway.navigation.Destination
 import com.pwr.wanderway.navigation.extended.navigateTo
 import kotlinx.coroutines.flow.map

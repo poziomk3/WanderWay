@@ -40,7 +40,7 @@ import com.google.maps.android.compose.Marker
 import com.google.maps.android.compose.MarkerState
 import com.google.maps.android.compose.rememberCameraPositionState
 import com.pwr.wanderway.R
-import com.pwr.wanderway.coreViewModels.RouteViewModel
+import com.pwr.wanderway.presentation.routeCore.RouteViewModel
 import com.pwr.wanderway.data.model.PointOfInterest
 import com.pwr.wanderway.presentation.commons.ButtonColor
 import com.pwr.wanderway.presentation.commons.Loader

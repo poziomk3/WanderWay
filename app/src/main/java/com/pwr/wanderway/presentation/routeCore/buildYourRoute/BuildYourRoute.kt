@@ -19,11 +19,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.pwr.wanderway.R
-import com.pwr.wanderway.coreViewModels.RouteViewModel
 import com.pwr.wanderway.presentation.commons.ButtonColor
 import com.pwr.wanderway.presentation.commons.RowSelector
 import com.pwr.wanderway.presentation.commons.RowSelectorConfig
 import com.pwr.wanderway.presentation.commons.WideButton
+import com.pwr.wanderway.presentation.routeCore.RouteViewModel
 import com.pwr.wanderway.presentation.routeCore.commons.DestInfo
 import com.pwr.wanderway.ui.theme.AppTheme
 
@@ -64,7 +64,6 @@ fun BuildYourRouteScreen(
         WideButton(
             text = stringResource(R.string.build_your_route_screen_create_route),
             onClick = {
-                buildYourRouteViewModel.onCreateRoute()
                 routeChoiceNav()
             },
             colorType = ButtonColor.PRIMARY

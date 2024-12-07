@@ -1,5 +1,6 @@
 package com.pwr.wanderway.network
 
+import com.pwr.wanderway.BuildConfig
 import com.pwr.wanderway.data.local.TokenManager
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -7,7 +8,6 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiClient {
-    private const val BACKEND_URL = "http://10.0.2.2:8000"
 
     fun create(tokenManager: TokenManager): ApiService {
         val loggingInterceptor = HttpLoggingInterceptor().apply {
@@ -16,11 +16,11 @@ object ApiClient {
 
         val client = OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
-            .addInterceptor(AuthInterceptor(tokenManager)) // Add the AuthInterceptor
+            .addInterceptor(AuthInterceptor(tokenManager))
             .build()
 
         return Retrofit.Builder()
-            .baseUrl(BACKEND_URL)
+            .baseUrl(BuildConfig.BACKEND_URL)
             .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .build()

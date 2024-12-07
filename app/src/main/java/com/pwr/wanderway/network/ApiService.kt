@@ -6,11 +6,12 @@ import com.pwr.wanderway.data.model.TokenResponse
 import com.pwr.wanderway.data.model.api.route.AllPOIsDTO
 import com.pwr.wanderway.data.model.api.route.RouteGenerateDTO
 import com.pwr.wanderway.data.model.api.route.RouteGenerateRequest
+import okhttp3.ResponseBody
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
-import java.io.File
+import retrofit2.http.Path
 
 interface ApiService {
     @POST("/auth/dj-rest-auth/registration/")
@@ -31,5 +32,5 @@ interface ApiService {
 
 
     @GET("/route/{id}")
-    suspend fun getRouteById(@Body id: Int): Response<File>
+    suspend fun getRouteById(@Path("id") id: Int): Response<ResponseBody>
 }

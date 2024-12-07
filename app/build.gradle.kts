@@ -1,3 +1,16 @@
+import java.util.Properties
+
+val envProperties = Properties().apply {
+    val envFile = rootProject.file("env.properties")
+    if (envFile.exists()) {
+        load(envFile.inputStream())
+    }
+}
+
+
+val debugBackendUrl = envProperties["DEBUG_BACKEND_URL"]
+val debugGoogleApiKey = envProperties["DEBUG_GOOGLE_API_KEY"]
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -16,7 +29,6 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
@@ -24,7 +36,13 @@ android {
     }
 
     buildTypes {
+        debug {
+            buildConfigField("String", "GOOGLE_API_KEY", "\"$debugGoogleApiKey\"")
+            buildConfigField("String", "BACKEND_URL", "\"$debugBackendUrl\"")
+        }
         release {
+            buildConfigField("String", "GOOGLE_API_KEY", "\"$debugGoogleApiKey\"")
+            buildConfigField("String", "BACKEND_URL", "\"$debugBackendUrl\"")
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),

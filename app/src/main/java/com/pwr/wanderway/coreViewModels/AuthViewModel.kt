@@ -11,84 +11,87 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+
+data class AuthState(
+    val isLoading: Boolean = false,
+    val isSuccess: Boolean = false,
+    val errorMessage: String? = null
+)
+
 @HiltViewModel
 class AuthViewModel @Inject constructor(
     private val authRepository: AuthRepository
 ) : ViewModel() {
 
-    private val _isCheckingLogin = MutableStateFlow(true)
-    val isCheckingLogin: StateFlow<Boolean> get() = _isCheckingLogin
+    private val _authState = MutableStateFlow(AuthState())
+    val authState: StateFlow<AuthState> get() = _authState
+
 
     private val _isLoggedIn = MutableStateFlow(false)
     val isLoggedIn: StateFlow<Boolean> get() = _isLoggedIn
 
-    private val _isLoading = MutableStateFlow(false)
-    val isLoading: StateFlow<Boolean> get() = _isLoading
-
-    private val _errorMessage = MutableStateFlow<String?>(null)
-    val errorMessage: StateFlow<String?> get() = _errorMessage
-
-    private val _isRegistrationSuccessful = MutableStateFlow(false)
-    val isRegistrationSuccessful: StateFlow<Boolean> get() = _isRegistrationSuccessful
-
-    fun checkLoginStatus() {
+    fun isLoggedIn() {
         viewModelScope.launch {
+            updateState(isLoading = true)
             runCatching {
-                _isCheckingLogin.emit(true)
                 authRepository.hasToken()
             }.onSuccess { hasToken ->
                 _isLoggedIn.emit(hasToken)
+                updateState(
+                    isSuccess = hasToken,
+                    errorMessage = if (hasToken) null else "User not logged in."
+                )
             }.onFailure {
                 _isLoggedIn.emit(false)
-                _errorMessage.emit("Error checking login status.")
-            }.also {
-                _isCheckingLogin.emit(false)
+                updateState(
+                    isSuccess = false,
+                    errorMessage = it.message ?: "Error checking login status."
+                )
             }
         }
     }
 
+
     fun loginUser(username: String, password: String) {
         viewModelScope.launch {
+            updateState(isLoading = true)
             runCatching {
-                _isLoading.emit(true)
-                _errorMessage.emit(null)
                 authRepository.login(LoginRequest(username, password))
             }.onSuccess { result ->
                 if (result.isSuccess) {
+                    updateState(isSuccess = true, errorMessage = null)
                     _isLoggedIn.emit(true)
-                    _errorMessage.emit(null)
                 } else {
-                    _isLoggedIn.emit(false)
-                    _errorMessage.emit(result.exceptionOrNull()?.message ?: "Login failed.")
+                    updateState(
+                        isSuccess = false,
+                        errorMessage = result.exceptionOrNull()?.message ?: "Login failed."
+                    )
                 }
             }.onFailure {
-                _isLoggedIn.emit(false)
-                _errorMessage.emit(it.message ?: "Unknown login error.")
-            }.also {
-                _isLoading.emit(false)
+                updateState(isSuccess = false, errorMessage = it.message ?: "Unknown login error.")
             }
         }
     }
 
     fun registerUser(registerRequest: RegisterRequest) {
         viewModelScope.launch {
+            updateState(isLoading = true)
             runCatching {
-                _isLoading.emit(true)
-                _errorMessage.emit(null)
                 authRepository.register(registerRequest)
             }.onSuccess { result ->
                 if (result.isSuccess) {
-                    _isRegistrationSuccessful.emit(true)
-                    _errorMessage.emit(null)
+                    updateState(isSuccess = true, errorMessage = null)
                 } else {
-                    _isRegistrationSuccessful.emit(false)
-                    _errorMessage.emit(result.exceptionOrNull()?.message ?: "Registration failed.")
+                    updateState(
+                        isSuccess = false,
+                        errorMessage = result.exceptionOrNull()?.message ?: "Registration failed."
+                    )
                 }
             }.onFailure {
-                _isRegistrationSuccessful.emit(false)
-                _errorMessage.emit(it.message ?: "Unknown registration error.")
-            }.also {
-                _isLoading.emit(false)
+                updateState(
+                    isSuccess = false,
+                    errorMessage = it.message ?: "Unknown registration error."
+                )
             }
         }
     }
@@ -99,24 +102,27 @@ class AuthViewModel @Inject constructor(
                 authRepository.logout()
             }.onSuccess {
                 _isLoggedIn.emit(false)
+                resetState()
             }.onFailure {
-                _errorMessage.emit("Failed to logout.")
+                setError("Failed to logout.")
             }
         }
     }
 
-    fun resetRegistrationState() {
-        _isRegistrationSuccessful.tryEmit(false)
-        _errorMessage.tryEmit(null)
+    private suspend fun updateState(
+        isLoading: Boolean = false,
+        isSuccess: Boolean = false,
+        errorMessage: String? = null
+    ) {
+        _authState.emit(AuthState(isLoading, isSuccess, errorMessage))
     }
 
-    fun resetLoginState() {
-        _isLoggedIn.tryEmit(false)
-        _errorMessage.tryEmit(null)
+    fun resetState() {
+        _authState.tryEmit(AuthState())
     }
 
-    fun setErrorMessage(message: String) {
-        _errorMessage.tryEmit(message)
+    fun setError(message: String) {
+        _authState.tryEmit(_authState.value.copy(errorMessage = message))
     }
 }
 

@@ -15,6 +15,7 @@ import com.pwr.wanderway.coreViewModels.AuthViewModel
 import com.pwr.wanderway.presentation.commons.Loader
 import com.pwr.wanderway.presentation.entryScreens.commons.EntryScreenLayout
 import com.pwr.wanderway.ui.theme.AppTheme
+import kotlinx.coroutines.flow.map
 
 @Composable
 fun WelcomeScreen(
@@ -24,14 +25,14 @@ fun WelcomeScreen(
     onAlreadyLoggedIn: () -> Unit
 ) {
     val isLoggedIn by authViewModel.isLoggedIn.collectAsState(initial = false)
-    val isCheckingLogin by authViewModel.isCheckingLogin.collectAsState(initial = true)
-
+    val isCheckingLogin by authViewModel.authState.map { it.isLoading }
+        .collectAsState(initial = true)
     LaunchedEffect(Unit) {
-        authViewModel.checkLoginStatus()
+        authViewModel.isLoggedIn()
     }
 
     LaunchedEffect(isLoggedIn) {
-        if (isLoggedIn && !isCheckingLogin) {
+        if (isLoggedIn) {
             onAlreadyLoggedIn()
         }
     }

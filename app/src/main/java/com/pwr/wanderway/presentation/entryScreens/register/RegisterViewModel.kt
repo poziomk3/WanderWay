@@ -3,15 +3,17 @@ package com.pwr.wanderway.presentation.entryScreens.register
 import androidx.lifecycle.ViewModel
 import com.pwr.wanderway.coreViewModels.AuthViewModel
 import com.pwr.wanderway.data.model.RegisterRequest
-import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 
 class RegisterViewModel(
     private val authViewModel: AuthViewModel
 ) : ViewModel() {
 
-    val isLoading: StateFlow<Boolean> = authViewModel.isLoading
-    val errorMessage: StateFlow<String?> = authViewModel.errorMessage
-    val isRegistrationSuccessful: StateFlow<Boolean> = authViewModel.isRegistrationSuccessful
+    // Expose relevant parts of AuthState
+    val isLoading: Flow<Boolean> = authViewModel.authState.map { it.isLoading }
+    val errorMessage: Flow<String?> = authViewModel.authState.map { it.errorMessage }
+    val isRegistrationSuccessful: Flow<Boolean> = authViewModel.authState.map { it.isSuccess }
 
     fun onRegisterClicked(
         email: String,
@@ -21,37 +23,37 @@ class RegisterViewModel(
     ) {
         when {
             email.isBlank() -> {
-                authViewModel.setErrorMessage(RegistrationError.EmailBlank.message)
+                authViewModel.setError(RegistrationError.EmailBlank.message) // Use setError
                 return
             }
 
             username.isBlank() -> {
-                authViewModel.setErrorMessage(RegistrationError.UsernameBlank.message)
+                authViewModel.setError(RegistrationError.UsernameBlank.message) // Use setError
                 return
             }
 
             password.isBlank() -> {
-                authViewModel.setErrorMessage(RegistrationError.PasswordBlank.message)
+                authViewModel.setError(RegistrationError.PasswordBlank.message) // Use setError
                 return
             }
 
             confirmPassword.isBlank() -> {
-                authViewModel.setErrorMessage(RegistrationError.ConfirmPasswordBlank.message)
+                authViewModel.setError(RegistrationError.ConfirmPasswordBlank.message) // Use setError
                 return
             }
 
             password != confirmPassword -> {
-                authViewModel.setErrorMessage(RegistrationError.PasswordMismatch.message)
+                authViewModel.setError(RegistrationError.PasswordMismatch.message) // Use setError
                 return
             }
         }
+
         authViewModel.registerUser(RegisterRequest(email, username, password, confirmPassword))
     }
 
     fun resetRegistrationState() {
-        authViewModel.resetRegistrationState()
+        authViewModel.resetState() // Resets unified AuthState
     }
-
 }
 
 

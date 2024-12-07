@@ -38,10 +38,10 @@ fun LoginScreen(
 
     val isLoading by loginViewModel.isLoading.collectAsState(initial = false)
     val errorMessage by loginViewModel.errorMessage.collectAsState(initial = null)
-    val isLoggedIn by loginViewModel.isLoggedIn.collectAsState(initial = false)
+    val isLoginSuccessful by loginViewModel.isLoginSuccessful.collectAsState(initial = false)
 
-    LaunchedEffect(isLoggedIn) {
-        if (isLoggedIn) {
+    LaunchedEffect(isLoginSuccessful) {
+        if (isLoginSuccessful) {
             loginViewModel.resetLoginState()
             onLoginSuccess()
         }

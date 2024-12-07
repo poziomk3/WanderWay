@@ -2,25 +2,27 @@ package com.pwr.wanderway.presentation.entryScreens.login
 
 import androidx.lifecycle.ViewModel
 import com.pwr.wanderway.coreViewModels.AuthViewModel
-import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class LoginViewModel @Inject constructor(
     private val authViewModel: AuthViewModel
 ) : ViewModel() {
 
-    val isLoading: StateFlow<Boolean> = authViewModel.isLoading
-    val errorMessage: StateFlow<String?> = authViewModel.errorMessage
-    val isLoggedIn: StateFlow<Boolean> = authViewModel.isLoggedIn
+    val isLoading: Flow<Boolean> = authViewModel.authState.map { it.isLoading }
+    val errorMessage: Flow<String?> = authViewModel.authState.map { it.errorMessage }
+    val isLoginSuccessful: Flow<Boolean> = authViewModel.authState.map { it.isSuccess }
+
 
     fun onLoginClicked(username: String, password: String) {
         if (username.isBlank()) {
-            authViewModel.setErrorMessage(LoginError.UsernameBlank.message)
+            authViewModel.setError(LoginError.UsernameBlank.message)
             return
         }
 
         if (password.isBlank()) {
-            authViewModel.setErrorMessage(LoginError.PasswordBlank.message)
+            authViewModel.setError(LoginError.PasswordBlank.message)
             return
         }
 
@@ -28,7 +30,7 @@ class LoginViewModel @Inject constructor(
     }
 
     fun resetLoginState() {
-        authViewModel.resetLoginState()
+        authViewModel.resetState() // Resets unified AuthState
     }
 }
 

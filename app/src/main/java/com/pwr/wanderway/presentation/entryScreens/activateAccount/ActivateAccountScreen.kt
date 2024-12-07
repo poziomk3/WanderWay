@@ -12,7 +12,6 @@ import com.pwr.wanderway.ui.theme.AppTheme
 
 @Composable
 fun ActivateAccountScreen(
-    viewModel: ActivateAccountViewModel = ActivateAccountViewModel(),
     onSuccess: () -> Unit
 ) {
     EntryScreenLayout(
@@ -34,6 +33,6 @@ fun ActivateAccountScreen(
 @Composable
 fun ActivateAccountScreenPreview() {
     AppTheme {
-        ActivateAccountScreen(ActivateAccountViewModel(), {})
+        ActivateAccountScreen({})
     }
 }

@@ -1,4 +1,4 @@
-package com.pwr.wanderway.presentation.routeCore.routeDisplay
+package com.pwr.wanderway.presentation.routeCore
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -25,7 +25,6 @@ import com.pwr.wanderway.network.RouteImageType
 import com.pwr.wanderway.presentation.commons.ButtonColor
 import com.pwr.wanderway.presentation.commons.Loader
 import com.pwr.wanderway.presentation.commons.WideButton
-import com.pwr.wanderway.presentation.routeCore.RouteViewModel
 import com.pwr.wanderway.ui.theme.AppTheme
 import kotlinx.coroutines.launch
 
@@ -33,13 +32,12 @@ import kotlinx.coroutines.launch
 fun RouteDisplayScreen(
     buildYourOwnRouteNav: () -> Unit,
     routeId: String,
-    routeDisplayViewModel: RouteDisplayViewModel = hiltViewModel(),
     routeViewModel: RouteViewModel,
 ) {
     val context = LocalContext.current
     val coroutineScope = rememberCoroutineScope()
 
-    val loading by routeDisplayViewModel.loading.collectAsState()
+    val loading by routeViewModel.loading.collectAsState()
 
     if (loading) {
         Loader()
@@ -81,7 +79,7 @@ fun RouteDisplayScreen(
                 text = stringResource(id = R.string.route_display_go_for_it),
                 onClick = {
                     coroutineScope.launch {
-                        routeDisplayViewModel.handleRoute(routeId.toInt(), context)
+                        routeViewModel.redirectToGoogleMaps(routeId.toInt(), context)
                     }
                 },
                 colorType = ButtonColor.PRIMARY
@@ -96,7 +94,6 @@ fun RouteDisplayScreenPreview() {
         Surface {
             RouteDisplayScreen(
                 routeId = "1",
-                routeDisplayViewModel = hiltViewModel(),
                 buildYourOwnRouteNav = {},
                 routeViewModel = hiltViewModel()
             )

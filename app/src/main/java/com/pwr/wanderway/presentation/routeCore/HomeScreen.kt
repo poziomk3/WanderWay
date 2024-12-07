@@ -1,4 +1,4 @@
-package com.pwr.wanderway.presentation.routeCore.home
+package com.pwr.wanderway.presentation.routeCore
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

@@ -13,12 +13,12 @@ import com.pwr.wanderway.navigation.extended.navigateTo
 import com.pwr.wanderway.presentation.accountSettings.SettingsScreen
 import com.pwr.wanderway.presentation.forum.forumHome.ForumHome
 import com.pwr.wanderway.presentation.routeCore.RouteViewModel
-import com.pwr.wanderway.presentation.routeCore.buildYourRoute.BuildYourRouteScreen
-import com.pwr.wanderway.presentation.routeCore.home.HomeScreen
-import com.pwr.wanderway.presentation.routeCore.locationAddition.LocationAdditionScreen
+import com.pwr.wanderway.presentation.routeCore.BuildYourRouteScreen
+import com.pwr.wanderway.presentation.routeCore.HomeScreen
+import com.pwr.wanderway.presentation.routeCore.LocationAdditionScreen
 import com.pwr.wanderway.presentation.routeCore.preferences.PreferencesScreen
-import com.pwr.wanderway.presentation.routeCore.routeChoice.RouteChoiceScreen
-import com.pwr.wanderway.presentation.routeCore.routeDisplay.RouteDisplayScreen
+import com.pwr.wanderway.presentation.routeCore.RouteChoiceScreen
+import com.pwr.wanderway.presentation.routeCore.RouteDisplayScreen
 
 @Composable
 fun AuthorizedNavGraph(

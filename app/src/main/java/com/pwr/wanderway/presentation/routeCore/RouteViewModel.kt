@@ -1,8 +1,12 @@
 package com.pwr.wanderway.presentation.routeCore
 
+import android.content.Context
+import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import com.pwr.wanderway.data.model.PointOfInterest
 import com.pwr.wanderway.data.repository.RouteRepository
+import com.pwr.wanderway.utils.gpx.openGoogleMapsWithWaypoints
+import com.pwr.wanderway.utils.gpx.parseGpxFile
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -43,6 +47,7 @@ class RouteViewModel @Inject constructor(
             currentPoints - pointOfInterest
         }
     }
+
     fun emptyPointsOfInterest() {
         _collectedPointsOfInterest.value = emptyList()
     }
@@ -63,6 +68,22 @@ class RouteViewModel @Inject constructor(
         } catch (e: Exception) {
             println("Error generating routes: ${e.message}")
             null
+        } finally {
+            _loading.value = false
+        }
+    }
+
+
+    suspend fun redirectToGoogleMaps(routeId: Int, context: Context) {
+        _loading.value = true
+        try {
+            val inputStream = routeRepository.getRouteById(routeId)
+
+            val waypoints = parseGpxFile(inputStream)
+            openGoogleMapsWithWaypoints(context, waypoints)
+        } catch (e: Exception) {
+            Toast.makeText(context, "Failed to process route: ${e.message}", Toast.LENGTH_LONG)
+                .show()
         } finally {
             _loading.value = false
         }

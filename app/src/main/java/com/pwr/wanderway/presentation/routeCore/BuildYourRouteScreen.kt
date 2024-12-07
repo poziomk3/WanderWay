@@ -1,6 +1,5 @@
-package com.pwr.wanderway.presentation.routeCore.buildYourRoute
+package com.pwr.wanderway.presentation.routeCore
 
-import BuildYourRouteViewModel
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -19,13 +18,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.pwr.wanderway.R
-import com.pwr.wanderway.coreViewModels.RouteViewModel
 import com.pwr.wanderway.presentation.commons.ButtonColor
 import com.pwr.wanderway.presentation.commons.RowSelector
 import com.pwr.wanderway.presentation.commons.RowSelectorConfig
 import com.pwr.wanderway.presentation.commons.WideButton
-import com.pwr.wanderway.presentation.routeCore.commons.DestInfo
+import com.pwr.wanderway.presentation.routeCore.composable.DestInfo
 import com.pwr.wanderway.ui.theme.AppTheme
+import com.pwr.wanderway.utils.mappers.mapPoiToRowSelector
 
 @Composable
 fun BuildYourRouteScreen(
@@ -33,9 +32,8 @@ fun BuildYourRouteScreen(
     preferencesNav: () -> Unit,
     routeChoiceNav: () -> Unit,
     routeViewModel: RouteViewModel,
-    buildYourRouteViewModel: BuildYourRouteViewModel = BuildYourRouteViewModel(routeViewModel),
 ) {
-    val collectedPointsOfInterest by buildYourRouteViewModel.collectedPointsOfInterest.collectAsState()
+    val collectedPointsOfInterest by routeViewModel.collectedPointsOfInterest.collectAsState()
 
 
     Column(
@@ -64,7 +62,6 @@ fun BuildYourRouteScreen(
         WideButton(
             text = stringResource(R.string.build_your_route_screen_create_route),
             onClick = {
-                buildYourRouteViewModel.onCreateRoute()
                 routeChoiceNav()
             },
             colorType = ButtonColor.PRIMARY
@@ -83,7 +80,11 @@ fun BuildYourRouteScreen(
                 LazyColumn(
                 ) {
                     items(collectedPointsOfInterest) { config ->
-                        RowSelector(config = config)
+                        RowSelector(
+                            config = mapPoiToRowSelector(
+                                config
+                            ) { routeViewModel.removePointOfInterest(config) }
+                        )
                     }
                 }
             }

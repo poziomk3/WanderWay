@@ -1,7 +1,7 @@
 package com.pwr.wanderway.presentation.entryScreens.login
 
 import androidx.lifecycle.ViewModel
-import com.pwr.wanderway.coreViewModels.AuthViewModel
+import com.pwr.wanderway.presentation.entryScreens.AuthViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject

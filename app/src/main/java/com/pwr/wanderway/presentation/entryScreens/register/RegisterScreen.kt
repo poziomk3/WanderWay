@@ -22,7 +22,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.pwr.wanderway.R
-import com.pwr.wanderway.coreViewModels.AuthViewModel
+import com.pwr.wanderway.presentation.entryScreens.AuthViewModel
 import com.pwr.wanderway.presentation.commons.Loader
 import com.pwr.wanderway.presentation.commons.OnPrimaryTextField
 import com.pwr.wanderway.presentation.entryScreens.commons.EntryScreenLayout

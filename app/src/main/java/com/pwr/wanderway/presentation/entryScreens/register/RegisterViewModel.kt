@@ -1,7 +1,7 @@
 package com.pwr.wanderway.presentation.entryScreens.register
 
 import androidx.lifecycle.ViewModel
-import com.pwr.wanderway.coreViewModels.AuthViewModel
+import com.pwr.wanderway.presentation.entryScreens.AuthViewModel
 import com.pwr.wanderway.data.model.RegisterRequest
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map

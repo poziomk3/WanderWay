@@ -1,4 +1,4 @@
-package com.pwr.wanderway.presentation.routeCore.commons.MapComponent
+package com.pwr.wanderway.presentation.routeCore.composable.MapComponent
 
 import android.annotation.SuppressLint
 import android.app.Application

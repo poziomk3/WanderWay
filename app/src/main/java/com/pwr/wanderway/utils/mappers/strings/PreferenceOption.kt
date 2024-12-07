@@ -1,4 +1,4 @@
-package com.pwr.wanderway.utils.mappers
+package com.pwr.wanderway.utils.mappers.strings
 
 import com.pwr.wanderway.R
 import com.pwr.wanderway.data.model.preferences.PreferenceOption

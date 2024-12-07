@@ -1,4 +1,4 @@
-package com.pwr.wanderway.coreViewModels
+package com.pwr.wanderway.presentation.preferences
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

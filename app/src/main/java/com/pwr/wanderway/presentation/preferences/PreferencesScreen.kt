@@ -1,4 +1,4 @@
-package com.pwr.wanderway.presentation.routeCore.preferences
+package com.pwr.wanderway.presentation.preferences
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -24,13 +24,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.pwr.wanderway.R
-import com.pwr.wanderway.coreViewModels.PreferencesViewModel
 import com.pwr.wanderway.data.model.preferences.PreferenceCategory
 import com.pwr.wanderway.data.model.preferences.PreferenceOption
 import com.pwr.wanderway.data.model.preferences.preferenceConfigurations
 import com.pwr.wanderway.presentation.commons.ButtonColor
 import com.pwr.wanderway.presentation.commons.WideButton
-import com.pwr.wanderway.presentation.routeCore.commons.Dropdown
+import com.pwr.wanderway.presentation.routeCore.composable.Dropdown
 import com.pwr.wanderway.ui.theme.AppTheme
 import com.pwr.wanderway.utils.mappers.getPreferenceOptionLabel
 import com.pwr.wanderway.utils.mappers.mapPreferenceConfigToDropdownConfig

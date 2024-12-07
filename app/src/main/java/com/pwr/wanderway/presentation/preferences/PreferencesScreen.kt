@@ -19,8 +19,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.pwr.wanderway.R
-import com.pwr.wanderway.data.model.preferences.PreferenceCategory
-import com.pwr.wanderway.data.model.preferences.PreferenceOption
+import com.pwr.wanderway.data.model.preferences.RoutePreferenceCategory
+import com.pwr.wanderway.data.model.preferences.RoutePreferenceOption
 import com.pwr.wanderway.data.model.preferences.preferenceConfigurations
 import com.pwr.wanderway.presentation.commons.ButtonColor
 import com.pwr.wanderway.presentation.commons.Loader
@@ -58,8 +58,8 @@ fun PreferencesScreen(
 
 @Composable
 fun PreferencesContent(
-    activePreferences: Map<PreferenceCategory, PreferenceOption>,
-    onSavePreferences: (Map<PreferenceCategory, PreferenceOption>) -> Unit,
+    activePreferences: Map<RoutePreferenceCategory, RoutePreferenceOption>,
+    onSavePreferences: (Map<RoutePreferenceCategory, RoutePreferenceOption>) -> Unit,
     onResetPreferences: () -> Unit
 ) {
     var tempPreferences by remember { mutableStateOf(activePreferences) }

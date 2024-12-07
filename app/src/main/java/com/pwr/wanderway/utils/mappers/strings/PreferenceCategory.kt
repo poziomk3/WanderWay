@@ -1,16 +1,16 @@
 package com.pwr.wanderway.utils.mappers.strings
 
 import com.pwr.wanderway.R
-import com.pwr.wanderway.data.model.preferences.PreferenceCategory
+import com.pwr.wanderway.data.model.preferences.RoutePreferenceCategory
 
 val preferenceCategoryDisplayNames = mapOf(
-    PreferenceCategory.DURATION to R.string.preference_category_duration,
-    PreferenceCategory.SIGHTSEEING to R.string.preference_category_sightseeing,
-    PreferenceCategory.GROUP to R.string.preference_category_group,
-    PreferenceCategory.DIFFICULTY to R.string.preference_category_difficulty,
-    PreferenceCategory.WEATHER to R.string.preference_category_weather,
-    PreferenceCategory.TRANSPORT to R.string.preference_category_transport,
-    PreferenceCategory.MEAL to R.string.preference_category_meal,
-    PreferenceCategory.BUDGET to R.string.preference_category_budget,
-    PreferenceCategory.ACTIVITY to R.string.preference_category_activity
+    RoutePreferenceCategory.DURATION to R.string.preference_category_duration,
+    RoutePreferenceCategory.SIGHTSEEING to R.string.preference_category_sightseeing,
+    RoutePreferenceCategory.GROUP to R.string.preference_category_group,
+    RoutePreferenceCategory.DIFFICULTY to R.string.preference_category_difficulty,
+    RoutePreferenceCategory.WEATHER to R.string.preference_category_weather,
+    RoutePreferenceCategory.TRANSPORT to R.string.preference_category_transport,
+    RoutePreferenceCategory.MEAL to R.string.preference_category_meal,
+    RoutePreferenceCategory.BUDGET to R.string.preference_category_budget,
+    RoutePreferenceCategory.ACTIVITY to R.string.preference_category_activity
 )

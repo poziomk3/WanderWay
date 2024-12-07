@@ -1,6 +1,6 @@
 package com.pwr.wanderway.data.model.preferences
 
-enum class PreferenceOption(val backendName: String) {
+enum class RoutePreferenceOption(val label: String) {
     // Options for duration
     HALF_DAY("half_day"),
     FULL_DAY("full_day"),

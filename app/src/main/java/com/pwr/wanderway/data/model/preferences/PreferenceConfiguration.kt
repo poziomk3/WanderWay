@@ -2,83 +2,83 @@ package com.pwr.wanderway.data.model.preferences
 
 val preferenceConfigurations = listOf(
     PreferenceConfig(
-        category = PreferenceCategory.DURATION,
+        category = RoutePreferenceCategory.DURATION,
         options = listOf(
-            PreferenceOption.HALF_DAY,
-            PreferenceOption.FULL_DAY,
-            PreferenceOption.WEEKEND
+            RoutePreferenceOption.HALF_DAY,
+            RoutePreferenceOption.FULL_DAY,
+            RoutePreferenceOption.WEEKEND
         ),
-        defaultOption = PreferenceOption.FULL_DAY
+        defaultOption = RoutePreferenceOption.FULL_DAY
     ),
     PreferenceConfig(
-        category = PreferenceCategory.SIGHTSEEING,
+        category = RoutePreferenceCategory.SIGHTSEEING,
         options = listOf(
-            PreferenceOption.HISTORICAL,
-            PreferenceOption.NATURE,
-            PreferenceOption.MODERN_ATTRACTIONS
+            RoutePreferenceOption.HISTORICAL,
+            RoutePreferenceOption.NATURE,
+            RoutePreferenceOption.MODERN_ATTRACTIONS
         ),
-        defaultOption = PreferenceOption.NATURE
+        defaultOption = RoutePreferenceOption.NATURE
     ),
     PreferenceConfig(
-        category = PreferenceCategory.GROUP,
+        category = RoutePreferenceCategory.GROUP,
         options = listOf(
-            PreferenceOption.SOLO,
-            PreferenceOption.FAMILY,
-            PreferenceOption.FRIENDS,
-            PreferenceOption.TOUR_GROUP
+            RoutePreferenceOption.SOLO,
+            RoutePreferenceOption.FAMILY,
+            RoutePreferenceOption.FRIENDS,
+            RoutePreferenceOption.TOUR_GROUP
         ),
-        defaultOption = PreferenceOption.SOLO
+        defaultOption = RoutePreferenceOption.SOLO
     ),
     PreferenceConfig(
-        category = PreferenceCategory.DIFFICULTY,
+        category = RoutePreferenceCategory.DIFFICULTY,
         options = listOf(
-            PreferenceOption.EASY,
-            PreferenceOption.MODERATE,
-            PreferenceOption.CHALLENGING
+            RoutePreferenceOption.EASY,
+            RoutePreferenceOption.MODERATE,
+            RoutePreferenceOption.CHALLENGING
         ),
-        defaultOption = PreferenceOption.EASY
+        defaultOption = RoutePreferenceOption.EASY
     ),
     PreferenceConfig(
-        category = PreferenceCategory.WEATHER,
+        category = RoutePreferenceCategory.WEATHER,
         options = listOf(
-            PreferenceOption.ANY,
-            PreferenceOption.SUNNY,
-            PreferenceOption.CLOUDY,
-            PreferenceOption.COOL
+            RoutePreferenceOption.ANY,
+            RoutePreferenceOption.SUNNY,
+            RoutePreferenceOption.CLOUDY,
+            RoutePreferenceOption.COOL
         ),
-        defaultOption = PreferenceOption.ANY
+        defaultOption = RoutePreferenceOption.ANY
     ),
     PreferenceConfig(
-        category = PreferenceCategory.TRANSPORT,
+        category = RoutePreferenceCategory.TRANSPORT,
         options = listOf(
-            PreferenceOption.CAR,
-            PreferenceOption.PUBLIC_TRANSPORT,
-            PreferenceOption.BIKE,
-            PreferenceOption.WALKING
+            RoutePreferenceOption.CAR,
+            RoutePreferenceOption.PUBLIC_TRANSPORT,
+            RoutePreferenceOption.BIKE,
+            RoutePreferenceOption.WALKING
         ),
-        defaultOption = PreferenceOption.CAR
+        defaultOption = RoutePreferenceOption.CAR
     ),
     PreferenceConfig(
-        category = PreferenceCategory.MEAL,
+        category = RoutePreferenceCategory.MEAL,
         options = listOf(
-            PreferenceOption.QUICK_SNACKS,
-            PreferenceOption.LOCAL_CUISINE,
-            PreferenceOption.PACKED_LUNCH
+            RoutePreferenceOption.QUICK_SNACKS,
+            RoutePreferenceOption.LOCAL_CUISINE,
+            RoutePreferenceOption.PACKED_LUNCH
         ),
-        defaultOption = PreferenceOption.QUICK_SNACKS
+        defaultOption = RoutePreferenceOption.QUICK_SNACKS
     ),
     PreferenceConfig(
-        category = PreferenceCategory.BUDGET,
-        options = listOf(PreferenceOption.LOW, PreferenceOption.MEDIUM, PreferenceOption.HIGH),
-        defaultOption = PreferenceOption.MEDIUM
+        category = RoutePreferenceCategory.BUDGET,
+        options = listOf(RoutePreferenceOption.LOW, RoutePreferenceOption.MEDIUM, RoutePreferenceOption.HIGH),
+        defaultOption = RoutePreferenceOption.MEDIUM
     ),
     PreferenceConfig(
-        category = PreferenceCategory.ACTIVITY,
+        category = RoutePreferenceCategory.ACTIVITY,
         options = listOf(
-            PreferenceOption.RELAXING,
-            PreferenceOption.ADVENTUROUS,
-            PreferenceOption.EDUCATIONAL
+            RoutePreferenceOption.RELAXING,
+            RoutePreferenceOption.ADVENTUROUS,
+            RoutePreferenceOption.EDUCATIONAL
         ),
-        defaultOption = PreferenceOption.RELAXING
+        defaultOption = RoutePreferenceOption.RELAXING
     )
 )

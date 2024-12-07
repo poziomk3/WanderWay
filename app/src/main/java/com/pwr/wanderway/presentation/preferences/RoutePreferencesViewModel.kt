@@ -16,7 +16,7 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
-class MyViewModel @Inject constructor(
+class RoutePreferencesViewModel @Inject constructor(
     private val repository: RoutePreferencesRepository
 ) : ViewModel() {
 
@@ -42,11 +42,12 @@ class MyViewModel @Inject constructor(
             }
             _activePreferences.value = preferences
         } catch (e: Exception) {
-            _activePreferences.value = emptyMap()
+            _activePreferences.value = emptyMap() // Handle errors gracefully
         } finally {
             _loading.value = false
         }
     }
+
 
     fun savePreference(category: PreferenceCategory, option: PreferenceOption) {
         viewModelScope.launch {

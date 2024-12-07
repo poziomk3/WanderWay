@@ -22,7 +22,7 @@ import coil.compose.rememberAsyncImagePainter
 import com.pwr.wanderway.network.ImgUrl
 import com.pwr.wanderway.network.RouteImageType
 import com.pwr.wanderway.presentation.commons.Loader
-import com.pwr.wanderway.presentation.routeCore.commons.RouteCard
+import com.pwr.wanderway.presentation.routeCore.composable.RouteCard
 import com.pwr.wanderway.ui.theme.AppTheme
 
 @Composable

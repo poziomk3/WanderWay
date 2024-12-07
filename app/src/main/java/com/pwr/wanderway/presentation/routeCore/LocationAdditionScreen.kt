@@ -44,8 +44,8 @@ import com.pwr.wanderway.data.model.PointOfInterest
 import com.pwr.wanderway.presentation.commons.ButtonColor
 import com.pwr.wanderway.presentation.commons.Loader
 import com.pwr.wanderway.presentation.commons.WideButton
-import com.pwr.wanderway.presentation.routeCore.commons.SearchBar
-import com.pwr.wanderway.presentation.routeCore.commons.SearchBarItem
+import com.pwr.wanderway.presentation.routeCore.composable.SearchBar
+import com.pwr.wanderway.presentation.routeCore.composable.SearchBarItem
 import com.pwr.wanderway.ui.theme.AppTheme
 
 @Composable

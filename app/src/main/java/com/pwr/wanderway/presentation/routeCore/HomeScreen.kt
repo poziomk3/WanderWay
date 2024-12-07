@@ -18,7 +18,7 @@ import androidx.compose.ui.unit.dp
 import com.pwr.wanderway.R
 import com.pwr.wanderway.presentation.commons.ButtonColor
 import com.pwr.wanderway.presentation.commons.WideButton
-import com.pwr.wanderway.presentation.routeCore.commons.MapComponent.MapComponent
+import com.pwr.wanderway.presentation.routeCore.composable.MapComponent.MapComponent
 import com.pwr.wanderway.ui.theme.AppTheme
 
 @Composable

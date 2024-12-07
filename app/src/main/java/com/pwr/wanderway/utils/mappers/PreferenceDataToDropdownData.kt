@@ -5,7 +5,7 @@ import androidx.compose.ui.res.stringResource
 import com.pwr.wanderway.data.model.preferences.PreferenceCategory
 import com.pwr.wanderway.data.model.preferences.PreferenceConfig
 import com.pwr.wanderway.data.model.preferences.PreferenceOption
-import com.pwr.wanderway.presentation.routeCore.commons.DropdownConfig
+import com.pwr.wanderway.presentation.routeCore.composable.DropdownConfig
 import com.pwr.wanderway.utils.mappers.strings.preferenceCategoryDisplayNames
 import com.pwr.wanderway.utils.mappers.strings.preferenceOptionDisplayNames
 

@@ -1,4 +1,4 @@
-package com.pwr.wanderway.presentation.routeCore.commons.MapComponent
+package com.pwr.wanderway.presentation.routeCore.composable.MapComponent
 
 import android.Manifest
 import androidx.compose.material3.Text

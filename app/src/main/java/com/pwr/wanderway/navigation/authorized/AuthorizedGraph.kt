@@ -6,7 +6,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.pwr.wanderway.coreViewModels.PreferencesViewModel
+import com.pwr.wanderway.presentation.preferences.PreferencesViewModel
 import com.pwr.wanderway.navigation.Destination
 import com.pwr.wanderway.navigation.extended.composable
 import com.pwr.wanderway.navigation.extended.navigateTo
@@ -16,7 +16,7 @@ import com.pwr.wanderway.presentation.routeCore.RouteViewModel
 import com.pwr.wanderway.presentation.routeCore.BuildYourRouteScreen
 import com.pwr.wanderway.presentation.routeCore.HomeScreen
 import com.pwr.wanderway.presentation.routeCore.LocationAdditionScreen
-import com.pwr.wanderway.presentation.routeCore.preferences.PreferencesScreen
+import com.pwr.wanderway.presentation.preferences.PreferencesScreen
 import com.pwr.wanderway.presentation.routeCore.RouteChoiceScreen
 import com.pwr.wanderway.presentation.routeCore.RouteDisplayScreen
 

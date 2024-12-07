@@ -13,10 +13,9 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.pwr.wanderway.presentation.preferences.PreferencesViewModel
-import com.pwr.wanderway.presentation.routeCore.RouteViewModel
 import com.pwr.wanderway.navigation.Destination
 import com.pwr.wanderway.navigation.extended.navigateTo
+import com.pwr.wanderway.presentation.routeCore.RouteViewModel
 import kotlinx.coroutines.flow.map
 
 @Composable
@@ -25,7 +24,6 @@ fun AuthorizedWrapper(
     moveToUnauthorized: () -> Unit
 ) {
     val routeViewModel: RouteViewModel = hiltViewModel()
-    val preferencesViewModel: PreferencesViewModel = hiltViewModel()
     val entryRoutes = listOf(
         Destination.HOME_SCREEN,
         Destination.FORUM_SCREEN,
@@ -72,7 +70,6 @@ fun AuthorizedWrapper(
                 navController = navController,
                 moveToUnauthorized = moveToUnauthorized,
                 routeViewModel = routeViewModel,
-                preferencesViewModel = preferencesViewModel
             )
         }
     }

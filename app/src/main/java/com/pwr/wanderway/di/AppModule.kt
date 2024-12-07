@@ -33,6 +33,7 @@ object AppModule {
     }
 
     @Provides
+    @Singleton
     fun provideRoutePreferencesRepository(
         routePreferencesManager: RoutePreferencesManager
     ): RoutePreferencesRepository {

@@ -14,7 +14,6 @@ class RoutePreferencesRepository @Inject constructor(
     private val routePreferencesManager: RoutePreferencesManager
 ) {
 
-    // Get the current selected option for a specific category
     fun getActivePreferenceFlow(category: PreferenceCategory): Flow<PreferenceOption> {
         return routePreferencesManager.getPreferenceFlow(category.backendName).map { backendName ->
             PreferenceOption.entries.find { it.backendName == backendName }
@@ -22,18 +21,15 @@ class RoutePreferencesRepository @Inject constructor(
         }
     }
 
-    // Save the selected option for a specific category
     suspend fun savePreference(category: PreferenceCategory, selectedOption: PreferenceOption) {
         routePreferencesManager.savePreference(category.backendName, selectedOption.backendName)
     }
 
-    // Get default option for a category
     fun getDefaultOptionForCategory(category: PreferenceCategory): PreferenceOption {
         return preferenceConfigurations.find { it.category == category }?.defaultOption
             ?: throw IllegalArgumentException("No default option found for category: $category")
     }
 
-    // Get all active preferences as a map
     fun getAllActivePreferences(): Flow<Map<PreferenceCategory, PreferenceOption>> {
         val flows = preferenceConfigurations.associate { config ->
             config.category to getActivePreferenceFlow(config.category)
@@ -41,7 +37,6 @@ class RoutePreferencesRepository @Inject constructor(
         return combineFlows(flows)
     }
 
-    // Combine multiple flows into a single map
     private fun combineFlows(
         flows: Map<PreferenceCategory, Flow<PreferenceOption>>
     ): Flow<Map<PreferenceCategory, PreferenceOption>> {

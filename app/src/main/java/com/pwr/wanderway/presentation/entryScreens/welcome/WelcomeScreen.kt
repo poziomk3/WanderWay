@@ -6,6 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -24,9 +25,12 @@ fun WelcomeScreen(
     onRegisterClick: () -> Unit,
     onAlreadyLoggedIn: () -> Unit
 ) {
+    val isCheckingLoginFlow = remember(authViewModel) {
+        authViewModel.authState.map { it.isLoading }
+    }
+    val isCheckingLogin by isCheckingLoginFlow.collectAsState(initial = true)
     val isLoggedIn by authViewModel.isLoggedIn.collectAsState(initial = false)
-    val isCheckingLogin by authViewModel.authState.map { it.isLoading }
-        .collectAsState(initial = true)
+
     LaunchedEffect(Unit) {
         authViewModel.isLoggedIn()
     }
@@ -36,6 +40,7 @@ fun WelcomeScreen(
             onAlreadyLoggedIn()
         }
     }
+
 
     if (isCheckingLogin) {
         Loader()

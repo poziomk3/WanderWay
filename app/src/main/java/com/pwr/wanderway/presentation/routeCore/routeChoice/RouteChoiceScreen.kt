@@ -40,7 +40,7 @@ fun RouteChoiceScreen(
         items(routeIds.value) { routeId ->
             RouteCard(
                 number = routeId,
-                onClick1 = {
+                onClick = {
                     routeDisplayNav(routeId)
                 },
             ) {

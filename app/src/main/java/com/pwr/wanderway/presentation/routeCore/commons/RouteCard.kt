@@ -12,7 +12,6 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SuggestionChip
-import androidx.compose.material3.SuggestionChipDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -25,9 +24,8 @@ import com.pwr.wanderway.R
 
 @Composable
 fun RouteCard(
-    number: Int, // Number parameter
-    onClick1: () -> Unit? = { },
-    onClick2: () -> Unit? = { },
+    number: Int,
+    onClick: () -> Unit? = { },
     content: @Composable () -> Unit,
 ) {
     ElevatedCard(
@@ -38,10 +36,7 @@ fun RouteCard(
             .fillMaxWidth()
     ) {
         Column {
-            //place for map or icon
             content()
-
-
         }
         Row(
             modifier = Modifier
@@ -56,20 +51,11 @@ fun RouteCard(
                     .padding(16.dp),
                 textAlign = TextAlign.Center,
             )
-            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                SuggestionChip(
-                    onClick = { onClick1() },
-                    colors = SuggestionChipDefaults.suggestionChipColors(
-                        containerColor = MaterialTheme.colorScheme.primary,
-                        labelColor = MaterialTheme.colorScheme.onPrimary
-                    ),
-                    label = { Text(stringResource(R.string.route_choice_screen_button_ok)) }
-                )
-                SuggestionChip(
-                    onClick = { onClick2() },
-                    label = { Text(stringResource(R.string.route_choice_screen_button_details)) }
-                )
-            }
+
+            SuggestionChip(
+                onClick = { onClick() },
+                label = { Text(stringResource(R.string.route_choice_screen_button_details)) }
+            )
 
         }
     }

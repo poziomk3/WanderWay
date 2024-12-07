@@ -4,6 +4,7 @@ import com.pwr.wanderway.data.local.RoutePreferencesManager
 import com.pwr.wanderway.data.model.PointOfInterest
 import com.pwr.wanderway.data.model.api.route.RouteGenerateRequest
 import com.pwr.wanderway.network.ApiService
+import java.io.InputStream
 import javax.inject.Inject
 
 class RouteRepository @Inject constructor(
@@ -43,12 +44,13 @@ class RouteRepository @Inject constructor(
         }
     }
 
-    suspend fun getRouteById(id: Int): ByteArray {
+    suspend fun getRouteById(id: Int): InputStream {
         val response = apiService.getRouteById(id)
-        return if (response.isSuccessful) {
-            response.body()?.readBytes() ?: byteArrayOf()
+        if (response.isSuccessful) {
+            val responseBody = response.body()
+            return responseBody?.byteStream() ?: throw Exception("Empty GPX file from backend")
         } else {
-            throw Exception("Failed to fetch route: ${response.errorBody()?.string()}")
+            throw Exception("Failed to fetch GPX file: ${response.errorBody()?.string()}")
         }
     }
 

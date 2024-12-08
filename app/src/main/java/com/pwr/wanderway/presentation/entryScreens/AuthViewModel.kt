@@ -20,35 +20,29 @@ data class AuthState(
 
 @HiltViewModel
 class AuthViewModel @Inject constructor(
-    private val authRepository: AuthRepository
+    private val authRepository: AuthRepository,
 ) : ViewModel() {
 
     private val _authState = MutableStateFlow(AuthState())
     val authState: StateFlow<AuthState> get() = _authState
 
 
-    private val _isLoggedIn = MutableStateFlow(false)
-    val isLoggedIn: StateFlow<Boolean> get() = _isLoggedIn
-
-    fun isLoggedIn() {
-        viewModelScope.launch {
-            updateState(isLoading = true)
-            runCatching {
-                authRepository.hasToken()
-            }.onSuccess { hasToken ->
-                _isLoggedIn.emit(hasToken)
-                updateState(
-                    isSuccess = hasToken,
-                    errorMessage = if (hasToken) null else "User not logged in."
-                )
-            }.onFailure {
-                _isLoggedIn.emit(false)
-                updateState(
-                    isSuccess = false,
-                    errorMessage = it.message ?: "Error checking login status."
-                )
-            }
-        }
+    suspend fun isLoggedIn(): Boolean {
+        return runCatching {
+            authRepository.hasToken()
+        }.onSuccess { hasToken ->
+            updateState(
+                isLoading = false,
+                isSuccess = hasToken,
+                errorMessage = if (hasToken) null else "User not logged in."
+            )
+        }.onFailure { exception ->
+            updateState(
+                isLoading = false,
+                isSuccess = false,
+                errorMessage = exception.message ?: "Error checking login status."
+            )
+        }.getOrDefault(false)
     }
 
 
@@ -60,7 +54,6 @@ class AuthViewModel @Inject constructor(
             }.onSuccess { result ->
                 if (result.isSuccess) {
                     updateState(isSuccess = true, errorMessage = null)
-                    _isLoggedIn.emit(true)
                 } else {
                     updateState(
                         isSuccess = false,
@@ -101,7 +94,6 @@ class AuthViewModel @Inject constructor(
             runCatching {
                 authRepository.logout()
             }.onSuccess {
-                _isLoggedIn.emit(false)
                 resetState()
             }.onFailure {
                 setError("Failed to logout.")

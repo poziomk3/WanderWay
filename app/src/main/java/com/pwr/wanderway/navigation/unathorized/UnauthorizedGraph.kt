@@ -6,6 +6,7 @@ import androidx.navigation.compose.NavHost
 import com.pwr.wanderway.navigation.Destination
 import com.pwr.wanderway.navigation.extended.composable
 import com.pwr.wanderway.navigation.extended.navigateTo
+import com.pwr.wanderway.presentation.entryScreens.AuthViewModel
 import com.pwr.wanderway.presentation.entryScreens.activateAccount.ActivateAccountScreen
 import com.pwr.wanderway.presentation.entryScreens.login.LoginScreen
 import com.pwr.wanderway.presentation.entryScreens.register.RegisterScreen
@@ -14,7 +15,8 @@ import com.pwr.wanderway.presentation.entryScreens.welcome.WelcomeScreen
 @Composable
 fun UnauthorizedNavGraph(
     navController: NavHostController,
-    moveToAuthorized: () -> Unit
+    moveToAuthorized: () -> Unit,
+    authViewModel: AuthViewModel
 ) {
     NavHost(
         navController = navController,
@@ -29,9 +31,6 @@ fun UnauthorizedNavGraph(
                 onRegisterClick = {
                     navController.navigateTo(Destination.REGISTER_SCREEN)
                 },
-                onAlreadyLoggedIn = {
-                    moveToAuthorized() // Move to the authorized graph
-                }
             )
         }
         composable(Destination.LOGIN_SCREEN) {
@@ -42,7 +41,8 @@ fun UnauthorizedNavGraph(
                 },
                 onBackClick = {
                     navController.popBackStack()
-                }
+                },
+                authViewModel = authViewModel
             )
         }
         composable(Destination.REGISTER_SCREEN) {
@@ -52,7 +52,8 @@ fun UnauthorizedNavGraph(
                 },
                 onGoBackClick = {
                     navController.popBackStack()
-                }
+                },
+                authViewModel = authViewModel
             )
         }
         composable(Destination.ACTIVATE_ACCOUNT_SCREEN) {

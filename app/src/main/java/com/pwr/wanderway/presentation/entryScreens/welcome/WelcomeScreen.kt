@@ -12,8 +12,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.pwr.wanderway.R
-import com.pwr.wanderway.presentation.entryScreens.AuthViewModel
 import com.pwr.wanderway.presentation.commons.Loader
+import com.pwr.wanderway.presentation.entryScreens.AuthViewModel
 import com.pwr.wanderway.presentation.entryScreens.commons.EntryScreenLayout
 import com.pwr.wanderway.ui.theme.AppTheme
 import kotlinx.coroutines.flow.map
@@ -23,23 +23,17 @@ fun WelcomeScreen(
     authViewModel: AuthViewModel = hiltViewModel(),
     onLoginClick: () -> Unit,
     onRegisterClick: () -> Unit,
-    onAlreadyLoggedIn: () -> Unit
 ) {
     val isCheckingLoginFlow = remember(authViewModel) {
         authViewModel.authState.map { it.isLoading }
     }
     val isCheckingLogin by isCheckingLoginFlow.collectAsState(initial = true)
-    val isLoggedIn by authViewModel.isLoggedIn.collectAsState(initial = false)
 
     LaunchedEffect(Unit) {
         authViewModel.isLoggedIn()
     }
 
-    LaunchedEffect(isLoggedIn) {
-        if (isLoggedIn) {
-            onAlreadyLoggedIn()
-        }
-    }
+
 
 
     if (isCheckingLogin) {
@@ -70,7 +64,6 @@ fun WelcomeScreenPreview() {
         WelcomeScreen(
             onLoginClick = {},
             onRegisterClick = {},
-            onAlreadyLoggedIn = {}
         )
     }
 }

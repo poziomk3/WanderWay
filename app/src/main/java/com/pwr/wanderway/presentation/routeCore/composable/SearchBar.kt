@@ -49,7 +49,6 @@ fun SearchBar(
     val textFieldState = rememberTextFieldState()
     var expanded by rememberSaveable { mutableStateOf(false) }
 
-    // Update the internal text field state when the external query changes
     LaunchedEffect(query) {
         if (textFieldState.text != query) {
             textFieldState.setTextAndPlaceCursorAtEnd(query)
@@ -87,14 +86,11 @@ fun SearchBar(
             expanded = expanded,
             onExpandedChange = { expanded = it },
         ) {
-            // Update filteredSuggestions when the text changes
             filteredSuggestions =
                 suggestions.filter { suggestion ->
                     suggestion.name.contains(textFieldState.text, ignoreCase = true)
                 }
 
-
-            // Limit to four suggestions
             val limitedSuggestions = filteredSuggestions
 
 

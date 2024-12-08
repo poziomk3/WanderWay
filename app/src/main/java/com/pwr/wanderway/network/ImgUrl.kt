@@ -8,7 +8,7 @@ object ImgUrl {
     }
 
     fun getPOIImg(poiId: Int): String {
-        return "${BuildConfig.BACKEND_URL}/poi/$poiId/img"
+        return "${BuildConfig.BACKEND_URL}/route/poi/$poiId/img"
     }
 }
 

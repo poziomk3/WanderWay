@@ -19,16 +19,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import com.pwr.wanderway.R
-import com.pwr.wanderway.presentation.entryScreens.AuthViewModel
 import com.pwr.wanderway.presentation.commons.Loader
 import com.pwr.wanderway.presentation.commons.OnPrimaryTextField
+import com.pwr.wanderway.presentation.entryScreens.AuthViewModel
 import com.pwr.wanderway.presentation.entryScreens.commons.EntryScreenLayout
 
 @Composable
 fun LoginScreen(
-    authViewModel: AuthViewModel = hiltViewModel(),
+    authViewModel: AuthViewModel,
     loginViewModel: LoginViewModel = LoginViewModel(authViewModel), // Hilt-injected LoginViewModel
     onLoginSuccess: () -> Unit,
     onBackClick: () -> Unit
@@ -39,6 +38,8 @@ fun LoginScreen(
     val isLoading by loginViewModel.isLoading.collectAsState(initial = false)
     val errorMessage by loginViewModel.errorMessage.collectAsState(initial = null)
     val isLoginSuccessful by loginViewModel.isLoginSuccessful.collectAsState(initial = false)
+
+    LaunchedEffect(Unit) { authViewModel.resetState() }
 
     LaunchedEffect(isLoginSuccessful) {
         if (isLoginSuccessful) {
@@ -80,7 +81,6 @@ fun LoginScreen(
         },
         leftButton = stringResource(id = R.string.entry_screen_go_back),
         leftButtonOnClick = {
-            loginViewModel.resetLoginState()
             onBackClick()
         },
         rightButton = stringResource(id = R.string.entry_screen_login),

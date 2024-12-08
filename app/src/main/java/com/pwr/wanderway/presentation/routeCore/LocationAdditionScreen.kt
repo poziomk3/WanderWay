@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -44,6 +45,7 @@ import com.pwr.wanderway.data.model.PointOfInterest
 import com.pwr.wanderway.presentation.commons.ButtonColor
 import com.pwr.wanderway.presentation.commons.Loader
 import com.pwr.wanderway.presentation.commons.WideButton
+import com.pwr.wanderway.presentation.routeCore.composable.POIDetailsDialog
 import com.pwr.wanderway.presentation.routeCore.composable.SearchBar
 import com.pwr.wanderway.presentation.routeCore.composable.SearchBarItem
 import com.pwr.wanderway.ui.theme.AppTheme
@@ -57,7 +59,6 @@ fun LocationAdditionScreen(
         value = routeViewModel.loadSuggestedPOIs() ?: emptyList()
     }
 
-    // Calculate the initial center of POIs
     val initialCenter = remember(poiList) {
         if (poiList.isNotEmpty()) {
             val avgLat = poiList.map { it.latitude }.average()
@@ -68,9 +69,8 @@ fun LocationAdditionScreen(
         }
     }
 
-    // Camera position state initialized with the calculated center
     val cameraPositionState = rememberCameraPositionState {
-        position = CameraPosition.fromLatLngZoom(initialCenter, 13f) // Set default zoom level
+        position = CameraPosition.fromLatLngZoom(initialCenter, 13f)
     }
 
     var selectedPoi by remember { mutableStateOf<PointOfInterest?>(null) }
@@ -91,32 +91,30 @@ fun LocationAdditionScreen(
 
     LaunchedEffect(selectedPoi) {
         if (selectedPoi != null) {
-            // Zoom into the selected POI
             cameraPositionState.animate(
                 CameraUpdateFactory.newLatLngZoom(
                     LatLng(selectedPoi!!.latitude, selectedPoi!!.longitude),
-                    17f // Closer zoom level for selected POI
+                    17f
                 )
             )
         } else {
-            // Reset to the default view
             cameraPositionState.animate(
                 CameraUpdateFactory.newLatLngZoom(
-                    initialCenter, // Center of all POIs or default center
-                    13f // Default zoom level
+                    initialCenter,
+                    13f
                 )
             )
         }
     }
-    var searchQuery by remember { mutableStateOf("") } // SearchBar query state
+    var searchQuery by remember { mutableStateOf("") }
     LaunchedEffect(selectedPoi) {
-        searchQuery = selectedPoi?.name ?: "" // Update query to selected POI name
+        searchQuery = selectedPoi?.name ?: ""
     }
-
+    var showDialog by remember { mutableStateOf(false) }
 
 
     if (poiList.isEmpty()) {
-        Loader() // Show loader if POI list is empty
+        Loader()
     } else {
         Box(
             modifier = Modifier
@@ -146,7 +144,6 @@ fun LocationAdditionScreen(
                         .background(Color.Red)
                 )
 
-                // Google Map
                 GoogleMap(
                     modifier = Modifier
                         .shadow(8.dp)
@@ -160,10 +157,10 @@ fun LocationAdditionScreen(
                                 position = LatLng(poi.latitude, poi.longitude),
                             ),
                             title = poi.name,
-                            snippet = poi.description ?: "No description available",
+                            snippet = poi.description,
                             onClick = {
                                 selectedPoi = poi // Update the selected POI state
-                                false
+                                true
                             }, icon = if (poi == selectedPoi) {
                                 BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)
                             } else {
@@ -174,9 +171,9 @@ fun LocationAdditionScreen(
                 }
 
                 WideButton(
-                    text = stringResource(id = R.string.add_location_screen_deselect_button), // Update the button label
+                    text = stringResource(id = R.string.add_location_screen_deselect_button),
                     onClick = {
-                        selectedPoi = null // Deselect the POI
+                        selectedPoi = null
                     },
                     colorType = ButtonColor.SECONDARY // Use a secondary color for deselection
                 )
@@ -190,9 +187,19 @@ fun LocationAdditionScreen(
                     },
                     colorType = ButtonColor.PRIMARY
                 )
-            }
+                Button(
+                    onClick = {
+                        showDialog = true
+                    },
+                    enabled = selectedPoi != null, // Disable the button if no POI is selected
+                    modifier = Modifier
+                        .padding(8.dp)
+                ) {
+                    Text("See Attraction Details")
+                }
 
-            // Search Bar Overlay
+
+            }
             Box(
                 modifier = Modifier
                     .zIndex(1f)
@@ -216,7 +223,15 @@ fun LocationAdditionScreen(
                     query = searchQuery
                 )
             }
+
+
         }
+    }
+    if (showDialog) {
+        POIDetailsDialog(
+            onDismissRequest = { showDialog = false },
+            pointOfInterest = selectedPoi
+        )
     }
 }
 

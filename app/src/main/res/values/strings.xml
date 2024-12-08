@@ -142,6 +142,7 @@
 <!--    do posprzatania-->
     <string name="route_display_go_for_it">Go for it!</string>
     <string name="add_location_screen_deselect_button">Unselect</string>
+    <string name="top_bar_forum_addition">Add to our forum!</string>
     <!--keys-->
 
 </resources>

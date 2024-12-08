@@ -26,7 +26,7 @@ fun AuthorizedWrapper(
     val routeViewModel: RouteViewModel = hiltViewModel()
     val entryRoutes = listOf(
         Destination.HOME_SCREEN,
-        Destination.FORUM_SCREEN,
+        Destination.FORUM_HOME_SCREEN,
         Destination.ACCOUNT_SETTINGS_SCREEN
     )
     val activeDestination by remember(navController) {
@@ -51,7 +51,7 @@ fun AuthorizedWrapper(
             BottomBar(
                 activeDestination = activeDestination ?: Destination.HOME_SCREEN,
                 homeNav = { navController.navigateTo(Destination.HOME_SCREEN) },
-                forumNav = { navController.navigateTo(Destination.FORUM_SCREEN) },
+                forumNav = { navController.navigateTo(Destination.FORUM_HOME_SCREEN) },
                 accountNav = { navController.navigateTo(Destination.ACCOUNT_SETTINGS_SCREEN) }
             )
         }

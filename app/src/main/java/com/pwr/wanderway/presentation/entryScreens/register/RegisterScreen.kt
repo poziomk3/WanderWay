@@ -22,15 +22,15 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.pwr.wanderway.R
-import com.pwr.wanderway.presentation.entryScreens.AuthViewModel
 import com.pwr.wanderway.presentation.commons.Loader
 import com.pwr.wanderway.presentation.commons.OnPrimaryTextField
+import com.pwr.wanderway.presentation.entryScreens.AuthViewModel
 import com.pwr.wanderway.presentation.entryScreens.commons.EntryScreenLayout
 import com.pwr.wanderway.ui.theme.AppTheme
 
 @Composable
 fun RegisterScreen(
-    authViewModel: AuthViewModel = hiltViewModel(),
+    authViewModel: AuthViewModel,
     registerViewModel: RegisterViewModel = RegisterViewModel(authViewModel),
     onRegisterSuccess: () -> Unit,
     onGoBackClick: () -> Unit
@@ -45,6 +45,9 @@ fun RegisterScreen(
 
     val isRegistrationSuccessful =
         registerViewModel.isRegistrationSuccessful.collectAsState(initial = false)
+
+
+    LaunchedEffect(Unit) { authViewModel.resetState() }
 
     LaunchedEffect(isRegistrationSuccessful.value) {
         if (isRegistrationSuccessful.value) {
@@ -114,7 +117,8 @@ fun RegisterScreenPreview() {
     AppTheme {
         RegisterScreen(
             onRegisterSuccess = {},
-            onGoBackClick = {}
+            onGoBackClick = {},
+            authViewModel = hiltViewModel()
         )
     }
 }

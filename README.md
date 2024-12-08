@@ -3,5 +3,5 @@
 ## Connection with backend
 1. Add the following to your `env.properties` file:
 ```
-BACKEND_URL=https://localhost:8000
+DEBUG_BACKEND_URL=http://localhost:8000
 ```

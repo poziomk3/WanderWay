@@ -211,7 +211,7 @@ fun LocationAdditionScreen(
                         SearchBarItem(
                             id = it.id.toString(),
                             name = it.name,
-                            additionalInfo = it.description ?: "No description"
+                            additionalInfo = it.description
                         )
                     },
                     onSearch = { id ->

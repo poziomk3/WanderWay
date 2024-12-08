@@ -1,7 +1,7 @@
 package com.pwr.wanderway.data.model.preferences;
 
 
-enum class PreferenceCategory(val backendName: String) {
+enum class RoutePreferenceCategory(val label: String) {
     DURATION("duration"),
     SIGHTSEEING("sightseeing"),
     GROUP("group"),

@@ -125,10 +125,18 @@ dependencies {
     androidTestImplementation(platform("androidx.compose:compose-bom:2024.11.00"))
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
 
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.9.0")
+    testImplementation("app.cash.turbine:turbine:0.12.1")
+    testImplementation("org.mockito:mockito-core:5.4.0")
+    testImplementation("org.mockito.kotlin:mockito-kotlin:4.1.0")
     // Debugging tools
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+    testImplementation ("org.slf4j:slf4j-api:2.0.7")
+    testRuntimeOnly ("org.slf4j:slf4j-simple:2.0.7")
 }
+
 kapt {
+
     correctErrorTypes = true
 }

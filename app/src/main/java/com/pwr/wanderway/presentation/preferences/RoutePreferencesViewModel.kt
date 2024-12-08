@@ -2,8 +2,8 @@ package com.pwr.wanderway.presentation.preferences
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.pwr.wanderway.data.model.preferences.PreferenceCategory
-import com.pwr.wanderway.data.model.preferences.PreferenceOption
+import com.pwr.wanderway.data.model.preferences.RoutePreferenceCategory
+import com.pwr.wanderway.data.model.preferences.RoutePreferenceOption
 import com.pwr.wanderway.data.repository.RoutePreferencesRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -25,8 +25,8 @@ class RoutePreferencesViewModel @Inject constructor(
     val loading: StateFlow<Boolean> get() = _loading.asStateFlow()
 
     private val _activePreferences =
-        MutableStateFlow<Map<PreferenceCategory, PreferenceOption>>(emptyMap())
-    val activePreferences: StateFlow<Map<PreferenceCategory, PreferenceOption>> get() = _activePreferences.asStateFlow()
+        MutableStateFlow<Map<RoutePreferenceCategory, RoutePreferenceOption>>(emptyMap())
+    val activePreferences: StateFlow<Map<RoutePreferenceCategory, RoutePreferenceOption>> get() = _activePreferences.asStateFlow()
 
     init {
         viewModelScope.launch {
@@ -49,7 +49,7 @@ class RoutePreferencesViewModel @Inject constructor(
     }
 
 
-    fun savePreference(category: PreferenceCategory, option: PreferenceOption) {
+    fun savePreference(category: RoutePreferenceCategory, option: RoutePreferenceOption) {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 repository.savePreference(category, option)

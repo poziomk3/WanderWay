@@ -230,7 +230,7 @@ fun LocationAdditionScreen(
     if (showDialog) {
         POIDetailsDialog(
             onDismissRequest = { showDialog = false },
-            POI = selectedPoi
+            pointOfInterest = selectedPoi
         )
     }
 }

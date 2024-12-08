@@ -1,4 +1,4 @@
-package com.pwr.wanderway.presentation.forum.forumHome
+package com.pwr.wanderway.presentation.forum
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -18,7 +18,9 @@ import androidx.compose.ui.unit.dp
 import com.pwr.wanderway.presentation.forum.commons.ForumPostCard
 
 @Composable
-fun ForumHome() {
+fun ForumHomeScreen(
+    forumAdditionNav: () -> Unit
+) {
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -41,7 +43,7 @@ fun ForumHome() {
 
         // Floating Action Button
         FloatingActionButton(
-            onClick = { /* Handle FAB click */ },
+            onClick = { forumAdditionNav() },
             modifier = Modifier
                 .align(Alignment.BottomEnd)
                 .padding(16.dp) // Padding from screen edges

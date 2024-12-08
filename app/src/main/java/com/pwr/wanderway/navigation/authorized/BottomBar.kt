@@ -32,14 +32,14 @@ fun BottomBar(
             forumNav,
             Icons.Filled.ThumbUp,
             R.string.bottom_bar_forum,
-            activeDestination == Destination.FORUM_SCREEN
+            activeDestination == Destination.FORUM_HOME_SCREEN
         ),
         Quadruple(
             homeNav,
             Icons.Filled.Home,
             R.string.bottom_bar_home,
             activeDestination !in listOf(
-                Destination.FORUM_SCREEN,
+                Destination.FORUM_HOME_SCREEN,
                 Destination.ACCOUNT_SETTINGS_SCREEN
             )
         ),

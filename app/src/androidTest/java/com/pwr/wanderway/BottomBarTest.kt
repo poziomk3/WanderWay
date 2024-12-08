@@ -24,7 +24,7 @@ class BottomBarTest {
     fun bottomBar_displaysAllNavigationItems() {
         composeTestRule.setContent {
             BottomBar(
-                activeDestination = Destination.FORUM_SCREEN,
+                activeDestination = Destination.FORUM_HOME_SCREEN,
                 homeNav = {},
                 forumNav = {},
                 accountNav = {}

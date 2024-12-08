@@ -27,7 +27,6 @@ import com.pwr.wanderway.utils.notifications.showNotification
 fun HomeScreen(
     buildYourOwnRouteNav: () -> Unit
 ) {
-    showNotification(LocalContext.current, "Hello", "This is a notification message!")
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(16.dp),

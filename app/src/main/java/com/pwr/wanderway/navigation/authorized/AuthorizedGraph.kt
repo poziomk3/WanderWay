@@ -10,7 +10,8 @@ import com.pwr.wanderway.navigation.Destination
 import com.pwr.wanderway.navigation.extended.composable
 import com.pwr.wanderway.navigation.extended.navigateTo
 import com.pwr.wanderway.presentation.accountSettings.SettingsScreen
-import com.pwr.wanderway.presentation.forum.forumHome.ForumHome
+import com.pwr.wanderway.presentation.forum.ForumAdditionScreen
+import com.pwr.wanderway.presentation.forum.ForumHomeScreen
 import com.pwr.wanderway.presentation.preferences.PreferencesScreen
 import com.pwr.wanderway.presentation.routeCore.BuildYourRouteScreen
 import com.pwr.wanderway.presentation.routeCore.HomeScreen
@@ -54,9 +55,7 @@ fun AuthorizedNavGraph(
                 }, routeViewModel = routeViewModel
             )
         }
-        composable(Destination.FORUM_SCREEN) {
-            ForumHome()
-        }
+
         composable(Destination.ACCOUNT_SETTINGS_SCREEN) {
             SettingsScreen(preferencesNav = {
                 navController.navigateTo(Destination.PREFERENCES_SCREEN)
@@ -92,9 +91,27 @@ fun AuthorizedNavGraph(
                 buildYourOwnRouteNav = {
                     navController.navigateTo(Destination.BUILD_YOUR_OWN_ROUTE_SCREEN)
                 },
+                forumAdditionNav = {
+                    navController.navigateTo(Destination.FORUM_ADDITION_SCREEN)
+                },
                 routeViewModel =
                 routeViewModel,
                 routeId = routeId // Pass the extracted routeId
+            )
+        }
+
+        composable(Destination.FORUM_HOME_SCREEN) {
+            ForumHomeScreen(
+                forumAdditionNav = {
+                    navController.navigateTo(Destination.FORUM_ADDITION_SCREEN)
+                }
+            )
+        }
+        composable(Destination.FORUM_ADDITION_SCREEN) {
+            ForumAdditionScreen(
+                forumHomeNav = {
+                    navController.navigateTo(Destination.FORUM_HOME_SCREEN)
+                }
             )
         }
 

@@ -1,5 +1,6 @@
 package com.pwr.wanderway.presentation.routeCore
 
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -10,7 +11,10 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -25,12 +29,15 @@ import com.pwr.wanderway.network.RouteImageType
 import com.pwr.wanderway.presentation.commons.ButtonColor
 import com.pwr.wanderway.presentation.commons.Loader
 import com.pwr.wanderway.presentation.commons.WideButton
+import com.pwr.wanderway.presentation.routeCore.composable.GoToForumDialog
 import com.pwr.wanderway.ui.theme.AppTheme
+import com.pwr.wanderway.utils.notifications.showNotification
 import kotlinx.coroutines.launch
 
 @Composable
 fun RouteDisplayScreen(
     buildYourOwnRouteNav: () -> Unit,
+    forumAdditionNav: () -> Unit,
     routeId: String,
     routeViewModel: RouteViewModel,
 ) {
@@ -38,14 +45,14 @@ fun RouteDisplayScreen(
     val coroutineScope = rememberCoroutineScope()
 
     val loading by routeViewModel.loading.collectAsState()
-
+    var showDialog by remember { mutableStateOf(false) }
     if (loading) {
         Loader()
-    } else
+    } else {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(16.dp),
+            .padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             Image(
@@ -80,11 +87,32 @@ fun RouteDisplayScreen(
                 onClick = {
                     coroutineScope.launch {
                         routeViewModel.redirectToGoogleMaps(routeId.toInt(), context)
+                        showDialog = true
+                        showNotification(
+                            context,
+                            "Your route has started! Redirecting to Google maps",
+                            "Have a great time!"
+                        )
+                        Toast.makeText(
+                            context,
+                            "Redirecting to Google maps",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
+
                 },
                 colorType = ButtonColor.PRIMARY
             )
         }
+        if (showDialog) {
+            GoToForumDialog {
+                showDialog = false
+                forumAdditionNav()
+            }
+        }
+
+
+    }
 }
 
 @Preview
@@ -95,6 +123,7 @@ fun RouteDisplayScreenPreview() {
             RouteDisplayScreen(
                 routeId = "1",
                 buildYourOwnRouteNav = {},
+                forumAdditionNav = {},
                 routeViewModel = hiltViewModel()
             )
         }

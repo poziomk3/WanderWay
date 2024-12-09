@@ -1,8 +1,9 @@
 package com.pwr.wanderway.presentation.commons
 
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -58,13 +59,14 @@ fun WideButton(
     onClick: (() -> Unit)? = null
 ) {
     val colors = buttonColor(colorType)
-    ElevatedButton(
+    Button(
         elevation = ButtonDefaults.elevatedButtonElevation(
             defaultElevation = 16.dp
         ),
         enabled = enabled,
         onClick = { onClick?.invoke() },
-        colors = ButtonDefaults.elevatedButtonColors(
+        shape = RoundedCornerShape(8.dp),
+        colors = ButtonDefaults.buttonColors(
             containerColor = colors.first,
             contentColor = colors.second,
         ),

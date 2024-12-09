@@ -55,7 +55,7 @@ fun RouteChoiceScreen(
                         painter = rememberAsyncImagePainter(
                             ImgUrl.getRouteImg(
                                 routeId,
-                                RouteImageType.HYBRID
+                                RouteImageType.ROADMAP
                             )
                         ),
                         contentDescription = "Route Image",

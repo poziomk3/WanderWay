@@ -171,7 +171,7 @@ fun LocationAdditionScreen(
                                     selectedPoi = poi // Update the selected POI state
                                     true
                                 }, icon = if (poi == selectedPoi) {
-                                    BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)
+                                    BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)
                                 } else {
                                     BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)
                                 }
@@ -213,7 +213,8 @@ fun LocationAdditionScreen(
                         }
                         backNav()
                     },
-                    colorType = ButtonColor.PRIMARY
+                    colorType = ButtonColor.PRIMARY,
+                    enabled = selectedPoi != null
                 )
 
             }

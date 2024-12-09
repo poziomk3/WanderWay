@@ -11,6 +11,7 @@
     <string name="top_bar_route_display">Route in progress!</string>
     <string name="top_bar_default">Wander Way!</string>
     <string name="top_bar_add_location">Choose location!</string>
+    <string name="top_bar_forum_addition">Add to our forum!</string>
 
     <!--    bottombars-->
     <string name="bottom_bar_home">Home</string>
@@ -40,8 +41,12 @@
     <string name="preferences_screen_button_1">Go to advanced options</string>
     <string name="preferences_screen_button_2">Save</string>
     <!--    route display screen-->
-    <string name="route_display_screen_restart">Create again!</string>
-    <string name="route_display_modify_route">AAlter route!</string>
+    <string name="route_display_screen_restart">Create again</string>
+    <string name="route_display_screen_modify_route">Alter route</string>
+    <string name="route_display_screen_notification_title">Your route has started! Redirecting to Google maps</string>
+    <string name="route_display_screen_notification_message">Have a great time!</string>
+    <string name="route_display_screen_toast_message">Redirecting to Google maps</string>
+    <string name="route_display_screen_go_for_it">Go for it!</string>
 
     <!--    route choice screen-->
     <string name="route_choice_screen_route">Route</string>
@@ -50,6 +55,7 @@
     <!--add location screen-->
     <string name="add_location_screen_button">Add it!</string>
     <string name="add_location_screen_description">Type in the name of the attraction \nor find a place on the map</string>
+    <string name="add_location_search_placeholder">Search…</string>
 
     <!--build your route screen-->
     <string name="build_your_route_screen_change_your_personal_preferences">Change your personal preferences</string>
@@ -59,7 +65,7 @@
     <string name="build_your_route_screen_trip_overview">Trip overview</string>
     <string name="build_your_route_screen_starting_in">Starting in:</string>
     <string name="build_your_route_screen_finishing_in">Finishing in:</string>
-    <string name="build_your_route_screen_attractions_not_seen_yet">Attractions not seen yet:</string>
+    <string name="build_your_route_screen_attractions_in_route">Attractions in route:</string>
 
     <!--    forum screen-->
 
@@ -133,16 +139,5 @@
     <string name="preference_option_relaxing">Relaxing</string>
     <string name="preference_option_adventurous">Adventurous</string>
     <string name="preference_option_educational">Educational</string>
-
-
-
-
-
-
-<!--    do posprzatania-->
-    <string name="route_display_go_for_it">Go for it!</string>
-    <string name="add_location_screen_deselect_button">Unselect</string>
-    <string name="top_bar_forum_addition">Add to our forum!</string>
-    <!--keys-->
 
 </resources>

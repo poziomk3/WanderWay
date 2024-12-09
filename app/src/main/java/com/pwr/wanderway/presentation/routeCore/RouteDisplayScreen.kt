@@ -52,8 +52,8 @@ fun RouteDisplayScreen(
         Column(
             modifier = Modifier
                 .fillMaxSize()
-            .padding(16.dp),
-            verticalArrangement = Arrangement.spacedBy(16.dp)
+                .padding(16.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             Image(
                 painter = rememberAsyncImagePainter(
@@ -69,33 +69,40 @@ fun RouteDisplayScreen(
                     .weight(1f)
             )
 
+            Column (
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(0.dp, 0.dp, 0.dp, 30.dp)
+            ) {
+                WideButton(
+                    text = stringResource(id = R.string.route_display_screen_restart),
+                    onClick = {
+                        routeViewModel.emptyPointsOfInterest()
+                        buildYourOwnRouteNav()
+                    },
+                    colorType = ButtonColor.SECONDARY
+                )
+                WideButton(
+                    text = stringResource(id = R.string.route_display_screen_modify_route),
+                    onClick = { buildYourOwnRouteNav() },
+                    colorType = ButtonColor.SECONDARY
+                )
+            }
+
             WideButton(
-                text = stringResource(id = R.string.route_display_screen_restart),
-                onClick = {
-                    routeViewModel.emptyPointsOfInterest()
-                    buildYourOwnRouteNav()
-                },
-                colorType = ButtonColor.ERROR
-            )
-            WideButton(
-                text = stringResource(id = R.string.route_display_modify_route),
-                onClick = { buildYourOwnRouteNav() },
-                colorType = ButtonColor.SECONDARY
-            )
-            WideButton(
-                text = stringResource(id = R.string.route_display_go_for_it),
+                text = stringResource(id = R.string.route_display_screen_go_for_it),
                 onClick = {
                     coroutineScope.launch {
                         routeViewModel.redirectToGoogleMaps(routeId.toInt(), context)
                         showDialog = true
                         showNotification(
                             context,
-                            "Your route has started! Redirecting to Google maps",
-                            "Have a great time!"
+                            context.getString(R.string.route_display_screen_notification_title),
+                            context.getString(R.string.route_display_screen_notification_message)
                         )
                         Toast.makeText(
                             context,
-                            "Redirecting to Google maps",
+                            context.getString(R.string.route_display_screen_toast_message),
                             Toast.LENGTH_SHORT
                         ).show()
                     }

@@ -14,6 +14,7 @@ import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import com.pwr.wanderway.R
 import com.pwr.wanderway.navigation.Destination
@@ -54,7 +55,7 @@ fun BottomBar(
         modifier = Modifier
             .fillMaxWidth(),
         contentColor = MaterialTheme.colorScheme.onPrimary,
-        containerColor = MaterialTheme.colorScheme.secondary,
+        containerColor = Color(0xFF36512F),
     ) {
         navItems.forEach { (onClick, iconRes, labelRes, activeDestination) ->
             NavigationBarItem(
@@ -69,15 +70,15 @@ fun BottomBar(
                     )
                 },
                 colors = NavigationBarItemDefaults.colors(
-                    indicatorColor = MaterialTheme.colorScheme.outlineVariant,
-                    unselectedIconColor = MaterialTheme.colorScheme.onPrimary,
-                    selectedTextColor = MaterialTheme.colorScheme.onPrimary,
-                    selectedIconColor = MaterialTheme.colorScheme.scrim
+                    indicatorColor = MaterialTheme.colorScheme.primary,
+                    unselectedIconColor = Color.White,
+                    selectedTextColor = Color.White,
+                    selectedIconColor = MaterialTheme.colorScheme.onPrimary,
+                    unselectedTextColor = Color.White
                 ),
                 label = {
                     Text(
-                        stringResource(labelRes),
-                        color = MaterialTheme.colorScheme.onPrimary
+                        stringResource(labelRes)
                     )
                 }
             )

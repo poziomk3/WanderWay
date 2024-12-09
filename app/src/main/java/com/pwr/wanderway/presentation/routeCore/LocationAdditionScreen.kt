@@ -9,7 +9,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Button
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ZoomOut
+import androidx.compose.material.icons.outlined.Info
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -21,6 +25,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.produceState
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
@@ -144,39 +149,62 @@ fun LocationAdditionScreen(
                         .background(Color.Red)
                 )
 
-                GoogleMap(
+                Box(
                     modifier = Modifier
-                        .shadow(8.dp)
                         .fillMaxWidth()
-                        .weight(1f),
-                    cameraPositionState = cameraPositionState
+                        .weight(1f)
                 ) {
-                    poiList.forEach { poi ->
-                        Marker(
-                            state = MarkerState(
-                                position = LatLng(poi.latitude, poi.longitude),
-                            ),
-                            title = poi.name,
-                            snippet = poi.description,
-                            onClick = {
-                                selectedPoi = poi // Update the selected POI state
-                                true
-                            }, icon = if (poi == selectedPoi) {
-                                BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)
-                            } else {
-                                BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)
+                    GoogleMap(
+                        modifier = Modifier
+                            .shadow(8.dp)
+                            .fillMaxSize(),
+                        cameraPositionState = cameraPositionState
+                    ) {
+                        poiList.forEach { poi ->
+                            Marker(
+                                state = MarkerState(
+                                    position = LatLng(poi.latitude, poi.longitude),
+                                ),
+                                title = poi.name,
+                                snippet = poi.description,
+                                onClick = {
+                                    selectedPoi = poi // Update the selected POI state
+                                    true
+                                }, icon = if (poi == selectedPoi) {
+                                    BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)
+                                } else {
+                                    BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)
+                                }
+                            )
+                        }
+                    }
+
+                    Column(
+                        modifier = Modifier
+                            .align(Alignment.BottomStart)
+                            .padding(16.dp),
+                        verticalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+
+                        if (selectedPoi != null) {
+                            FloatingActionButton(
+                                onClick = {
+                                    showDialog = true
+                                }
+                            ) {
+                                Icon(Icons.Outlined.Info, contentDescription = "Zoom Out")
                             }
-                        )
+                        }
+
+                        FloatingActionButton(
+                            onClick = {
+                                selectedPoi = null
+                            }
+                        ) {
+                            Icon(Icons.Filled.ZoomOut, contentDescription = "Deselect")
+                        }
                     }
                 }
-
-                WideButton(
-                    text = stringResource(id = R.string.add_location_screen_deselect_button),
-                    onClick = {
-                        selectedPoi = null
-                    },
-                    colorType = ButtonColor.SECONDARY // Use a secondary color for deselection
-                )
                 WideButton(
                     text = stringResource(id = R.string.add_location_screen_button),
                     onClick = {
@@ -185,19 +213,9 @@ fun LocationAdditionScreen(
                         }
                         backNav()
                     },
-                    colorType = ButtonColor.PRIMARY
+                    colorType = ButtonColor.PRIMARY,
+                    enabled = selectedPoi != null
                 )
-                Button(
-                    onClick = {
-                        showDialog = true
-                    },
-                    enabled = selectedPoi != null, // Disable the button if no POI is selected
-                    modifier = Modifier
-                        .padding(8.dp)
-                ) {
-                    Text("See Attraction Details")
-                }
-
 
             }
             Box(
@@ -211,7 +229,7 @@ fun LocationAdditionScreen(
                         SearchBarItem(
                             id = it.id.toString(),
                             name = it.name,
-                            additionalInfo = it.description ?: "No description"
+                            additionalInfo = it.description
                         )
                     },
                     onSearch = { id ->

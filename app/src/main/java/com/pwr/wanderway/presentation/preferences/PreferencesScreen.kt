@@ -71,8 +71,8 @@ fun PreferencesContent(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(start = 16.dp, end = 8.dp, bottom = 6.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+            .padding(top = 8.dp, start = 8.dp, end = 8.dp, bottom = 8.dp),
+        verticalArrangement = Arrangement.spacedBy(0.dp)
     ) {
         LazyColumn(
             modifier = Modifier

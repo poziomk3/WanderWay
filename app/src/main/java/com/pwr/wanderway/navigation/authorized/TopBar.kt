@@ -10,9 +10,12 @@ import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBarColors
 import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.TopAppBarDefaults.topAppBarColors
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
@@ -32,16 +35,16 @@ fun TopBar(
 ) {
     Surface(
         modifier = Modifier
-            .shadow(18.dp) // Elevation
-            .background(Color.White) // Background color for bar
-            .border(
-                width = 1.dp,
-                color = Color.LightGray, // Bottom border color
-                shape = RoundedCornerShape(0.dp)
-            ),
+            .shadow(10.dp)
     ) {
         CenterAlignedTopAppBar(
-            colors = TopAppBarDefaults.centerAlignedTopAppBarColors(),
+            colors = TopAppBarColors(
+                containerColor = MaterialTheme.colorScheme.secondaryContainer,
+                scrolledContainerColor = MaterialTheme.colorScheme.secondaryContainer,
+                navigationIconContentColor = MaterialTheme.colorScheme.onSecondaryContainer,
+                titleContentColor = MaterialTheme.colorScheme.onSecondaryContainer,
+                actionIconContentColor = MaterialTheme.colorScheme.onSecondaryContainer,
+            ),
             title = {
                 Text(
                     topBarDisplayNames[route]?.let { stringResource(id = it) } ?: "",

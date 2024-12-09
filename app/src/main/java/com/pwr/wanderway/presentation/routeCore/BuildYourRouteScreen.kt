@@ -75,7 +75,11 @@ fun BuildYourRouteScreen(
 
         // List of points of interest
         DestInfo(
-            label = stringResource(R.string.build_your_route_screen_attractions_not_seen_yet),
+            label = if (collectedPointsOfInterest.isNotEmpty()) {
+                stringResource(R.string.build_your_route_screen_attractions_in_route)
+            } else {
+                ""
+            },
             contents = {
                 LazyColumn(
                 ) {

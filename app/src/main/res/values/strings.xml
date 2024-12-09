@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">WanderWay</string>
+    <string name="app_name" translatable="false">WanderWay</string>
 
     <!--    topbars-->
     <string name="top_bar_home">Ready for adventure?</string>
@@ -9,12 +9,13 @@
     <string name="top_bar_preferences">Your preferences</string>
     <string name="top_bar_route_choice">We generated routes for you!</string>
     <string name="top_bar_route_display">Route in progress!</string>
-    <string name="top_bar_default">Wander Way!</string>
+    <string name="top_bar_default" translatable="false">Wander Way!</string>
     <string name="top_bar_add_location">Choose location!</string>
     <string name="top_bar_forum_addition">Add to our forum!</string>
+    <string name="top_bar_language_settings">Language Settings</string>
 
     <!--    bottombars-->
-    <string name="bottom_bar_home">Home</string>
+    <string name="bottom_bar_home" translatable="false">Home</string>
     <string name="bottom_bar_forum">Forum</string>
     <string name="bottom_bar_account">Account</string>
 
@@ -27,7 +28,7 @@
     <string name="entry_screen_label_login">Log in!</string>
     <string name="entry_screen_go_back">Go back</string>
     <string name="entry_screen_password">Password</string>
-    <string name="entry_screen_email">Email</string>
+    <string name="entry_screen_email" translatable="false">Email</string>
     <string name="entry_screen_button_ok">Got it!</string>
     <string name="entry_screen_repeat_password">Repeat password</string>
     <string name="entry_screen_title_activate_account">Activate your account!</string>
@@ -43,7 +44,7 @@
     <!--    route display screen-->
     <string name="route_display_screen_restart">Create again</string>
     <string name="route_display_screen_modify_route">Alter route</string>
-    <string name="route_display_screen_notification_title">Your route has started! Redirecting to Google maps</string>
+    <string name="route_display_screen_notification_title">Your route has started! Redirecting to Google Maps</string>
     <string name="route_display_screen_notification_message">Have a great time!</string>
     <string name="route_display_screen_toast_message">Redirecting to Google maps</string>
     <string name="route_display_screen_go_for_it">Go for it!</string>
@@ -66,6 +67,7 @@
     <string name="build_your_route_screen_starting_in">Starting in:</string>
     <string name="build_your_route_screen_finishing_in">Finishing in:</string>
     <string name="build_your_route_screen_attractions_in_route">Attractions in route:</string>
+    <string name="build_your_route_screen_add_destinations_first">You need to add some destinations first</string>
 
     <!--    forum screen-->
 
@@ -88,7 +90,7 @@
     <string name="preference_category_group">Group type</string>
     <string name="preference_category_difficulty">Difficulty level</string>
     <string name="preference_category_weather">Preferred weather</string>
-    <string name="preference_category_transport">Preferred transport</string>
+    <string name="preference_category_transport">Preferred means of transport</string>
     <string name="preference_category_meal">Meal preferences</string>
     <string name="preference_category_budget">Budget range</string>
     <string name="preference_category_activity">Activity preferences</string>

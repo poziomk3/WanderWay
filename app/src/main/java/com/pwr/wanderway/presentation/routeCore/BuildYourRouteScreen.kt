@@ -78,7 +78,7 @@ fun BuildYourRouteScreen(
             label = if (collectedPointsOfInterest.isNotEmpty()) {
                 stringResource(R.string.build_your_route_screen_attractions_in_route)
             } else {
-                ""
+                stringResource(R.string.build_your_route_screen_add_destinations_first)
             },
             contents = {
                 LazyColumn(

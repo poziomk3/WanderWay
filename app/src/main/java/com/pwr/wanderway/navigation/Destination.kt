@@ -16,7 +16,8 @@ enum class Destination(val route: String) {
     LOCATION_ADDITION_SCREEN("LocationAdditionScreen"),
     FORUM_HOME_SCREEN("Forum"),
     FORUM_ADDITION_SCREEN("ForumAddition"),
-    ACCOUNT_SETTINGS_SCREEN("AccountSettings");
+    ACCOUNT_SETTINGS_SCREEN("AccountSettings"),
+    LANGUAGE_SETTINGS_SCREEN("LanguageSettingsScreen");
 
 
 

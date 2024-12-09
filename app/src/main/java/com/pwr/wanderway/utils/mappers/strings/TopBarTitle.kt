@@ -12,5 +12,6 @@ val topBarDisplayNames = mapOf(
     Destination.ROUTE_CHOICE_SCREEN to R.string.top_bar_route_choice,
     Destination.ROUTE_DISPLAY_SCREEN to R.string.top_bar_route_display,
     Destination.LOCATION_ADDITION_SCREEN to R.string.top_bar_add_location,
-    Destination.FORUM_ADDITION_SCREEN to R.string.top_bar_forum_addition
+    Destination.FORUM_ADDITION_SCREEN to R.string.top_bar_forum_addition,
+    Destination.LANGUAGE_SETTINGS_SCREEN to R.string.top_bar_language_settings
 )

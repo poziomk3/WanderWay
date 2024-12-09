@@ -10,6 +10,7 @@ import com.pwr.wanderway.navigation.Destination
 import com.pwr.wanderway.navigation.extended.composable
 import com.pwr.wanderway.navigation.extended.navigateTo
 import com.pwr.wanderway.presentation.accountSettings.SettingsScreen
+import com.pwr.wanderway.presentation.accountSettings.settings.LanguageSettingsScreen
 import com.pwr.wanderway.presentation.forum.ForumAdditionScreen
 import com.pwr.wanderway.presentation.forum.ForumHomeScreen
 import com.pwr.wanderway.presentation.preferences.PreferencesScreen
@@ -61,7 +62,10 @@ fun AuthorizedNavGraph(
                 navController.navigateTo(Destination.PREFERENCES_SCREEN)
             }, logout = {
                 moveToUnauthorized()
-            })
+            }, languageOnClick = {
+                    navController.navigateTo(Destination.LANGUAGE_SETTINGS_SCREEN)
+            }
+            )
         }
         composable(Destination.PREFERENCES_SCREEN) {
             PreferencesScreen(
@@ -111,6 +115,13 @@ fun AuthorizedNavGraph(
             ForumAdditionScreen(
                 forumHomeNav = {
                     navController.navigateTo(Destination.FORUM_HOME_SCREEN)
+                }
+            )
+        }
+        composable(Destination.LANGUAGE_SETTINGS_SCREEN) {
+            LanguageSettingsScreen(
+                backNav = {
+                    navController.popBackStack()
                 }
             )
         }

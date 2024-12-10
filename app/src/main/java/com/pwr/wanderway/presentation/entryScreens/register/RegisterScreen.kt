@@ -95,7 +95,7 @@ fun RegisterScreen(
                         Text("")
                 }
                 if (isLoading) {
-                    Loader()
+                    Loader(color = MaterialTheme.colorScheme.onPrimary)
                 }
             }
         },

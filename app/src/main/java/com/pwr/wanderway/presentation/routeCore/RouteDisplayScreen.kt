@@ -112,10 +112,15 @@ fun RouteDisplayScreen(
             )
         }
         if (showDialog) {
-            GoToForumDialog {
-                showDialog = false
-                forumAdditionNav()
-            }
+            GoToForumDialog(
+                close = {
+                    showDialog = false
+                },
+                goToForum = {
+                    showDialog = false
+                    forumAdditionNav()
+                }
+            )
         }
 
 

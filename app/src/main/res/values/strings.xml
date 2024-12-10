@@ -48,6 +48,9 @@
     <string name="route_display_screen_notification_message">Have a great time!</string>
     <string name="route_display_screen_toast_message">Redirecting to Google maps</string>
     <string name="route_display_screen_go_for_it">Go for it!</string>
+    <string name="route_display_screen_rate_this_route">Rate this route on the forum!</string>
+    <string name="route_display_screen_dismiss_dialog">No thanks</string>
+    <string name="route_display_screen_go_to_forum">Go to forum</string>
 
     <!--    route choice screen-->
     <string name="route_choice_screen_route">Route</string>

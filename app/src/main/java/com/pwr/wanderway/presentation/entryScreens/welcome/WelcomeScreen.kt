@@ -1,6 +1,7 @@
 package com.pwr.wanderway.presentation.entryScreens.welcome
 
 import androidx.compose.foundation.layout.Box
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -37,7 +38,7 @@ fun WelcomeScreen(
 
 
     if (isCheckingLogin) {
-        Loader()
+        Loader(color = MaterialTheme.colorScheme.onPrimary)
     } else {
         EntryScreenLayout(
             title = stringResource(id = R.string.entry_screen_title),

@@ -64,7 +64,8 @@ fun BuildYourRouteScreen(
             onClick = {
                 routeChoiceNav()
             },
-            colorType = ButtonColor.PRIMARY
+            colorType = ButtonColor.PRIMARY,
+            enabled = collectedPointsOfInterest.isNotEmpty()
         )
 
         // Trip overview header

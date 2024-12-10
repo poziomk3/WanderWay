@@ -33,6 +33,7 @@
     <string name="route_display_screen_notification_message">Miłego zwiedzania!</string>
     <string name="route_display_screen_toast_message">Przekierowywanie do Google Maps</string>
     <string name="route_display_screen_go_for_it">No to w drogę!</string>
+    <string name="route_display_screen_go_to_forum">Przejdź do forum</string>
     <string name="route_choice_screen_route">Trasa</string>
     <string name="route_choice_screen_button_details">Szczegóły</string>
     <string name="route_choice_screen_button_ok">No to w drogę!</string>
@@ -96,4 +97,6 @@
     <string name="preference_option_educational">Edukacyjne</string>
     <string name="top_bar_language_settings">Ustawienia języka</string>
     <string name="build_your_route_screen_add_destinations_first">Musisz wpierw dodać parę atrakcji</string>
+    <string name="route_display_screen_rate_this_route">Oceń tą trasę na forum!</string>
+    <string name="route_display_screen_dismiss_dialog">Nie, dziękuję</string>
 </resources>

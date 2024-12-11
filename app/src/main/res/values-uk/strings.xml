@@ -142,4 +142,12 @@
     <string name="themes_high_contrast_dark">Високий Контраст Темна</string>
     <string name="top_bar_theme_settings">Тема</string>
 
+    <string name="forum_addition_screen_route_id">Ідентифікатор маршруту</string>
+    <string name="forum_addition_screen_post_title">Заголовок допису</string>
+    <string name="forum_addition_screen_post_content">Зміст допису</string>
+    <string name="forum_addition_screen_rating">Ваш рейтинг!</string>
+    <string name="forum_post_screen_route_button">Показати маршрут!</string>
+    <string name="top_bar_forum_post">Деталі допису</string>
+
+
 </resources>

@@ -141,5 +141,12 @@
     <string name="themes_medium_contrast_dark">Mittlerer Kontrast Dunkel</string>
     <string name="themes_high_contrast_dark">Hoher Kontrast Dunkel</string>
     <string name="top_bar_theme_settings">Theme</string>
+    <string name="forum_addition_screen_route_id">Routen-ID</string>
+    <string name="forum_addition_screen_post_title">Beitragstitel</string>
+    <string name="forum_addition_screen_post_content">Beitragsinhalt</string>
+    <string name="forum_addition_screen_rating">Ihre Bewertung!</string>
+    <string name="forum_post_screen_route_button">Route anzeigen!</string>
+    <string name="top_bar_forum_post">Beitragsdetails</string>
+
 </resources>
 

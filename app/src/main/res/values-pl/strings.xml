@@ -113,4 +113,12 @@
     <string name="themes_medium_contrast_dark">Średni Kontrast Ciemny</string>
     <string name="themes_high_contrast_dark">Wysoki Kontrast Ciemny</string>
     <string name="top_bar_theme_settings">Motyw</string>
+
+    <string name="forum_addition_screen_route_id">ID Trasy</string>
+    <string name="forum_addition_screen_post_title">Tytuł Postu</string>
+    <string name="forum_addition_screen_post_content">Treść Postu</string>
+    <string name="forum_addition_screen_rating">Twoja ocena!</string>
+    <string name="forum_post_screen_route_button">Pokaż Trasę!</string>
+    <string name="top_bar_forum_post">Szczegóły Postu</string>
+
 </resources>

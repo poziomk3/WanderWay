@@ -40,7 +40,7 @@ import kotlinx.coroutines.launch
 fun RouteDisplayScreen(
     buildYourOwnRouteNav: () -> Unit,
     forumAdditionNav: () -> Unit,
-    routeId: String,
+    routeId: Int,
     routeViewModel: RouteViewModel,
 ) {
     val context = LocalContext.current
@@ -150,7 +150,7 @@ fun RouteDisplayScreenPreview() {
     AppTheme {
         Surface {
             RouteDisplayScreen(
-                routeId = "1",
+                routeId = 0,
                 buildYourOwnRouteNav = {},
                 forumAdditionNav = {},
                 routeViewModel = hiltViewModel()

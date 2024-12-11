@@ -3,6 +3,8 @@ package com.pwr.wanderway.network
 import com.pwr.wanderway.data.model.LoginRequest
 import com.pwr.wanderway.data.model.RegisterRequest
 import com.pwr.wanderway.data.model.TokenResponse
+import com.pwr.wanderway.data.model.api.forum.AllPostsDTO
+import com.pwr.wanderway.data.model.api.forum.CreatedPost
 import com.pwr.wanderway.data.model.api.route.AllPOIsDTO
 import com.pwr.wanderway.data.model.api.route.RouteGenerateDTO
 import com.pwr.wanderway.data.model.api.route.RouteGenerateRequest
@@ -15,7 +17,7 @@ import retrofit2.http.Path
 
 interface ApiService {
     @POST("/auth/dj-rest-auth/registration/")
-    suspend fun register(@Body registrationData: RegisterRequest):Response<RegisterRequest>
+    suspend fun register(@Body registrationData: RegisterRequest): Response<RegisterRequest>
 
     @POST("/auth/token/")
     suspend fun login(@Body loginData: LoginRequest): Response<TokenResponse>
@@ -33,4 +35,13 @@ interface ApiService {
 
     @GET("/route/{id}")
     suspend fun getRouteById(@Path("id") id: Int): Response<ResponseBody>
+
+    @GET("/forum/getPosts")
+    suspend fun getForumPosts(): Response<AllPostsDTO>
+
+    @POST("/forum/post/{routeId}/")
+    suspend fun addForumPost(
+        @Path("routeId") routeId: Int,
+        @Body post: CreatedPost,
+    ): Response<ResponseBody>
 }

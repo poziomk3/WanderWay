@@ -1,5 +1,7 @@
 package com.pwr.wanderway.navigation.authorized
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -14,6 +16,7 @@ import com.pwr.wanderway.presentation.accountSettings.SettingsScreen
 import com.pwr.wanderway.presentation.accountSettings.ThemeSettingsScreen
 import com.pwr.wanderway.presentation.forum.ForumAdditionScreen
 import com.pwr.wanderway.presentation.forum.ForumHomeScreen
+import com.pwr.wanderway.presentation.forum.ForumPostScreen
 import com.pwr.wanderway.presentation.preferences.PreferencesScreen
 import com.pwr.wanderway.presentation.routeCore.BuildYourRouteScreen
 import com.pwr.wanderway.presentation.routeCore.HomeScreen
@@ -22,6 +25,7 @@ import com.pwr.wanderway.presentation.routeCore.RouteChoiceScreen
 import com.pwr.wanderway.presentation.routeCore.RouteDisplayScreen
 import com.pwr.wanderway.presentation.routeCore.RouteViewModel
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun AuthorizedNavGraph(
     navController: NavHostController,
@@ -87,28 +91,67 @@ fun AuthorizedNavGraph(
                     navController.navigateTo(Destination.BUILD_YOUR_OWN_ROUTE_SCREEN)
                 },
                 forumAdditionNav = {
-                    navController.navigateTo(Destination.FORUM_ADDITION_SCREEN)
+                    navController.navigate(
+                        Destination.createRouteWithArgument(
+                            Destination.FORUM_ADDITION_SCREEN,
+                            routeId
+                        )
+                    )
                 },
                 routeViewModel =
                 routeViewModel,
-                routeId = routeId // Pass the extracted routeId
+                routeId = routeId.toInt() // Pass the extracted routeId
             )
         }
 
         composable(Destination.FORUM_HOME_SCREEN) {
             ForumHomeScreen(
-                forumAdditionNav = {
-                    navController.navigateTo(Destination.FORUM_ADDITION_SCREEN)
+                forumPostNav = { id ->
+                    navController.navigate(
+                        Destination.createRouteWithArgument(
+                            Destination.FORUM_POST_SCREEN,
+                            id.toString()
+                        )
+                    )
                 }
             )
         }
-        composable(Destination.FORUM_ADDITION_SCREEN) {
+
+        composable(
+            route = Destination.FORUM_ADDITION_SCREEN.route,
+            arguments = listOf(navArgument("routeId") { type = NavType.StringType })
+        ) { backStackEntry ->
+            val routeId = backStackEntry.arguments?.getString("routeId") ?: ""
             ForumAdditionScreen(
+                routeId = routeId.toInt(),
                 forumHomeNav = {
                     navController.navigateTo(Destination.FORUM_HOME_SCREEN)
                 }
             )
         }
+
+
+        composable(
+            route = Destination.FORUM_POST_SCREEN.route,
+            arguments = listOf(navArgument("routeId") { type = NavType.StringType })
+        ) { backStackEntry ->
+            val routeId = backStackEntry.arguments?.getString("routeId") ?: ""
+            ForumPostScreen(
+                postId = routeId.toInt(),
+                routeDisplayNav = { id ->
+                    navController.navigate(
+                        Destination.createRouteWithArgument(
+                            Destination.ROUTE_DISPLAY_SCREEN,
+                            id.toString()
+                        )
+                    )
+                }
+            )
+        }
+
+
+
+
         composable(Destination.LANGUAGE_SETTINGS_SCREEN) {
             LanguageSettingsScreen()
         }

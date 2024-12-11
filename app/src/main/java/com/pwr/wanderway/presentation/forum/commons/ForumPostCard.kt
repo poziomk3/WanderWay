@@ -1,5 +1,7 @@
 package com.pwr.wanderway.presentation.forum.commons
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -17,40 +19,36 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
+import com.pwr.wanderway.data.model.api.forum.PublicPost
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun ForumPostCard(
-    user: String,
-    routeName: String,
-    title: String,
-    imgUrl: String, // This could be an avatar or route image
-    onClick: () -> Unit
+    post: PublicPost, onClick: () -> Unit
 ) {
-    ElevatedCard(
-        elevation = CardDefaults.cardElevation(
-            defaultElevation = 20.dp
-        ),
-        modifier = Modifier
-            .fillMaxWidth()
-            .clickable { onClick() }
-    ) {
-        Column(
-            modifier = Modifier
-                .fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            // Image at the top
 
+    val (title, body, rating, id, routeId, author, date, img_url) = post
+    ElevatedCard(elevation = CardDefaults.cardElevation(
+        defaultElevation = 20.dp
+    ), modifier = Modifier
+        .fillMaxWidth()
+        .clickable { onClick() }) {
+        Column(
+            modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally
+        ) {
             Image(
-                painter = rememberAsyncImagePainter(imgUrl),
+                painter = rememberAsyncImagePainter(
+                    img_url
+                ),
                 contentDescription = "Route Image",
-                contentScale = ContentScale.Crop, // Ensures the image fills and crops appropriately
+                contentScale = ContentScale.Crop,
                 modifier = Modifier
-                    .height(200.dp) // Set the desired height
-                    .fillMaxWidth() // Make it span the full width
+                    .height(200.dp)
+                    .fillMaxWidth()
             )
             Column(
                 modifier = Modifier
@@ -61,40 +59,26 @@ fun ForumPostCard(
             ) {
                 Row(
                     modifier = Modifier
-                        .fillMaxWidth().padding(4.dp,0.dp),
+                        .fillMaxWidth()
+                        .padding(4.dp, 0.dp),
 
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     Text(
-                        text = user,
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis
+                        text = author, maxLines = 1, overflow = TextOverflow.Ellipsis
                     )
                     Text(
-                        text = routeName,
+                        text = date.toInstant().atZone(ZoneId.systemDefault())
+                            .format(DateTimeFormatter.ofPattern("dd.MM.yyyy")),
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis
                     )
                 }
-                Text(
-                    text = title,
-                    overflow = TextOverflow.Ellipsis,
-                    modifier = Modifier.padding(bottom = 4.dp),
-                )
+                StarRatingBar(rating = rating, onRatingChanged = {})
 
             }
         }
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun PreviewForumPostCard() {
-    ForumPostCard(
-        user = "John Doe",
-        routeName = "Trail to Blue Lake",
-        title = "Spectacular Views at Blue Lake",
-        imgUrl = "https://media.geeksforgeeks.org/wp-content/uploads/20210101144014/gfglogo.png", // Placeholder image
-        onClick = { /* Handle click */ }
-    )
-}
+

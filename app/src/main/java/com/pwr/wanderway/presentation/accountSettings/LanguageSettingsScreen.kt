@@ -65,11 +65,11 @@ fun LanguageSettingsScreen(
                         onClick = { selectedLocale = locale }
                     )
                     Text(
-                        text = getFlagByLocaleCode(language.localeCode),
+                        text = getFlagByLocaleCode(language.code),
                         modifier = Modifier.padding(start = 8.dp)
                     )
                     Text(
-                        text = locale.displayLanguage,
+                        text = locale.getDisplayName(locale),
                         modifier = Modifier.padding(start = 8.dp)
                     )
                 }

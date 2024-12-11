@@ -40,7 +40,7 @@ import kotlinx.coroutines.launch
 fun RouteDisplayScreen(
     buildYourOwnRouteNav: () -> Unit,
     forumAdditionNav: () -> Unit,
-    routeId: String,
+    routeId: Int,
     routeViewModel: RouteViewModel,
 ) {
     val context = LocalContext.current
@@ -60,7 +60,7 @@ fun RouteDisplayScreen(
             Image(
                 painter = rememberAsyncImagePainter(
                     ImgUrl.getRouteImg(
-                        routeId.toInt(),
+                        routeId,
                         RouteImageType.HYBRID
                     )
                 ),
@@ -95,7 +95,7 @@ fun RouteDisplayScreen(
                 text = stringResource(id = R.string.route_display_screen_go_for_it),
                 onClick = {
                     coroutineScope.launch {
-                        routeViewModel.redirectToGoogleMaps(routeId.toInt(), context)
+                        routeViewModel.redirectToGoogleMaps(routeId, context)
                         showDialog = true
                         showNotification(
                             context,
@@ -150,7 +150,7 @@ fun RouteDisplayScreenPreview() {
     AppTheme {
         Surface {
             RouteDisplayScreen(
-                routeId = "1",
+                routeId = 0,
                 buildYourOwnRouteNav = {},
                 forumAdditionNav = {},
                 routeViewModel = hiltViewModel()

@@ -161,5 +161,11 @@
     <string name="themes_medium_contrast_dark">Medium Contrast Dark</string>
     <string name="themes_high_contrast_dark">High Contrast Dark</string>
     <string name="top_bar_theme_settings">Theme</string>
+    <string name="forum_addition_screen_route_id">Route ID</string>
+    <string name="forum_addition_screen_post_title">Post Title</string>
+    <string name="forum_addition_screen_post_content">Post Content</string>
+    <string name="forum_addition_screen_rating">Your rating!</string>
+    <string name="forum_post_screen_route_button">Show Route!</string>
+    <string name="top_bar_forum_post">Post Details</string>
 
 </resources>

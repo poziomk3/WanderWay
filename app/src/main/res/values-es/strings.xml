@@ -162,4 +162,11 @@
     <string name="themes_high_contrast_dark">Alto Contraste Oscuro</string>
     <string name="top_bar_theme_settings">Tema</string>
 
+    <string name="forum_addition_screen_route_id">ID de Ruta</string>
+    <string name="forum_addition_screen_post_title">Título del Post</string>
+    <string name="forum_addition_screen_post_content">Contenido del Post</string>
+    <string name="forum_addition_screen_rating">¡Tu calificación!</string>
+    <string name="forum_post_screen_route_button">¡Mostrar Ruta!</string>
+    <string name="top_bar_forum_post">Detalles del Post</string>
+
 </resources>

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+
+    <!-- topbars -->
+    <string name="top_bar_home">Готові до пригод?</string>
+    <string name="top_bar_build_your_route">Побудуйте свій маршрут!</string>
+    <string name="top_bar_forum">Останні новини на форумі!</string>
+    <string name="top_bar_account_settings">Налаштування акаунту</string>
+    <string name="top_bar_preferences">Ваші вподобання</string>
+    <string name="top_bar_route_choice">Ми згенерували маршрути для вас!</string>
+    <string name="top_bar_route_display">Маршрут у процесі!</string>
+    <string name="top_bar_default" >Wander Way!</string>
+    <string name="top_bar_add_location">Виберіть місце!</string>
+    <string name="top_bar_forum_addition">Додайте щось на форум!</string>
+    <string name="top_bar_language_settings">Налаштування мови</string>
+
+    <!-- bottombars -->
+    <string name="bottom_bar_home" translatable="false">Головна</string>
+    <string name="bottom_bar_forum">Форум</string>
+    <string name="bottom_bar_account">Акаунт</string>
+
+    <!-- entry screens -->
+    <string name="entry_screen_title">Ласкаво просимо до WanderWay!</string>
+    <string name="entry_screen_subtitle">Давайте сплануємо вашу найкращу подорож!</string>
+    <string name="entry_screen_login">Увійти</string>
+    <string name="entry_screen_register">Зареєструватися</string>
+    <string name="entry_screen_label_login">Увійдіть!</string>
+    <string name="entry_screen_go_back">Повернутися</string>
+    <string name="entry_screen_password">Пароль</string>
+    <string name="entry_screen_email" translatable="false">Електронна пошта</string>
+    <string name="entry_screen_button_ok">Зрозуміло!</string>
+    <string name="entry_screen_repeat_password">Повторіть пароль</string>
+    <string name="entry_screen_title_activate_account">Активуйте свій акаунт!</string>
+    <string name="entry_screen_subtitle_activate_account">Ви незабаром отримаєте лист з підтвердженням.</string>
+
+    <!-- home screen -->
+    <string name="home_screen_label_1">Почнемо з простого запитання…</string>
+    <string name="home_screen_label_2">Що ви хочете побачити?</string>
+    <string name="home_screen_button">Поїхали!</string>
+
+    <!-- preferences screen -->
+    <string name="preferences_screen_button_1">Перейти до розширених опцій</string>
+    <string name="preferences_screen_button_2">Зберегти</string>
+
+    <!-- route display screen -->
+    <string name="route_display_screen_restart">Створити знову</string>
+    <string name="route_display_screen_modify_route">Змінити маршрут</string>
+    <string name="route_display_screen_notification_title">Ваш маршрут розпочато! Перенаправлення до Google Maps</string>
+    <string name="route_display_screen_notification_message">Гарної подорожі!</string>
+    <string name="route_display_screen_toast_message">Перенаправлення до Google Maps</string>
+    <string name="route_display_screen_go_for_it">Вперед!</string>
+    <string name="route_display_screen_rate_this_route">Оцініть цей маршрут на форумі!</string>
+    <string name="route_display_screen_dismiss_dialog">Ні, дякую</string>
+    <string name="route_display_screen_go_to_forum">Перейти на форум</string>
+
+    <!-- route choice screen -->
+    <string name="route_choice_screen_route">Маршрут</string>
+    <string name="route_choice_screen_button_details">Переглянути деталі!</string>
+    <string name="route_choice_screen_button_ok">Вперед!</string>
+
+    <!-- add location screen -->
+    <string name="add_location_screen_button">Додати!</string>
+    <string name="add_location_screen_description">Введіть назву місця \nабо знайдіть його на карті</string>
+    <string name="add_location_search_placeholder">Пошук…</string>
+
+    <!-- build your route screen -->
+    <string name="build_your_route_screen_change_your_personal_preferences">Змініть свої особисті вподобання</string>
+    <string name="build_your_route_screen_add_starting_point">Додайте початкову точку</string>
+    <string name="build_your_route_screen_add_destination">Додайте пункт призначення</string>
+    <string name="build_your_route_screen_create_route">Створити маршрут</string>
+    <string name="build_your_route_screen_trip_overview">Огляд подорожі</string>
+    <string name="build_your_route_screen_starting_in">Починається в:</string>
+    <string name="build_your_route_screen_finishing_in">Закінчується в:</string>
+    <string name="build_your_route_screen_attractions_in_route">Місця на маршруті:</string>
+    <string name="build_your_route_screen_add_destinations_first">Спочатку потрібно додати місця призначення</string>
+
+    <!-- settings -->
+    <string name="settings_preferences">Вподобання</string>
+    <string name="settings_language">Мова</string>
+    <string name="settings_notifications">Сповіщення</string>
+    <string name="settings_privacy">Приватність</string>
+    <string name="settings_security">Безпека</string>
+    <string name="settings_help">Допомога</string>
+    <string name="settings_delete_account">Видалити акаунт</string>
+    <string name="settings_logout">Вийти</string>
+
+    <!-- language settings -->
+    <string name="language_settings_screen_no_thanks">Ні, дякую</string>
+    <string name="language_settings_screen_restart">Перезапустити</string>
+    <string name="language_settings_screen_restart_prompt">Щоб зміни набрали чинності, потрібно перезапустити додаток. Хочете зробити це зараз?</string>
+    <string name="language_settings_screen_save">Зберегти</string>
+    <string name="language_settings_screen_restart_required">Потрібен перезапуск</string>
+
+    <!-- preferences -->
+    <string name="preference_category_duration">Тривалість подорожі</string>
+    <string name="preference_category_sightseeing">Тип огляду</string>
+    <string name="preference_category_group">Тип групи</string>
+    <string name="preference_category_difficulty">Рівень складності</string>
+    <string name="preference_category_weather">Улюблена погода</string>
+    <string name="preference_category_transport">Улюблений транспорт</string>
+    <string name="preference_category_meal">Вподобання в їжі</string>
+    <string name="preference_category_budget">Бюджет</string>
+    <string name="preference_category_activity">Тип діяльності</string>
+    <string name="preference_option_half_day">Пів дня</string>
+    <string name="preference_option_full_day">Цілий день</string>
+    <string name="preference_option_weekend">Вихідні</string>
+    <string name="preference_option_historical">Історичне</string>
+    <string name="preference_option_nature">Природа</string>
+    <string name="preference_option_modern_attractions">Сучасні пам\'ятки</string>
+    <string name="preference_option_solo">Самостійно</string>
+    <string name="preference_option_family">Сім\'я</string>
+    <string name="preference_option_friends">Друзі</string>
+    <string name="preference_option_tour_group">Туристична група</string>
+    <string name="preference_option_easy">Легко</string>
+    <string name="preference_option_moderate">Помірно</string>
+    <string name="preference_option_challenging">Важко</string>
+    <string name="preference_option_any">Будь-яка</string>
+    <string name="preference_option_sunny">Сонячна</string>
+    <string name="preference_option_cloudy">Хмарна</string>
+    <string name="preference_option_cool">Прохолодна</string>
+    <string name="preference_option_car">Автомобіль</string>
+    <string name="preference_option_public_transport">Громадський транспорт</string>
+    <string name="preference_option_bike">Велосипед</string>
+    <string name="preference_option_walking">Пішки</string>
+    <string name="preference_option_quick_snacks">Швидкі перекуси</string>
+    <string name="preference_option_local_cuisine">Місцева кухня</string>
+    <string name="preference_option_packed_lunch">Їжа з собою</string>
+    <string name="preference_option_low">Низький</string>
+    <string name="preference_option_medium">Середній</string>
+    <string name="preference_option_high">Високий</string>
+    <string name="preference_option_relaxing">Розслабляючий</string>
+    <string name="preference_option_adventurous">Пригодницький</string>
+    <string name="preference_option_educational">Освітній</string>
+</resources>

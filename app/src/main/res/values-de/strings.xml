@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+
+    <!-- topbars -->
+    <string name="top_bar_home">Bereit für Abenteuer?</string>
+    <string name="top_bar_build_your_route">Erstelle deine Route!</string>
+    <string name="top_bar_forum">Neueste im Forum!</string>
+    <string name="top_bar_account_settings">Kontoeinstellungen</string>
+    <string name="top_bar_preferences">Deine Vorlieben</string>
+    <string name="top_bar_route_choice">Wir haben Routen für dich generiert!</string>
+    <string name="top_bar_route_display">Route in Bearbeitung!</string>
+    <string name="top_bar_default" >Wander Way!</string>
+    <string name="top_bar_add_location">Ort auswählen!</string>
+    <string name="top_bar_forum_addition">Zum Forum hinzufügen!</string>
+    <string name="top_bar_language_settings">Spracheinstellungen</string>
+
+    <!-- bottombars -->
+    <string name="bottom_bar_home" >Start</string>
+    <string name="bottom_bar_forum">Forum</string>
+    <string name="bottom_bar_account">Konto</string>
+
+    <!-- entry screens -->
+    <string name="entry_screen_title">Willkommen bei WanderWay!</string>
+    <string name="entry_screen_subtitle">Lass uns deine beste Reise planen!</string>
+    <string name="entry_screen_login">Einloggen</string>
+    <string name="entry_screen_register">Registrieren</string>
+    <string name="entry_screen_label_login">Melde dich an!</string>
+    <string name="entry_screen_go_back">Zurück</string>
+    <string name="entry_screen_password">Passwort</string>
+    <string name="entry_screen_email">E-Mail</string>
+    <string name="entry_screen_button_ok">Alles klar!</string>
+    <string name="entry_screen_repeat_password">Passwort wiederholen</string>
+    <string name="entry_screen_title_activate_account">Aktiviere dein Konto!</string>
+    <string name="entry_screen_subtitle_activate_account">Du solltest bald eine Bestätigungs-E-Mail erhalten.</string>
+
+    <!-- home screen -->
+    <string name="home_screen_label_1">Fangen wir mit einer einfachen Frage an…</string>
+    <string name="home_screen_label_2">Was möchtest du sehen?</string>
+    <string name="home_screen_button">Los geht\'s!</string>
+
+    <!-- preferences screen -->
+    <string name="preferences_screen_button_1">Zu den erweiterten Optionen</string>
+    <string name="preferences_screen_button_2">Speichern</string>
+
+    <!-- route display screen -->
+    <string name="route_display_screen_restart">Erneut erstellen</string>
+    <string name="route_display_screen_modify_route">Route ändern</string>
+    <string name="route_display_screen_notification_title">Deine Route hat begonnen! Weiterleitung zu Google Maps</string>
+    <string name="route_display_screen_notification_message">Viel Spaß!</string>
+    <string name="route_display_screen_toast_message">Weiterleitung zu Google Maps</string>
+    <string name="route_display_screen_go_for_it">Los geht\'s!</string>
+    <string name="route_display_screen_rate_this_route">Bewerte diese Route im Forum!</string>
+    <string name="route_display_screen_dismiss_dialog">Nein, danke</string>
+    <string name="route_display_screen_go_to_forum">Zum Forum</string>
+
+    <!-- route choice screen -->
+    <string name="route_choice_screen_route">Route</string>
+    <string name="route_choice_screen_button_details">Details ansehen!</string>
+    <string name="route_choice_screen_button_ok">Los geht\'s!</string>
+
+    <!-- add location screen -->
+    <string name="add_location_screen_button">Hinzufügen!</string>
+    <string name="add_location_screen_description">Geben Sie den Namen der Attraktion ein \noder suchen Sie einen Ort auf der Karte</string>
+    <string name="add_location_search_placeholder">Suchen…</string>
+
+    <!-- build your route screen -->
+    <string name="build_your_route_screen_change_your_personal_preferences">Ändere deine persönlichen Vorlieben</string>
+    <string name="build_your_route_screen_add_starting_point">Startpunkt hinzufügen</string>
+    <string name="build_your_route_screen_add_destination">Ziel hinzufügen</string>
+    <string name="build_your_route_screen_create_route">Route erstellen</string>
+    <string name="build_your_route_screen_trip_overview">Reiseübersicht</string>
+    <string name="build_your_route_screen_starting_in">Startet in:</string>
+    <string name="build_your_route_screen_finishing_in">Endet in:</string>
+    <string name="build_your_route_screen_attractions_in_route">Attraktionen auf der Route:</string>
+    <string name="build_your_route_screen_add_destinations_first">Du musst zuerst Ziele hinzufügen</string>
+
+    <!-- settings -->
+    <string name="settings_preferences">Vorlieben</string>
+    <string name="settings_language">Sprache</string>
+    <string name="settings_notifications">Benachrichtigungen</string>
+    <string name="settings_privacy">Datenschutz</string>
+    <string name="settings_security">Sicherheit</string>
+    <string name="settings_help">Hilfe</string>
+    <string name="settings_delete_account">Konto löschen</string>
+    <string name="settings_logout">Abmelden</string>
+
+    <!-- language settings -->
+    <string name="language_settings_screen_no_thanks">Nein, danke</string>
+    <string name="language_settings_screen_restart">Neustart</string>
+    <string name="language_settings_screen_restart_prompt">Um die Änderungen sichtbar zu machen, muss die App neu gestartet werden. Möchten Sie jetzt neu starten?</string>
+    <string name="language_settings_screen_save">Speichern</string>
+    <string name="language_settings_screen_restart_required">Neustart erforderlich</string>
+
+    <!-- preferences -->
+    <string name="preference_category_duration">Reisedauer</string>
+    <string name="preference_category_sightseeing">Sehenswürdigkeiten</string>
+    <string name="preference_category_group">Gruppentyp</string>
+    <string name="preference_category_difficulty">Schwierigkeitsgrad</string>
+    <string name="preference_category_weather">Bevorzugtes Wetter</string>
+    <string name="preference_category_transport">Bevorzugtes Transportmittel</string>
+    <string name="preference_category_meal">Essenspräferenzen</string>
+    <string name="preference_category_budget">Budgetbereich</string>
+    <string name="preference_category_activity">Aktivitäten</string>
+    <string name="preference_option_half_day">Halber Tag</string>
+    <string name="preference_option_full_day">Ganzer Tag</string>
+    <string name="preference_option_weekend">Wochenende</string>
+    <string name="preference_option_historical">Historisch</string>
+    <string name="preference_option_nature">Natur</string>
+    <string name="preference_option_modern_attractions">Moderne Attraktionen</string>
+    <string name="preference_option_solo">Allein</string>
+    <string name="preference_option_family">Familie</string>
+    <string name="preference_option_friends">Freunde</string>
+    <string name="preference_option_tour_group">Reisegruppe</string>
+    <string name="preference_option_easy">Einfach</string>
+    <string name="preference_option_moderate">Mittel</string>
+    <string name="preference_option_challenging">Herausfordernd</string>
+    <string name="preference_option_any">Beliebig</string>
+    <string name="preference_option_sunny">Sonnig</string>
+    <string name="preference_option_cloudy">Bewölkt</string>
+    <string name="preference_option_cool">Kühl</string>
+    <string name="preference_option_car">Auto</string>
+    <string name="preference_option_public_transport">Öffentliche Verkehrsmittel</string>
+    <string name="preference_option_bike">Fahrrad</string>
+    <string name="preference_option_walking">Zu Fuß</string>
+    <string name="preference_option_quick_snacks">Schnelle Snacks</string>
+    <string name="preference_option_local_cuisine">Lokale Küche</string>
+    <string name="preference_option_packed_lunch">Lunchpaket</string>
+    <string name="preference_option_low">Niedrig</string>
+    <string name="preference_option_medium">Mittel</string>
+    <string name="preference_option_high">Hoch</string>
+    <string name="preference_option_relaxing">Entspannend</string>
+    <string name="preference_option_adventurous">Abenteuerlich</string>
+    <string name="preference_option_educational">Bildend</string>
+</resources>

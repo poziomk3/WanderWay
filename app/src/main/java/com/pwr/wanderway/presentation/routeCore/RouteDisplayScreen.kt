@@ -60,7 +60,7 @@ fun RouteDisplayScreen(
             Image(
                 painter = rememberAsyncImagePainter(
                     ImgUrl.getRouteImg(
-                        routeId.toInt(),
+                        routeId,
                         RouteImageType.HYBRID
                     )
                 ),
@@ -95,7 +95,7 @@ fun RouteDisplayScreen(
                 text = stringResource(id = R.string.route_display_screen_go_for_it),
                 onClick = {
                     coroutineScope.launch {
-                        routeViewModel.redirectToGoogleMaps(routeId.toInt(), context)
+                        routeViewModel.redirectToGoogleMaps(routeId, context)
                         showDialog = true
                         showNotification(
                             context,

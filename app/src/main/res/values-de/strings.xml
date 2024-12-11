@@ -9,13 +9,13 @@
     <string name="top_bar_preferences">Deine Vorlieben</string>
     <string name="top_bar_route_choice">Wir haben Routen für dich generiert!</string>
     <string name="top_bar_route_display">Route in Bearbeitung!</string>
-    <string name="top_bar_default" >Wander Way!</string>
+    <string name="top_bar_default">Wander Way!</string>
     <string name="top_bar_add_location">Ort auswählen!</string>
     <string name="top_bar_forum_addition">Zum Forum hinzufügen!</string>
     <string name="top_bar_language_settings">Spracheinstellungen</string>
 
     <!-- bottombars -->
-    <string name="bottom_bar_home" >Start</string>
+    <string name="bottom_bar_home">Start</string>
     <string name="bottom_bar_forum">Forum</string>
     <string name="bottom_bar_account">Konto</string>
 
@@ -85,6 +85,7 @@
     <string name="settings_logout">Abmelden</string>
 
     <!-- language settings -->
+    <string name="settings_theme">Theme</string>
     <string name="language_settings_screen_no_thanks">Nein, danke</string>
     <string name="language_settings_screen_restart">Neustart</string>
     <string name="language_settings_screen_restart_prompt">Um die Änderungen sichtbar zu machen, muss die App neu gestartet werden. Möchten Sie jetzt neu starten?</string>
@@ -131,4 +132,14 @@
     <string name="preference_option_relaxing">Entspannend</string>
     <string name="preference_option_adventurous">Abenteuerlich</string>
     <string name="preference_option_educational">Bildend</string>
+
+    <!--    themes-->
+    <string name="themes_light">Hell</string>
+    <string name="themes_dark">Dunkel</string>
+    <string name="themes_medium_contrast_light">Mittlerer Kontrast Hell</string>
+    <string name="themes_high_contrast_light">Hoher Kontrast Hell</string>
+    <string name="themes_medium_contrast_dark">Mittlerer Kontrast Dunkel</string>
+    <string name="themes_high_contrast_dark">Hoher Kontrast Dunkel</string>
+    <string name="top_bar_theme_settings">Theme</string>
 </resources>
+

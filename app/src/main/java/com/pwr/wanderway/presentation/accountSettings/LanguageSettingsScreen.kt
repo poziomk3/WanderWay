@@ -1,4 +1,4 @@
-package com.pwr.wanderway.presentation.accountSettings.settings
+package com.pwr.wanderway.presentation.accountSettings
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -35,11 +35,11 @@ import com.pwr.wanderway.utils.restartMainActivity
 
 @Composable
 fun LanguageSettingsScreen(
-    languageSettingsViewModel: LanguageSettingsViewModel = hiltViewModel()
+    settingsViewModel: SettingsViewModel = hiltViewModel(),
 ) {
     val context = LocalContext.current
     val languages = Languages.entries
-    val currentLocale = languageSettingsViewModel.getCurrentLocale(context)
+    val currentLocale = settingsViewModel.getCurrentLanguage()
 
     var selectedLocale by remember { mutableStateOf(currentLocale) }
     var showDialog by remember { mutableStateOf(false) }
@@ -77,7 +77,7 @@ fun LanguageSettingsScreen(
         }
         WideButton(
             onClick = {
-                languageSettingsViewModel.saveLocale(selectedLocale)
+                settingsViewModel.changeLanguage(selectedLocale)
                 showDialog = true
             },
             enabled = selectedLocale != currentLocale,

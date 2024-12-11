@@ -9,13 +9,11 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.navigation.compose.rememberNavController
-import com.pwr.wanderway.data.local.SettingsManager
+import com.pwr.wanderway.data.repository.SettingsRepository
 import com.pwr.wanderway.navigation.RootNavigationGraph
 import com.pwr.wanderway.ui.theme.AppTheme
 import com.pwr.wanderway.utils.notifications.createNotificationChannel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.runBlocking
 import java.util.Locale
 import javax.inject.Inject
 
@@ -23,7 +21,7 @@ import javax.inject.Inject
 class MainActivity : ComponentActivity() {
 
     @Inject
-    lateinit var settingsManager: SettingsManager
+    lateinit var settingsRepository: SettingsRepository
 
     private val requestPermissionsLauncher =
         registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
@@ -33,13 +31,13 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        loadLocale(this)
+        val locale = settingsRepository.getCurrentLanguageBlocking()
+        setLocale(this, locale)
         createNotificationChannel(this)
         requestPermissionsOnLaunch()
         enableEdgeToEdge()
         setContent {
-            AppTheme {
+            AppTheme() {
                 RootNavigationGraph(navController = rememberNavController())
             }
         }
@@ -70,10 +68,5 @@ class MainActivity : ComponentActivity() {
         resources.updateConfiguration(configuration, resources.displayMetrics)
     }
 
-    private fun loadLocale(context: Context) {
-        val localeTag = runBlocking {
-            settingsManager.getSettingFlow("selected_locale").first()
-        }
-        setLocale(context, Locale.forLanguageTag(localeTag?: "pl"))
-    }
+
 }

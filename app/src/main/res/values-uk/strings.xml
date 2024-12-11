@@ -9,7 +9,7 @@
     <string name="top_bar_preferences">Ваші вподобання</string>
     <string name="top_bar_route_choice">Ми згенерували маршрути для вас!</string>
     <string name="top_bar_route_display">Маршрут у процесі!</string>
-    <string name="top_bar_default" >Wander Way!</string>
+    <string name="top_bar_default">Wander Way!</string>
     <string name="top_bar_add_location">Виберіть місце!</string>
     <string name="top_bar_forum_addition">Додайте щось на форум!</string>
     <string name="top_bar_language_settings">Налаштування мови</string>
@@ -85,6 +85,7 @@
     <string name="settings_logout">Вийти</string>
 
     <!-- language settings -->
+    <string name="settings_theme">Тема</string>
     <string name="language_settings_screen_no_thanks">Ні, дякую</string>
     <string name="language_settings_screen_restart">Перезапустити</string>
     <string name="language_settings_screen_restart_prompt">Щоб зміни набрали чинності, потрібно перезапустити додаток. Хочете зробити це зараз?</string>
@@ -131,4 +132,14 @@
     <string name="preference_option_relaxing">Розслабляючий</string>
     <string name="preference_option_adventurous">Пригодницький</string>
     <string name="preference_option_educational">Освітній</string>
+
+
+    <string name="themes_light">Світла</string>
+    <string name="themes_dark">Темна</string>
+    <string name="themes_medium_contrast_light">Середній Контраст Світла</string>
+    <string name="themes_high_contrast_light">Високий Контраст Світла</string>
+    <string name="themes_medium_contrast_dark">Середній Контраст Темна</string>
+    <string name="themes_high_contrast_dark">Високий Контраст Темна</string>
+    <string name="top_bar_theme_settings">Тема</string>
+
 </resources>

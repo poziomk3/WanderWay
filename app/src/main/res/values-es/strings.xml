@@ -86,6 +86,7 @@
     <string name="settings_logout">Cerrar sesión</string>
 
     <!-- language settings -->
+    <string name="settings_theme">Tema</string>
     <string name="language_settings_screen_no_thanks">No, gracias</string>
     <string name="language_settings_screen_restart">Reiniciar</string>
     <string name="language_settings_screen_restart_prompt">Para que los cambios sean visibles, la app necesita reiniciarse. ¿Quieres reiniciar ahora?</string>
@@ -151,4 +152,14 @@
     <string name="preference_option_relaxing">Relajante</string>
     <string name="preference_option_adventurous">Aventurero</string>
     <string name="preference_option_educational">Educativo</string>
+
+    <!-- themes -->
+    <string name="themes_light">Claro</string>
+    <string name="themes_dark">Oscuro</string>
+    <string name="themes_medium_contrast_light">Contraste Medio Claro</string>
+    <string name="themes_high_contrast_light">Alto Contraste Claro</string>
+    <string name="themes_medium_contrast_dark">Contraste Medio Oscuro</string>
+    <string name="themes_high_contrast_dark">Alto Contraste Oscuro</string>
+    <string name="top_bar_theme_settings">Tema</string>
+
 </resources>

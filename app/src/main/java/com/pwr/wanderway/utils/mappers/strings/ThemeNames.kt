@@ -10,5 +10,5 @@ val themeDisplayNames = mapOf(
     Theme.HIGH_CONTRAST_LIGHT to R.string.themes_high_contrast_light,
     Theme.MEDIUM_CONTRAST_DARK to R.string.themes_medium_contrast_dark,
     Theme.HIGH_CONTRAST_DARK to R.string.themes_high_contrast_dark,
-
+    Theme.SYSTEM to R.string.themes_system
 )

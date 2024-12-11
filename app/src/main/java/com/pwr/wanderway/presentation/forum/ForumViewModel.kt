@@ -38,7 +38,7 @@ class ForumViewModel @Inject constructor(
     suspend fun getPost(postId: Int): PublicPost? {
         _isLoading.value = true
         return try {
-            forumRepository.getPosts().find { it.id == postId }
+            forumRepository.getPostById(postId)
         } catch (e: Exception) {
             null
         } finally {

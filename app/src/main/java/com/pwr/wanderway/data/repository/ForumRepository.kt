@@ -17,6 +17,15 @@ class ForumRepository @Inject constructor(
         }
     }
 
+    suspend fun getPostById(postId: Int): PublicPost? {
+        val response = apiService.getForumPostById(postId)
+        return if (response.isSuccessful) {
+            response.body()
+        } else {
+            throw Exception("Failed to fetch posts: ${response.errorBody()?.string()}")
+        }
+    }
+
     suspend fun addPost(routeId: Int, createdPost: CreatedPost) {
         val response = apiService.addForumPost(routeId, createdPost)
         if (!response.isSuccessful) {

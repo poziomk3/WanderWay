@@ -1,6 +1,7 @@
 package com.pwr.wanderway.presentation.accountSettings
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -26,6 +27,7 @@ import com.pwr.wanderway.utils.themes.Theme
 @Composable
 fun ThemeSettingsScreen(
     settingsViewModel: SettingsViewModel = hiltViewModel(),
+    darkTheme: Boolean = isSystemInDarkTheme(),
 ) {
     val currentTheme by settingsViewModel.currentThemeFlow.collectAsState(
         remember(settingsViewModel) { settingsViewModel.getCurrentTheme() }
@@ -59,6 +61,8 @@ fun ThemeSettingsScreen(
 
                 }
             }
+
+
         }
 
     }

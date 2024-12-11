@@ -16,6 +16,7 @@ import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.pwr.wanderway.presentation.accountSettings.SettingsViewModel
+import com.pwr.wanderway.utils.themes.resolveSystemTheme
 
 val lightScheme = lightColorScheme(
     primary = primaryLight,
@@ -253,33 +254,29 @@ data class ColorFamily(
     val onColorContainer: Color
 )
 
-val unspecified_scheme = ColorFamily(
-    Color.Unspecified, Color.Unspecified, Color.Unspecified, Color.Unspecified
-)
 
 @Composable
 fun AppTheme(
     settingsViewModel: SettingsViewModel = hiltViewModel(),
     darkTheme: Boolean = isSystemInDarkTheme(),
-    dynamicColor: Boolean = true,
     content: @Composable() () -> Unit
 ) {
     val colorScheme by settingsViewModel.colorSchemeFlow.collectAsState(
-        initial = if (darkTheme) darkScheme else lightScheme
+        initial = null
     )
-
+    val scheme = colorScheme ?: resolveSystemTheme()
 
     val view = LocalView.current
     if (!view.isInEditMode) {
         SideEffect {
             val window = (view.context as Activity).window
-            window.statusBarColor = colorScheme.primary.toArgb()
+            window.statusBarColor = scheme.primary.toArgb()
             WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = darkTheme
         }
     }
 
     MaterialTheme(
-        colorScheme = colorScheme,
+        colorScheme = scheme,
         typography = AppTypography,
         content = content
     )

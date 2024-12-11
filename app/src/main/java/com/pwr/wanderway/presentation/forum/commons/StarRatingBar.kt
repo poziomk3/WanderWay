@@ -9,6 +9,7 @@ import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -33,7 +34,10 @@ fun StarRatingBar(
         (1..maxStars).map { i ->
             val isSelected = i <= rating
             val icon = if (isSelected) Icons.Filled.Star else Icons.Default.Star
-            val iconTintColor = if (isSelected) Color(0xFFFFC700) else Color(0x20FFFFFF)
+            val iconTintColor =
+                if (isSelected) Color(0xFFFFC700) else MaterialTheme.colorScheme.onBackground.copy(
+                    alpha = 0.2f
+                )
             Row(
                 verticalAlignment = Alignment.CenterVertically
             ) {

@@ -167,5 +167,6 @@
     <string name="forum_addition_screen_rating">Your rating!</string>
     <string name="forum_post_screen_route_button">Show Route!</string>
     <string name="top_bar_forum_post">Post Details</string>
+    <string name="themes_system" >System</string>
 
 </resources>

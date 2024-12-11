@@ -11,6 +11,6 @@ data class PublicPost(
     val route: Int,
     val author: String, //or other variable name for user nickname
     val created_at: Date,
-    val img_url: String //lorem picsum or somehow related to route
+    val random_poi_id: Int //lorem picsum or somehow related to route
     //or i can just fetch picture of route
 )

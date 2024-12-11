@@ -1,45 +1,40 @@
 package com.pwr.wanderway
 
 import android.Manifest
+import android.content.Context
 import android.os.Build
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.navigation.compose.rememberNavController
+import com.pwr.wanderway.data.local.SettingsManager
 import com.pwr.wanderway.navigation.RootNavigationGraph
 import com.pwr.wanderway.ui.theme.AppTheme
 import com.pwr.wanderway.utils.notifications.createNotificationChannel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.runBlocking
+import java.util.Locale
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+    @Inject
+    lateinit var settingsManager: SettingsManager
 
     private val requestPermissionsLauncher =
         registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
             val grantedPermissions = permissions.filterValues { it }
             val deniedPermissions = permissions.filterValues { !it }
-            if (grantedPermissions.isNotEmpty()) {
-                Toast.makeText(
-                    this,
-                    "Permissions granted: ${grantedPermissions.keys.joinToString()}",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-            if (deniedPermissions.isNotEmpty()) {
-                Toast.makeText(
-                    this,
-                    "Permissions denied: ${deniedPermissions.keys.joinToString()}",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
         }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        loadLocale(this)
         createNotificationChannel(this)
         requestPermissionsOnLaunch()
         enableEdgeToEdge()
@@ -64,5 +59,21 @@ class MainActivity : ComponentActivity() {
             )
         )
         requestPermissionsLauncher.launch(permissionsToRequest.toTypedArray())
+    }
+
+    private fun setLocale(context: Context, locale: Locale) {
+        Locale.setDefault(locale)
+        val resources = context.resources
+        val configuration = resources.configuration
+        configuration.setLocale(locale)
+        configuration.setLayoutDirection(locale)
+        resources.updateConfiguration(configuration, resources.displayMetrics)
+    }
+
+    private fun loadLocale(context: Context) {
+        val localeTag = runBlocking {
+            settingsManager.getSettingFlow("selected_locale").first()
+        }
+        setLocale(context, Locale.forLanguageTag(localeTag?: "pl"))
     }
 }

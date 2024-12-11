@@ -7,7 +7,10 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -29,7 +32,6 @@ import com.pwr.wanderway.network.RouteImageType
 import com.pwr.wanderway.presentation.commons.ButtonColor
 import com.pwr.wanderway.presentation.commons.Loader
 import com.pwr.wanderway.presentation.commons.WideButton
-import com.pwr.wanderway.presentation.routeCore.composable.GoToForumDialog
 import com.pwr.wanderway.ui.theme.AppTheme
 import com.pwr.wanderway.utils.notifications.showNotification
 import kotlinx.coroutines.launch
@@ -69,7 +71,7 @@ fun RouteDisplayScreen(
                     .weight(1f)
             )
 
-            Column (
+            Column(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(0.dp, 0.dp, 0.dp, 30.dp)
@@ -112,15 +114,30 @@ fun RouteDisplayScreen(
             )
         }
         if (showDialog) {
-            GoToForumDialog(
-                close = {
-                    showDialog = false
+            AlertDialog(
+                icon = null,
+                title = {
+                    Text(stringResource(R.string.bottom_bar_forum))
                 },
-                goToForum = {
-                    showDialog = false
-                    forumAdditionNav()
-                }
-            )
+                text = {
+                    Text(stringResource(R.string.route_display_screen_rate_this_route))
+                },
+                onDismissRequest = {},
+                confirmButton = {
+                    TextButton(onClick = {
+                        showDialog = false
+                        forumAdditionNav()
+                    }) {
+                        Text(stringResource(R.string.route_display_screen_go_to_forum))
+                    }
+                },
+                dismissButton = {
+                    TextButton(onClick = {
+                        showDialog = false
+                    }) {
+                        Text(stringResource(R.string.route_display_screen_dismiss_dialog))
+                    }
+                })
         }
 
 

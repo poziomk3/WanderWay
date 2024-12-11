@@ -57,16 +57,6 @@ fun AuthorizedNavGraph(
             )
         }
 
-        composable(Destination.ACCOUNT_SETTINGS_SCREEN) {
-            SettingsScreen(preferencesNav = {
-                navController.navigateTo(Destination.PREFERENCES_SCREEN)
-            }, logout = {
-                moveToUnauthorized()
-            }, languageOnClick = {
-                    navController.navigateTo(Destination.LANGUAGE_SETTINGS_SCREEN)
-            }
-            )
-        }
         composable(Destination.PREFERENCES_SCREEN) {
             PreferencesScreen(
                 backNav = {
@@ -119,10 +109,16 @@ fun AuthorizedNavGraph(
             )
         }
         composable(Destination.LANGUAGE_SETTINGS_SCREEN) {
-            LanguageSettingsScreen(
-                backNav = {
-                    navController.popBackStack()
-                }
+            LanguageSettingsScreen()
+        }
+        composable(Destination.ACCOUNT_SETTINGS_SCREEN) {
+            SettingsScreen(preferencesNav = {
+                navController.navigateTo(Destination.PREFERENCES_SCREEN)
+            }, logout = {
+                moveToUnauthorized()
+            }, languageOnClick = {
+                navController.navigateTo(Destination.LANGUAGE_SETTINGS_SCREEN)
+            }
             )
         }
 

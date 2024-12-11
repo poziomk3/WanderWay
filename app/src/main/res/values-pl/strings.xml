@@ -56,6 +56,8 @@
     <string name="settings_help">Pomoc</string>
     <string name="settings_delete_account">Usuń konto</string>
     <string name="settings_logout">Wyloguj</string>
+    <string name="language_settings_screen_save">Zapisz</string>
+    <string name="language_settings_screen_restart_required">Wymagany restart</string>
     <string name="preference_category_duration">Czas trwania wycieczki</string>
     <string name="preference_category_sightseeing">Typ zwiedzania</string>
     <string name="preference_category_group">Typ grupy</string>
@@ -99,4 +101,7 @@
     <string name="build_your_route_screen_add_destinations_first">Musisz wpierw dodać parę atrakcji</string>
     <string name="route_display_screen_rate_this_route">Oceń tą trasę na forum!</string>
     <string name="route_display_screen_dismiss_dialog">Nie, dziękuję</string>
+    <string name="language_settings_screen_no_thanks">Nie, dziękuję</string>
+    <string name="language_settings_screen_restart">Zrestartuj</string>
+    <string name="language_settings_screen_restart_prompt">Aby uwidocznić zmiany, aplikacja musi zostać zrestartowana. Czy chcesz zrestartować teraz?</string>
 </resources>

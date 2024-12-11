@@ -74,7 +74,7 @@
 
     <!--    forum screen-->
 
-
+    <!--    settings-->
     <!--    settings screen-->
     <string name="settings_preferences">Preferences</string>
     <string name="settings_language">Language</string>
@@ -84,6 +84,13 @@
     <string name="settings_help">Help</string>
     <string name="settings_delete_account">Delete Account</string>
     <string name="settings_logout">Logout</string>
+
+    <!-- language settings -->
+    <string name="language_settings_screen_no_thanks">No thanks</string>
+    <string name="language_settings_screen_restart">Restart</string>
+    <string name="language_settings_screen_restart_prompt">In order to make the changes visible, the app needs to be restarted. Do you want to restart now?</string>
+    <string name="language_settings_screen_save">Save</string>
+    <string name="language_settings_screen_restart_required">Restart required</string>
 
 
     <!--preferences-->

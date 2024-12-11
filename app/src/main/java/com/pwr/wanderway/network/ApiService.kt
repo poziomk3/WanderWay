@@ -5,6 +5,7 @@ import com.pwr.wanderway.data.model.RegisterRequest
 import com.pwr.wanderway.data.model.TokenResponse
 import com.pwr.wanderway.data.model.api.forum.AllPostsDTO
 import com.pwr.wanderway.data.model.api.forum.CreatedPost
+import com.pwr.wanderway.data.model.api.forum.PublicPost
 import com.pwr.wanderway.data.model.api.route.AllPOIsDTO
 import com.pwr.wanderway.data.model.api.route.RouteGenerateDTO
 import com.pwr.wanderway.data.model.api.route.RouteGenerateRequest
@@ -38,6 +39,11 @@ interface ApiService {
 
     @GET("/forum/getPosts")
     suspend fun getForumPosts(): Response<AllPostsDTO>
+
+    @GET("forum/post/{postId}")
+    suspend fun getForumPostById(
+        @Path("postId") postId: Int,
+    ): Response<PublicPost>
 
     @POST("/forum/post/{routeId}/")
     suspend fun addForumPost(

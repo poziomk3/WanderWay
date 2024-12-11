@@ -22,7 +22,7 @@ class SettingsViewModel @Inject constructor(
         return settingsRepository.getCurrentLanguageBlocking()
     }
 
-    fun getCurrentTheme(): Theme {
+    fun getCurrentTheme(): Theme? {
         return settingsRepository.getCurrentThemeBlocking()
     }
 

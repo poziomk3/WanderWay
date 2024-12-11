@@ -148,6 +148,7 @@
     <string name="forum_addition_screen_rating">Ваш рейтинг!</string>
     <string name="forum_post_screen_route_button">Показати маршрут!</string>
     <string name="top_bar_forum_post">Деталі допису</string>
+    <string name="themes_system">Система</string>
 
 
 </resources>

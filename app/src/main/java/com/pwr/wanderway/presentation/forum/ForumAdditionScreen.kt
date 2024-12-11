@@ -36,7 +36,6 @@ import com.pwr.wanderway.presentation.commons.Loader
 import com.pwr.wanderway.presentation.commons.WideButton
 import com.pwr.wanderway.presentation.forum.commons.StarRatingBar
 
-private const val s = "Route ID"
 
 @Composable
 fun ForumAdditionScreen(

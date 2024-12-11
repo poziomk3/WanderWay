@@ -22,6 +22,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import com.pwr.wanderway.data.model.api.forum.PublicPost
+import com.pwr.wanderway.network.ImgUrl
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 
@@ -31,7 +32,7 @@ fun ForumPostCard(
     post: PublicPost, onClick: () -> Unit
 ) {
 
-    val (title, body, rating, id, routeId, author, date, img_url) = post
+    val (title, body, rating, id, routeId, author, date, poiId) = post
     ElevatedCard(elevation = CardDefaults.cardElevation(
         defaultElevation = 20.dp
     ), modifier = Modifier
@@ -42,7 +43,7 @@ fun ForumPostCard(
         ) {
             Image(
                 painter = rememberAsyncImagePainter(
-                    img_url
+                    ImgUrl.getPOIImg(poiId)
                 ),
                 contentDescription = "Route Image",
                 contentScale = ContentScale.Crop,

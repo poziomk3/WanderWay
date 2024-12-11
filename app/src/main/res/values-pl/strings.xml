@@ -120,5 +120,6 @@
     <string name="forum_addition_screen_rating">Twoja ocena!</string>
     <string name="forum_post_screen_route_button">Pokaż Trasę!</string>
     <string name="top_bar_forum_post">Szczegóły Postu</string>
+    <string name="themes_system">System</string>
 
 </resources>

@@ -1,7 +1,6 @@
 package com.pwr.wanderway.data.repository
 
 import com.pwr.wanderway.data.local.SettingsManager
-import com.pwr.wanderway.ui.theme.lightScheme
 import com.pwr.wanderway.utils.themes.Theme
 import com.pwr.wanderway.utils.themes.mapThemeToColorScheme
 import kotlinx.coroutines.flow.firstOrNull
@@ -35,7 +34,7 @@ class SettingsRepository @Inject constructor(
         val themeName = runBlocking {
             settingsManager.getSettingFlow(THEME).firstOrNull()
         }
-        return Theme.entries.find { it.name == themeName } ?: Theme.LIGHT
+        return Theme.entries.find { it.name == themeName } ?: Theme.SYSTEM
     }
 
 
@@ -50,8 +49,8 @@ class SettingsRepository @Inject constructor(
     fun getCurrentColorSchemeFlow() =
         settingsManager.getSettingFlow(THEME)
             .map { themeName ->
-                val theme = Theme.entries.find { it.name == themeName } ?: Theme.LIGHT
-                mapThemeToColorScheme[theme] ?: lightScheme
+                val theme = Theme.entries.find { it.name == themeName }
+                mapThemeToColorScheme[theme]
             }
 
 }

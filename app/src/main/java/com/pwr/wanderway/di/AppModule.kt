@@ -2,6 +2,7 @@ package com.pwr.wanderway.di
 
 import android.content.Context
 import com.pwr.wanderway.data.local.RoutePreferencesManager
+import com.pwr.wanderway.data.local.SettingsManager
 import com.pwr.wanderway.data.local.TokenManager
 import com.pwr.wanderway.data.repository.AuthRepository
 import com.pwr.wanderway.data.repository.RoutePreferencesRepository
@@ -30,6 +31,12 @@ object AppModule {
     @Singleton
     fun provideRoutePreferencesManager(@ApplicationContext context: Context): RoutePreferencesManager {
         return RoutePreferencesManager(context)
+    }
+
+    @Provides
+    @Singleton
+    fun provideSettingsManager(@ApplicationContext context: Context): SettingsManager {
+        return SettingsManager(context)
     }
 
     @Provides

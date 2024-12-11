@@ -64,7 +64,8 @@ fun BuildYourRouteScreen(
             onClick = {
                 routeChoiceNav()
             },
-            colorType = ButtonColor.PRIMARY
+            colorType = ButtonColor.PRIMARY,
+            enabled = collectedPointsOfInterest.isNotEmpty()
         )
 
         // Trip overview header
@@ -78,7 +79,7 @@ fun BuildYourRouteScreen(
             label = if (collectedPointsOfInterest.isNotEmpty()) {
                 stringResource(R.string.build_your_route_screen_attractions_in_route)
             } else {
-                ""
+                stringResource(R.string.build_your_route_screen_add_destinations_first)
             },
             contents = {
                 LazyColumn(

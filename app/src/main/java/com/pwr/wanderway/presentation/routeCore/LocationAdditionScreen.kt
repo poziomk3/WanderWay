@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ZoomOut
 import androidx.compose.material.icons.outlined.Info
@@ -27,6 +28,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.onGloballyPositioned
@@ -157,7 +159,8 @@ fun LocationAdditionScreen(
                     GoogleMap(
                         modifier = Modifier
                             .shadow(8.dp)
-                            .fillMaxSize(),
+                            .fillMaxSize()
+                            .clip(RoundedCornerShape(8.dp)),
                         cameraPositionState = cameraPositionState
                     ) {
                         poiList.forEach { poi ->

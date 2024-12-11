@@ -73,7 +73,9 @@ fun EntryScreenLayout(
                     .width(width = 300.dp).imePadding().verticalScroll(rememberScrollState()),
             ) {
                 Column(
-                    modifier = Modifier.width(300.dp),
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(8.dp),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Column(
@@ -92,9 +94,6 @@ fun EntryScreenLayout(
                     Row(modifier = Modifier.align(Alignment.End)) {
                         leftButton?.let {
                             TextButton(
-                                modifier = Modifier
-                                    .padding(0.dp, 8.dp)
-                                    .width(80.dp),
                                 colors = ButtonDefaults.textButtonColors(
                                     contentColor = MaterialTheme.colorScheme.onPrimary
                                 ),
@@ -107,9 +106,6 @@ fun EntryScreenLayout(
                         }
                         rightButton?.let {
                             TextButton(
-                                modifier = Modifier
-                                    .padding(0.dp, 8.dp)
-                                    .width(80.dp),
                                 colors = ButtonDefaults.textButtonColors(
                                     contentColor = MaterialTheme.colorScheme.onPrimary
                                 ),

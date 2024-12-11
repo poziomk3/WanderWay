@@ -19,7 +19,8 @@ import com.pwr.wanderway.presentation.commons.RowSelectorConfig
 @Composable
 fun SettingsScreen(
     preferencesNav: () -> Unit, logout: () -> Unit,
-    settingsViewModel: SettingsViewModel = hiltViewModel()
+    languageOnClick: () -> Unit,
+    settingsViewModel: SettingsViewModel = hiltViewModel(),
 ) {
 
     val options = listOf(
@@ -27,7 +28,7 @@ fun SettingsScreen(
             label = stringResource(R.string.settings_preferences),
             onClick = preferencesNav
         ),
-        RowSelectorConfig(label = stringResource(R.string.settings_language), onClick = {}),
+        RowSelectorConfig(label = stringResource(R.string.settings_language), onClick = languageOnClick),
         RowSelectorConfig(label = stringResource(R.string.settings_notifications), onClick = {}),
         RowSelectorConfig(label = stringResource(R.string.settings_privacy), onClick = {}),
         RowSelectorConfig(label = stringResource(R.string.settings_security), onClick = {}),
@@ -62,5 +63,5 @@ fun SettingsScreen(
 @Composable
 @Preview
 fun SettingsScreenPreview() {
-    SettingsScreen(preferencesNav = {}, logout = {}, hiltViewModel())
+    SettingsScreen(preferencesNav = {}, logout = {}, languageOnClick = {}, hiltViewModel())
 }

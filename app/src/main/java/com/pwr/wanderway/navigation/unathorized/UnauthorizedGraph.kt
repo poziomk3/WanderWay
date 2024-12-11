@@ -1,6 +1,8 @@
 package com.pwr.wanderway.navigation.unathorized
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
+import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import com.pwr.wanderway.navigation.Destination
@@ -18,6 +20,17 @@ fun UnauthorizedNavGraph(
     moveToAuthorized: () -> Unit,
     authViewModel: AuthViewModel
 ) {
+
+    DisposableEffect(navController) {
+        val listener = NavController.OnDestinationChangedListener { _, _, _ ->
+            authViewModel.resetState()
+        }
+        navController.addOnDestinationChangedListener(listener)
+        onDispose {
+            navController.removeOnDestinationChangedListener(listener)
+        }
+    }
+
     NavHost(
         navController = navController,
         route = Destination.UNAUTHORIZED_GROUP.route,

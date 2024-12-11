@@ -17,8 +17,8 @@ enum class Destination(val route: String) {
     FORUM_HOME_SCREEN("Forum"),
     FORUM_ADDITION_SCREEN("ForumAddition"),
     ACCOUNT_SETTINGS_SCREEN("AccountSettings"),
-    LANGUAGE_SETTINGS_SCREEN("LanguageSettingsScreen");
-
+    LANGUAGE_SETTINGS_SCREEN("LanguageSettingsScreen"),
+    THEME_SETTINGS_SCREEN("ThemeSettingsScreen");
 
 
     companion object {

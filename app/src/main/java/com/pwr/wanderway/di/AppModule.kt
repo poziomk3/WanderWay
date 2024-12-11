@@ -7,6 +7,7 @@ import com.pwr.wanderway.data.local.TokenManager
 import com.pwr.wanderway.data.repository.AuthRepository
 import com.pwr.wanderway.data.repository.RoutePreferencesRepository
 import com.pwr.wanderway.data.repository.RouteRepository
+import com.pwr.wanderway.data.repository.SettingsRepository
 import com.pwr.wanderway.network.ApiClient
 import com.pwr.wanderway.network.ApiService
 import dagger.Module
@@ -37,6 +38,12 @@ object AppModule {
     @Singleton
     fun provideSettingsManager(@ApplicationContext context: Context): SettingsManager {
         return SettingsManager(context)
+    }
+
+    @Provides
+    @Singleton
+    fun provideSettingsRepository(settingsManager: SettingsManager): SettingsRepository {
+        return SettingsRepository(settingsManager)
     }
 
     @Provides

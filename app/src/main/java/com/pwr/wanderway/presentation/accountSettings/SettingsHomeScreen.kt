@@ -19,21 +19,26 @@ import com.pwr.wanderway.presentation.commons.RowSelectorConfig
 @Composable
 fun SettingsScreen(
     preferencesNav: () -> Unit, logout: () -> Unit,
-    languageOnClick: () -> Unit,
+    languageSettingsNav: () -> Unit,
+    themeSettingsNav: () -> Unit,
     settingsViewModel: SettingsViewModel = hiltViewModel(),
 ) {
 
     val options = listOf(
         RowSelectorConfig(
-            label = stringResource(R.string.settings_preferences),
-            onClick = preferencesNav
+            label = stringResource(R.string.settings_language), onClick = languageSettingsNav
         ),
-        RowSelectorConfig(label = stringResource(R.string.settings_language), onClick = languageOnClick),
-        RowSelectorConfig(label = stringResource(R.string.settings_notifications), onClick = {}),
-        RowSelectorConfig(label = stringResource(R.string.settings_privacy), onClick = {}),
-        RowSelectorConfig(label = stringResource(R.string.settings_security), onClick = {}),
-        RowSelectorConfig(label = stringResource(R.string.settings_help), onClick = {}),
-        RowSelectorConfig(label = stringResource(R.string.settings_delete_account), onClick = {}),
+        RowSelectorConfig(
+            label = stringResource(R.string.settings_preferences), onClick = preferencesNav
+        ),
+        RowSelectorConfig(
+            label = stringResource(R.string.settings_theme), onClick = themeSettingsNav
+        ),
+//        RowSelectorConfig(label = stringResource(R.string.settings_notifications), onClick = {}),
+//        RowSelectorConfig(label = stringResource(R.string.settings_privacy), onClick = {}),
+//        RowSelectorConfig(label = stringResource(R.string.settings_security), onClick = {}),
+//        RowSelectorConfig(label = stringResource(R.string.settings_help), onClick = {}),
+//        RowSelectorConfig(label = stringResource(R.string.settings_delete_account), onClick = {}),
         RowSelectorConfig(label = stringResource(R.string.settings_logout), onClick = {
             settingsViewModel.logout()
             logout()
@@ -43,8 +48,7 @@ fun SettingsScreen(
 
 
     LazyColumn(
-        modifier = Modifier.fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally
+        modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally
     ) {
         item {
             HorizontalDivider(thickness = 2.dp)
@@ -63,5 +67,11 @@ fun SettingsScreen(
 @Composable
 @Preview
 fun SettingsScreenPreview() {
-    SettingsScreen(preferencesNav = {}, logout = {}, languageOnClick = {}, hiltViewModel())
+    SettingsScreen(
+        preferencesNav = {},
+        logout = {},
+        languageSettingsNav = {},
+        themeSettingsNav = {},
+        hiltViewModel()
+    )
 }

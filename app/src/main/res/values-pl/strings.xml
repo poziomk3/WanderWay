@@ -101,7 +101,16 @@
     <string name="build_your_route_screen_add_destinations_first">Musisz wpierw dodać parę atrakcji</string>
     <string name="route_display_screen_rate_this_route">Oceń tą trasę na forum!</string>
     <string name="route_display_screen_dismiss_dialog">Nie, dziękuję</string>
+    <string name="settings_theme">Motyw</string>
     <string name="language_settings_screen_no_thanks">Nie, dziękuję</string>
     <string name="language_settings_screen_restart">Zrestartuj</string>
     <string name="language_settings_screen_restart_prompt">Aby uwidocznić zmiany, aplikacja musi zostać zrestartowana. Czy chcesz zrestartować teraz?</string>
+
+    <string name="themes_light">Jasny</string>
+    <string name="themes_dark">Ciemny</string>
+    <string name="themes_medium_contrast_light">Średni Kontrast Jasny</string>
+    <string name="themes_high_contrast_light">Wysoki Kontrast Jasny</string>
+    <string name="themes_medium_contrast_dark">Średni Kontrast Ciemny</string>
+    <string name="themes_high_contrast_dark">Wysoki Kontrast Ciemny</string>
+    <string name="top_bar_theme_settings">Motyw</string>
 </resources>

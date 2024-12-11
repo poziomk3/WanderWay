@@ -84,7 +84,7 @@
     <string name="settings_help">Help</string>
     <string name="settings_delete_account">Delete Account</string>
     <string name="settings_logout">Logout</string>
-
+    <string name="settings_theme">Theme</string>
     <!-- language settings -->
     <string name="language_settings_screen_no_thanks">No thanks</string>
     <string name="language_settings_screen_restart">Restart</string>
@@ -151,5 +151,15 @@
     <string name="preference_option_relaxing">Relaxing</string>
     <string name="preference_option_adventurous">Adventurous</string>
     <string name="preference_option_educational">Educational</string>
+
+
+    <!--    themes-->
+    <string name="themes_light">Light</string>
+    <string name="themes_dark">Dark</string>
+    <string name="themes_medium_contrast_light">Medium Contrast Light</string>
+    <string name="themes_high_contrast_light">High Contrast Light</string>
+    <string name="themes_medium_contrast_dark">Medium Contrast Dark</string>
+    <string name="themes_high_contrast_dark">High Contrast Dark</string>
+    <string name="top_bar_theme_settings">Theme</string>
 
 </resources>

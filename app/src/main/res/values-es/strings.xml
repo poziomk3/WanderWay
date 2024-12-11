@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <string name="app_name" translatable="false">WanderWay</string>
+
+    <!-- topbars -->
+    <string name="top_bar_home">¿Listo para la aventura?</string>
+    <string name="top_bar_build_your_route">¡Crea tu ruta!</string>
+    <string name="top_bar_forum">¡Lo último en el foro!</string>
+    <string name="top_bar_account_settings">Configuración de cuenta</string>
+    <string name="top_bar_preferences">Tus preferencias</string>
+    <string name="top_bar_route_choice">¡Hemos generado rutas para ti!</string>
+    <string name="top_bar_route_display">¡Ruta en progreso!</string>
+    <string name="top_bar_default" translatable="false">Wander Way!</string>
+    <string name="top_bar_add_location">¡Elige ubicación!</string>
+    <string name="top_bar_forum_addition">¡Agrega algo al foro!</string>
+    <string name="top_bar_language_settings">Configuración de idioma</string>
+
+    <!-- bottombars -->
+    <string name="bottom_bar_home" translatable="false">Inicio</string>
+    <string name="bottom_bar_forum">Foro</string>
+    <string name="bottom_bar_account">Cuenta</string>
+
+    <!-- entry screens -->
+    <string name="entry_screen_title">¡Bienvenido a WanderWay!</string>
+    <string name="entry_screen_subtitle">¡Planifiquemos tu mejor viaje!</string>
+    <string name="entry_screen_login">Iniciar sesión</string>
+    <string name="entry_screen_register">Registrarse</string>
+    <string name="entry_screen_label_login">¡Inicia sesión!</string>
+    <string name="entry_screen_go_back">Regresar</string>
+    <string name="entry_screen_password">Contraseña</string>
+    <string name="entry_screen_email" translatable="false">Correo electrónico</string>
+    <string name="entry_screen_button_ok">¡Entendido!</string>
+    <string name="entry_screen_repeat_password">Repetir contraseña</string>
+    <string name="entry_screen_title_activate_account">¡Activa tu cuenta!</string>
+    <string name="entry_screen_subtitle_activate_account">Deberías recibir un correo de confirmación pronto.</string>
+
+    <!-- home screen -->
+    <string name="home_screen_label_1">Comencemos con una pregunta sencilla…</string>
+    <string name="home_screen_label_2">¿Qué quieres ver?</string>
+    <string name="home_screen_button">¡Vamos!</string>
+
+    <!-- preferences screen -->
+    <string name="preferences_screen_button_1">Ir a opciones avanzadas</string>
+    <string name="preferences_screen_button_2">Guardar</string>
+
+    <!-- route display screen -->
+    <string name="route_display_screen_restart">Crear de nuevo</string>
+    <string name="route_display_screen_modify_route">Modificar ruta</string>
+    <string name="route_display_screen_notification_title">¡Tu ruta ha comenzado! Redirigiendo a Google Maps</string>
+    <string name="route_display_screen_notification_message">¡Que te diviertas!</string>
+    <string name="route_display_screen_toast_message">Redirigiendo a Google Maps</string>
+    <string name="route_display_screen_go_for_it">¡Hazlo!</string>
+    <string name="route_display_screen_rate_this_route">¡Valora esta ruta en el foro!</string>
+    <string name="route_display_screen_dismiss_dialog">No, gracias</string>
+    <string name="route_display_screen_go_to_forum">Ir al foro</string>
+
+    <!-- route choice screen -->
+    <string name="route_choice_screen_route">Ruta</string>
+    <string name="route_choice_screen_button_details">¡Ver detalles!</string>
+    <string name="route_choice_screen_button_ok">¡Vamos!</string>
+
+    <!-- add location screen -->
+    <string name="add_location_screen_button">¡Agrégalo!</string>
+    <string name="add_location_screen_description">Escribe el nombre de la atracción \no encuentra un lugar en el mapa</string>
+    <string name="add_location_search_placeholder">Buscar…</string>
+
+    <!-- build your route screen -->
+    <string name="build_your_route_screen_change_your_personal_preferences">Cambia tus preferencias personales</string>
+    <string name="build_your_route_screen_add_starting_point">Agregar punto de inicio</string>
+    <string name="build_your_route_screen_add_destination">Agregar destino</string>
+    <string name="build_your_route_screen_create_route">Crear ruta</string>
+    <string name="build_your_route_screen_trip_overview">Resumen del viaje</string>
+    <string name="build_your_route_screen_starting_in">Comenzando en:</string>
+    <string name="build_your_route_screen_finishing_in">Terminando en:</string>
+    <string name="build_your_route_screen_attractions_in_route">Atracciones en la ruta:</string>
+    <string name="build_your_route_screen_add_destinations_first">Necesitas agregar algunos destinos primero</string>
+
+    <!-- settings -->
+    <string name="settings_preferences">Preferencias</string>
+    <string name="settings_language">Idioma</string>
+    <string name="settings_notifications">Notificaciones</string>
+    <string name="settings_privacy">Privacidad</string>
+    <string name="settings_security">Seguridad</string>
+    <string name="settings_help">Ayuda</string>
+    <string name="settings_delete_account">Eliminar cuenta</string>
+    <string name="settings_logout">Cerrar sesión</string>
+
+    <!-- language settings -->
+    <string name="settings_theme">Tema</string>
+    <string name="language_settings_screen_no_thanks">No, gracias</string>
+    <string name="language_settings_screen_restart">Reiniciar</string>
+    <string name="language_settings_screen_restart_prompt">Para que los cambios sean visibles, la app necesita reiniciarse. ¿Quieres reiniciar ahora?</string>
+    <string name="language_settings_screen_save">Guardar</string>
+    <string name="language_settings_screen_restart_required">Reinicio requerido</string>
+
+    <!-- preferences -->
+    <!-- Preference Categories -->
+    <string name="preference_category_duration">Duración del viaje</string>
+    <string name="preference_category_sightseeing">Tipo de turismo</string>
+    <string name="preference_category_group">Tipo de grupo</string>
+    <string name="preference_category_difficulty">Nivel de dificultad</string>
+    <string name="preference_category_weather">Clima preferido</string>
+    <string name="preference_category_transport">Medio de transporte preferido</string>
+    <string name="preference_category_meal">Preferencias de comida</string>
+    <string name="preference_category_budget">Rango de presupuesto</string>
+    <string name="preference_category_activity">Preferencias de actividades</string>
+
+    <!-- Duration options -->
+    <string name="preference_option_half_day">Medio día</string>
+    <string name="preference_option_full_day">Día completo</string>
+    <string name="preference_option_weekend">Fin de semana</string>
+
+    <!-- Sightseeing options -->
+    <string name="preference_option_historical">Histórico</string>
+    <string name="preference_option_nature">Naturaleza</string>
+    <string name="preference_option_modern_attractions">Atracciones modernas</string>
+
+    <!-- Group options -->
+    <string name="preference_option_solo">Solo</string>
+    <string name="preference_option_family">Familia</string>
+    <string name="preference_option_friends">Amigos</string>
+    <string name="preference_option_tour_group">Grupo turístico</string>
+
+    <!-- Difficulty options -->
+    <string name="preference_option_easy">Fácil</string>
+    <string name="preference_option_moderate">Moderado</string>
+    <string name="preference_option_challenging">Desafiante</string>
+
+    <!-- Weather options -->
+    <string name="preference_option_any">Cualquiera</string>
+    <string name="preference_option_sunny">Soleado</string>
+    <string name="preference_option_cloudy">Nublado</string>
+    <string name="preference_option_cool">Fresco</string>
+
+    <!-- Transport options -->
+    <string name="preference_option_car">Coche</string>
+    <string name="preference_option_public_transport">Transporte público</string>
+    <string name="preference_option_bike">Bicicleta</string>
+    <string name="preference_option_walking">Caminando</string>
+
+    <!-- Meal options -->
+    <string name="preference_option_quick_snacks">Bocadillos rápidos</string>
+    <string name="preference_option_local_cuisine">Cocina local</string>
+    <string name="preference_option_packed_lunch">Almuerzo empacado</string>
+
+    <!-- Budget options -->
+    <string name="preference_option_low">Bajo</string>
+    <string name="preference_option_medium">Medio</string>
+    <string name="preference_option_high">Alto</string>
+
+    <!-- Activity options -->
+    <string name="preference_option_relaxing">Relajante</string>
+    <string name="preference_option_adventurous">Aventurero</string>
+    <string name="preference_option_educational">Educativo</string>
+
+    <!-- themes -->
+    <string name="themes_light">Claro</string>
+    <string name="themes_dark">Oscuro</string>
+    <string name="themes_medium_contrast_light">Contraste Medio Claro</string>
+    <string name="themes_high_contrast_light">Alto Contraste Claro</string>
+    <string name="themes_medium_contrast_dark">Contraste Medio Oscuro</string>
+    <string name="themes_high_contrast_dark">Alto Contraste Oscuro</string>
+    <string name="top_bar_theme_settings">Tema</string>
+
+</resources>

@@ -1,7 +1,6 @@
 package com.pwr.wanderway.presentation.entryScreens.commons
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -25,11 +24,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.pwr.wanderway.R
 import com.pwr.wanderway.presentation.commons.MainIcon
-import com.pwr.wanderway.ui.theme.AppTheme
 
 @Composable
 fun EntryScreenLayout(
@@ -43,7 +40,7 @@ fun EntryScreenLayout(
     Surface(
         modifier = Modifier
             .fillMaxSize()
-            .systemBarsPadding() // Adjusts for system UI insets
+            .systemBarsPadding()
     ) {
         Box(
             modifier = Modifier
@@ -51,13 +48,13 @@ fun EntryScreenLayout(
         ) {
             Image(
                 painter = painterResource(id = R.drawable.welcome_background),
-                contentDescription = null, // Decorative background image
+                contentDescription = null,
                 modifier = Modifier
                     .fillMaxSize()
                     .graphicsLayer {
-                        alpha = 0.9f
+                        alpha = 0.8f
                     },
-                contentScale = ContentScale.Crop // // Adjusts how the image is scaled to fit the background
+                contentScale = ContentScale.FillBounds
             )
 
             ElevatedCard(
@@ -66,32 +63,38 @@ fun EntryScreenLayout(
                     contentColor = MaterialTheme.colorScheme.onPrimary
                 ),
                 elevation = CardDefaults.cardElevation(
-                    defaultElevation = 6.dp
+                    defaultElevation = 10.dp
                 ),
                 modifier = Modifier
-                    .padding(16.dp)
-                    .width(width = 300.dp).imePadding().verticalScroll(rememberScrollState()),
+                    .width(300.dp)
+                    .imePadding()
+
+                    .verticalScroll(rememberScrollState()),
             ) {
                 Column(
                     modifier = Modifier
                         .fillMaxSize()
-                        .padding(8.dp),
+                        .padding(top = 8.dp, end = 8.dp, start = 8.dp, bottom = 0.dp),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Column(
-                        verticalArrangement = Arrangement.spacedBy(4.dp),
                         horizontalAlignment = Alignment.CenterHorizontally,
-                        modifier = Modifier.padding(16.dp)
-                    ) {
-                        MainIcon()
+
+                        ) {
+                        MainIcon(size = 75)
                         Text(
                             text = title,
-                            style = MaterialTheme.typography.headlineSmall
+                            style = MaterialTheme.typography.titleMedium,
+                            modifier = Modifier.padding(bottom = 8.dp)
                         )
                         content()
                     }
 
-                    Row(modifier = Modifier.align(Alignment.End)) {
+                    Row(
+                        modifier = Modifier
+                            .align(Alignment.End)
+                            .padding(top = 8.dp)
+                    ) {
                         leftButton?.let {
                             TextButton(
                                 colors = ButtonDefaults.textButtonColors(
@@ -101,7 +104,7 @@ fun EntryScreenLayout(
                                     leftButtonOnClick?.invoke()
                                 }
                             ) {
-                                Text(leftButton)
+                                Text(leftButton, style = MaterialTheme.typography.bodyMedium)
                             }
                         }
                         rightButton?.let {
@@ -113,7 +116,7 @@ fun EntryScreenLayout(
                                     rightButtonOnClick?.invoke()
                                 }
                             ) {
-                                Text(rightButton)
+                                Text(rightButton, style = MaterialTheme.typography.bodyMedium)
                             }
                         }
                     }
@@ -123,20 +126,4 @@ fun EntryScreenLayout(
     }
 }
 
-@Preview
-@Composable
-fun LayoutPreview() {
-    AppTheme {
-        EntryScreenLayout(
-            title = "Title",
-            content = {
-                Text("Hello, World!")
-            },
-            rightButton = "Right",
-            rightButtonOnClick = {},
-            leftButton = "Left",
-            leftButtonOnClick = {}
-        )
 
-    }
-}

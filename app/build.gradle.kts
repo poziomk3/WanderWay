@@ -84,6 +84,7 @@ dependencies {
     implementation("com.android.identity:identity-doctypes-jvm:202411.1")
     implementation("com.google.android.gms:play-services-location:21.3.0")
     implementation("androidx.preference:preference-ktx:1.2.1")
+    implementation("com.google.firebase:firebase-crashlytics-buildtools:3.0.2")
     kapt("com.google.dagger:hilt-android-compiler:2.51.1")
     implementation("androidx.datastore:datastore-preferences-core:1.1.1")
     implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
@@ -107,6 +108,8 @@ dependencies {
     implementation("androidx.navigation:navigation-dynamic-features-fragment:2.8.4")
     androidTestImplementation("androidx.navigation:navigation-testing:2.8.4")
 
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.9.0")
+
     // Retrofit & OkHttp
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
@@ -119,12 +122,14 @@ dependencies {
     implementation("androidx.compose.material3:material3:1.4.0-alpha04")
     implementation("androidx.compose.material:material-icons-extended:1.7.5")
     // Testing
+    testImplementation("androidx.arch.core:core-testing:2.2.0")
+    testImplementation("org.assertj:assertj-core:3.24.2")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
     androidTestImplementation(platform("androidx.compose:compose-bom:2024.11.00"))
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
-
+    testImplementation("org.jetbrains.kotlin:kotlin-test:1.9.0")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.9.0")
     testImplementation("app.cash.turbine:turbine:0.12.1")
     testImplementation("org.mockito:mockito-core:5.4.0")
@@ -132,8 +137,9 @@ dependencies {
     // Debugging tools
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
-    testImplementation ("org.slf4j:slf4j-api:2.0.7")
-    testRuntimeOnly ("org.slf4j:slf4j-simple:2.0.7")
+    testImplementation("org.slf4j:slf4j-api:2.0.7")
+    testRuntimeOnly("org.slf4j:slf4j-simple:2.0.7")
+    implementation(kotlin("test"))
 }
 
 kapt {

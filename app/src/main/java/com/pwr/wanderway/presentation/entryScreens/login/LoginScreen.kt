@@ -1,10 +1,9 @@
 package com.pwr.wanderway.presentation.entryScreens.login
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.size
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -52,20 +51,20 @@ fun LoginScreen(
         title = stringResource(id = R.string.entry_screen_label_login),
         content = {
             Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                Column(modifier = Modifier.align(Alignment.Center)) {
+                Column(
+                    verticalArrangement = Arrangement.spacedBy(2.dp)
+                ) {
                     OnPrimaryTextField(
                         value = username,
                         onValueChange = { username = it },
                         label = stringResource(id = R.string.entry_screen_login)
                     )
-                    Spacer(modifier = Modifier.size(16.dp))
                     OnPrimaryTextField(
                         visualTransformation = PasswordVisualTransformation(),
                         value = password,
                         onValueChange = { password = it },
                         label = stringResource(id = R.string.entry_screen_password)
                     )
-                    Spacer(modifier = Modifier.size(16.dp))
                     if (errorMessage != null)
                         Text(
                             text = errorMessage ?: "",

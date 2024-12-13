@@ -1,10 +1,9 @@
 package com.pwr.wanderway.presentation.entryScreens.register
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.size
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -59,33 +58,31 @@ fun RegisterScreen(
         title = stringResource(id = R.string.entry_screen_register),
         content = {
             Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                Column {
+                Column(
+                    verticalArrangement = Arrangement.spacedBy(2.dp)
+                ) {
                     OnPrimaryTextField(
                         value = email,
                         onValueChange = { email = it },
                         label = stringResource(id = R.string.entry_screen_email)
                     )
-                    Spacer(modifier = Modifier.size(16.dp))
                     OnPrimaryTextField(
                         value = username,
                         onValueChange = { username = it },
                         label = stringResource(id = R.string.entry_screen_login)
                     )
-                    Spacer(modifier = Modifier.size(16.dp))
                     OnPrimaryTextField(
                         visualTransformation = PasswordVisualTransformation(),
                         value = password,
                         onValueChange = { password = it },
                         label = stringResource(id = R.string.entry_screen_password)
                     )
-                    Spacer(modifier = Modifier.size(16.dp))
                     OnPrimaryTextField(
                         visualTransformation = PasswordVisualTransformation(),
                         value = confirmPassword,
                         onValueChange = { confirmPassword = it },
                         label = stringResource(id = R.string.entry_screen_repeat_password)
                     )
-                    Spacer(modifier = Modifier.size(16.dp))
                     if (errorMessage != null)
                         Text(
                             text = errorMessage ?: "",

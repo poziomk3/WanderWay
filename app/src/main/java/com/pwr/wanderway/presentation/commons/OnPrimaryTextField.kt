@@ -26,12 +26,12 @@ fun OnPrimaryTextField(
         modifier = modifier,
         colors = OutlinedTextFieldDefaults.colors(
             focusedTextColor = MaterialTheme.colorScheme.onPrimary,
-            unfocusedTextColor = MaterialTheme.colorScheme.outlineVariant,
-            unfocusedBorderColor = MaterialTheme.colorScheme.outline,
-            unfocusedLabelColor = MaterialTheme.colorScheme.outlineVariant,
             focusedLabelColor = MaterialTheme.colorScheme.onPrimary,
             focusedBorderColor = MaterialTheme.colorScheme.onPrimary,
-            cursorColor = MaterialTheme.colorScheme.onPrimary
+            cursorColor = MaterialTheme.colorScheme.onPrimary,
+            unfocusedTextColor = MaterialTheme.colorScheme.primaryContainer,
+            unfocusedBorderColor = MaterialTheme.colorScheme.primaryContainer,
+            unfocusedLabelColor = MaterialTheme.colorScheme.primaryContainer,
         ),
         label = {
             Text(text = label)

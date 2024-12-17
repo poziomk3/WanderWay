@@ -83,13 +83,10 @@ fun RegisterScreen(
                         onValueChange = { confirmPassword = it },
                         label = stringResource(id = R.string.entry_screen_repeat_password)
                     )
-                    if (errorMessage != null)
-                        Text(
-                            text = errorMessage ?: "",
-                            color = MaterialTheme.colorScheme.error
-                        )
-                    else
-                        Text("")
+                    Text(
+                        text = errorMessage ?: "",
+                        color = MaterialTheme.colorScheme.error
+                    )
                 }
                 if (isLoading) {
                     Loader(color = MaterialTheme.colorScheme.onPrimary)

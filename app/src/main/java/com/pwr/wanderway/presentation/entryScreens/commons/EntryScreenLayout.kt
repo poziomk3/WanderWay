@@ -66,7 +66,7 @@ fun EntryScreenLayout(
                     defaultElevation = 10.dp
                 ),
                 modifier = Modifier
-                    .width(300.dp)
+                    .width(350.dp)
                     .imePadding()
 
                     .verticalScroll(rememberScrollState()),
@@ -74,7 +74,7 @@ fun EntryScreenLayout(
                 Column(
                     modifier = Modifier
                         .fillMaxSize()
-                        .padding(top = 8.dp, end = 8.dp, start = 8.dp, bottom = 0.dp),
+                        .padding(16.dp),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Column(

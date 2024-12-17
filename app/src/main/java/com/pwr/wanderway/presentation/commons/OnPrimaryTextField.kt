@@ -1,5 +1,6 @@
 package com.pwr.wanderway.presentation.commons
 
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
@@ -23,7 +24,7 @@ fun OnPrimaryTextField(
         visualTransformation = visualTransformation,
         onValueChange = onValueChange,
         singleLine = singleLine,
-        modifier = modifier,
+        modifier = modifier.fillMaxWidth(),
         colors = OutlinedTextFieldDefaults.colors(
             focusedTextColor = MaterialTheme.colorScheme.onPrimary,
             focusedLabelColor = MaterialTheme.colorScheme.onPrimary,

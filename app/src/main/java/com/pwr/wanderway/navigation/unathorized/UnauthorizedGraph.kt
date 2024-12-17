@@ -53,7 +53,7 @@ fun UnauthorizedNavGraph(
                     moveToAuthorized() // Move to the authorized graph
                 },
                 onBackClick = {
-                    navController.popBackStack()
+                    navController.navigateTo(Destination.WELCOME_SCREEN)
                 },
                 authViewModel = authViewModel
             )

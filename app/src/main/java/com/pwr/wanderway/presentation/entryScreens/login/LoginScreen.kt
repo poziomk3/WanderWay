@@ -65,13 +65,10 @@ fun LoginScreen(
                         onValueChange = { password = it },
                         label = stringResource(id = R.string.entry_screen_password)
                     )
-                    if (errorMessage != null)
-                        Text(
-                            text = errorMessage ?: "",
-                            color = MaterialTheme.colorScheme.error
-                        )
-                    else
-                        Text("")
+                    Text(
+                        text = errorMessage ?: "",
+                        color = MaterialTheme.colorScheme.error
+                    )
                 }
                 if (isLoading) {
                     Loader(color = MaterialTheme.colorScheme.onPrimary)

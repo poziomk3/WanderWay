@@ -29,6 +29,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.traversalIndex
@@ -63,6 +64,7 @@ fun SearchBar(
             .fillMaxWidth()
             .padding(horizontal = 8.dp)
             .height(250.dp)
+            .testTag("SearchBarRoot")
     ) {
         DockedSearchBar(
             modifier =
@@ -82,6 +84,7 @@ fun SearchBar(
                     onExpandedChange = { expanded = it },
                     placeholder = { Text(stringResource(R.string.add_location_search_placeholder)) },
                     leadingIcon = { Icon(Icons.Default.Search, contentDescription = null) },
+                    modifier = Modifier.testTag("SearchInput")
                 )
             },
 
@@ -100,6 +103,7 @@ fun SearchBar(
                 modifier = Modifier
                     .verticalScroll(rememberScrollState())
                     .padding(4.dp)
+                    .testTag("SuggestionsContainer")
             ) {
                 limitedSuggestions.forEach { suggestion ->
                     ListItem(
@@ -120,6 +124,7 @@ fun SearchBar(
                                 onSearch(suggestion.id)
                             }
                             .fillMaxWidth()
+                            .testTag("SuggestionItem-${suggestion.id}")
                     )
                 }
             }
